@@ -3,6 +3,15 @@
   background-color: #202024;
 }
 
+.main_wrapper {
+  display: flex;
+  flex-direction: column;
+  
+  height: 100vh;
+  max-width: 634px;
+  margin: 0 auto;
+}
+
 /*Header Style*/
 header {
   display: flex;
