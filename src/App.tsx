@@ -1,7 +1,12 @@
+import {ThemeProvider} from 'styled-components'
+import theme from './styles/global/theme'
+import './styles/global/styles.css'
+import {Login} from './pages/auth/login'
+
 export default function App() {
   return (
-    <>
-      <h1>App</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <Login />
+    </ThemeProvider>
   )
 }
