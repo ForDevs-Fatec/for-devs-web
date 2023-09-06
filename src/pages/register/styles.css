@@ -1,0 +1,33 @@
+.container {
+    height: 100vh;
+    background-color: #202024;
+    color: white;
+}
+
+.main_wrapper {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+    max-width: 634px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 2rem 2rem 0 0;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.header_content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
