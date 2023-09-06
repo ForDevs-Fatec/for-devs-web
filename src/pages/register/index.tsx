@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PasswordChecklist from 'react-password-checklist';
 
 import { AtSign, Eye, EyeOff, Lock, Unlock, User } from 'lucide-react';
