@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Eye, EyeOff, KeyRound, LogIn, Mail } from 'lucide-react'
 
 import Logo from '../../../assets/logoVertical.svg'
-import { Input } from '../../../components/Input'
+import { Input } from '../../../components/input'
 import { Button } from '../../../components/Button'
 
 import './styles.css'
