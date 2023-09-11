@@ -2,29 +2,29 @@ import { useState } from 'react';
 import PasswordChecklist from 'react-password-checklist';
 
 import { AtSign, Eye, EyeOff, Lock, Unlock, User } from 'lucide-react';
-import { Input } from '../../components/input';
+import { Input } from '../../../components/input';
+import { Button } from '../../../components/Button';
 
-import Logo from '../../assets/logoVertical.svg'
+import Logo from '../../../assets/logoVertical.svg'
 
 import styles from './styles.module.css'
-import { Button } from '../../components/Button';
 
 export function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
-  const [password, setPassword] = useState("");
-  const [passwordAgain, setPasswordAgain] = useState("");
+  const [passCheck, setPassCheck] = useState("");
+  const [passConfirmCheck, setConfirmPassCheck] = useState("");
 
   // Função para alternar entre mostrar e esconder a senha
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const toggleShowPass = () => {
+    setShowPass(!showPass);
   };
 
 
   // Função para alternar entre mostrar e esconder a senha
-  const togglePasswordVisibility2 = () => {
-    setShowPassword2(!showPassword2);
+  const toggleShowConfirmPass = () => {
+    setShowConfirmPass(!showConfirmPass);
   }; 
 
   return (
@@ -59,15 +59,15 @@ export function Register() {
             <div className={styles.input_wrapper}>
               <label htmlFor="password">Senha</label>
               <Input.Root>
-                <Input.IconLeft icon={showPassword ? Unlock : Lock} />
+                <Input.IconLeft icon={showPass ? Unlock : Lock} />
                 <Input.TextField
                   placeholder="Senha"
-                  onChange={e => setPassword(e.target.value)}
-                  type={showPassword ? "text" : "password"}
+                  onChange={e => setPassCheck(e.target.value)}
+                  type={showPass ? "text" : "password"}
                 />
                 <Input.ButtonIcon
-                  icon={showPassword ? Eye : EyeOff}
-                  onClick={togglePasswordVisibility}
+                  icon={showPass ? Eye : EyeOff}
+                  onClick={toggleShowPass}
                 />
               </Input.Root>
             </div>
@@ -75,24 +75,24 @@ export function Register() {
               <label htmlFor="password">Confirme a senha</label>
               <Input.Root>
                 <Input.IconLeft
-                  icon={showPassword2 ? Unlock : Lock}
+                  icon={showConfirmPass ? Unlock : Lock}
                 />
                 <Input.TextField
                   placeholder="Confirme a senha"
-                  onChange={e => setPasswordAgain(e.target.value)}
-                  type={showPassword2 ? "text" : "password"}
+                  onChange={e => setConfirmPassCheck(e.target.value)}
+                  type={showConfirmPass ? "text" : "password"}
                 />
                 <Input.ButtonIcon
-                  icon={showPassword2 ? Eye : EyeOff}
-                  onClick={togglePasswordVisibility2}
+                  icon={showConfirmPass ? Eye : EyeOff}
+                  onClick={toggleShowConfirmPass}
                 />
               </Input.Root>
             </div>
             <PasswordChecklist
               rules={["minLength", "specialChar", "number", "capital", "match"]}
               minLength={8}
-              value={password}
-              valueAgain={passwordAgain}
+              value={passCheck}
+              valueAgain={passConfirmCheck}
               messages={{
                 minLength: "A senha tem pelo menos 8 caracteres.",
                 specialChar: "A senha possui caracteres especiais.",

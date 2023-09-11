@@ -1,13 +1,12 @@
 import {ThemeProvider} from 'styled-components'
 import theme from './styles/global/theme'
 import './styles/global/styles.css'
-import {Login} from './pages/auth/login'
-import {Register} from './pages/register'
+import { MainRoutes } from './utils/routes/routes'
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <MainRoutes />
     </ThemeProvider>
   )
 }

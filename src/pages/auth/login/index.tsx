@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 import { Eye, EyeOff, Lock, LogIn, Mail, Unlock } from 'lucide-react'
 
 import Logo from '../../../assets/logoVertical.svg'
@@ -38,12 +37,12 @@ export function Login() {
             <p>Para acessar a plataforma, faça seu login.</p>
           </section>
 
-          <section className={styles.main_inputs_wrapper}>
+          <form className={styles.main_inputs_wrapper}>
             <div className={styles.input_wrapper}>
               <span>E-mail</span>
               <Input.Root>
                 <Input.IconLeft icon={Mail} />
-                <Input.TextField placeholder="E-mail" />
+                <Input.TextField placeholder="E-mail"/>
               </Input.Root>
             </div>
             <div className={styles.input_wrapper}>
@@ -57,16 +56,17 @@ export function Login() {
                 <Input.ButtonIcon
                   icon={showPassword ? Eye : EyeOff}
                   onClick={togglePasswordVisibility}
+                  type='button'
                 />
               </Input.Root>
             </div>
-          </section>
+
+            <Button.Root  type='submit'>
+              <Button.Content text="Acessar"/>
+            </Button.Root>
+          </form>
 
           <section className={styles.main_button_wrapper}>
-            <Button.Root>
-              <Button.Content text="Acessar" />
-            </Button.Root>
-
             <span>
               <a>Esqueceu sua senha ?</a>
             </span>
