@@ -1,0 +1,8 @@
+.container {
+    height: 100vh;
+    background-color: #202024;
+}
+
+.main_wrapper {
+    padding: 1.5rem 2rem 0 8.25rem;
+}

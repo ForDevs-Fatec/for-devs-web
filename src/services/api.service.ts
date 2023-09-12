@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const api = axios.create({
-    baseURL: import.meta.env.REACT_APP_FORDEVS_API_URL
+const API = axios.create({
+    baseURL: 'http://localhost:3000'
+    //baseURL: import.meta.env.VITE_FORDEVS_API_URL
 })
 
-export default api;
+export default API;

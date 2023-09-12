@@ -13,7 +13,7 @@
 }
 
 /*Header Style*/
-header {
+.header_wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +45,7 @@ img {
 }
 
 /*Form Main Content Style*/
-main {
+.form_wrapper {
   display: flex;
   flex-direction: column;
   gap: 3.25rem;

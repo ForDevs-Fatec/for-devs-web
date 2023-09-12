@@ -6,7 +6,7 @@ import { MainRoutes } from './utils/routes/routes'
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <MainRoutes />
+        <MainRoutes />
     </ThemeProvider>
   )
 }
