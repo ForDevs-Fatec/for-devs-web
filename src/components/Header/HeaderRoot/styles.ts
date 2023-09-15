@@ -5,7 +5,7 @@ export const HeaderRootContainer = styled.header`
     justify-content: space-between;
     align-items: center;
 
-    @media (max-width: 400px) {
+    @media (max-width: 470px) {
         flex-direction: column-reverse;
         align-items: flex-end;
     }

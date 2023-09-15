@@ -16,7 +16,7 @@ export const HeaderContentTitle = styled.h1`
     font-weight: ${props => props.theme.fontWeights.bold};
     color: ${props => props.theme.colors.gray_title};
 
-    @media (max-width: 515px) {
+    @media (max-width: 660px) {
         font-size: 1rem;
     }
 `
@@ -26,7 +26,7 @@ export const HeaderContentSubtitle = styled.span`
     font-weight: ${props => props.theme.fontWeights.semi_bold};
     color: ${props => props.theme.colors.gray_text_primary};
 
-    @media (max-width: 515px) {
+    @media (max-width: 660px) {
         display: none;
     }
 `

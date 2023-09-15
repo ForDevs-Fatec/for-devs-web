@@ -7,11 +7,11 @@ interface HeaderContentProps {
     icon: ElementType;
 }
 
-export function HeaderContent({text, subTitle, icon: Icon}: HeaderContentProps) {
-    return(
+export function HeaderContent({ text, subTitle, icon: Icon }: HeaderContentProps) {
+    return (
         <HeaderContentContainer>
             <HeaderContentTitle>
-                <Icon 
+                <Icon
                     size={32}
                     color='#ffffff'
                 />

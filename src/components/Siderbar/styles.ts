@@ -1,11 +1,13 @@
-import styled from "styled-components";
+import {styled} from "styled-components";
 import { Link } from "react-router-dom";
 
-interface NavbarLinkProps {
+interface NavbarProps {
   isActive?: boolean;
+  isOpen?: boolean;
+  onClick?: () => void;
 }
 
-export const Container = styled.aside`
+export const Container = styled.aside<NavbarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,12 +17,16 @@ export const Container = styled.aside`
   height: 100%;
   padding: 2rem 0rem;
   
-  background: ${({ theme }) => theme.colors.gray_background};
+  background: ${({ theme }) => theme.colors.grey_background};
 
   position: fixed;
   z-index: 1000 !important;
 
-  box-shadow: 5px 0px 20px rgba(204, 204, 204, 0.1);
+  transition: width 0.3s ease;
+
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+  }
 `;
 
 export const Header = styled.header`
@@ -40,7 +46,7 @@ export const Navbar = styled.div`
   padding-top: 2rem;
 `;
 
-export const NavbarLink = styled(Link)<NavbarLinkProps>`
+export const NavbarLink = styled(Link)<NavbarProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +59,7 @@ export const NavbarLink = styled(Link)<NavbarLinkProps>`
   text-decoration: none;
 
   &:hover {
-    color: #00b4f1;
+    color: ${({ theme }) => theme.colors.blue_300};
   }
 `;
 
@@ -65,15 +71,14 @@ export const NavbarSpan = styled.span`
   cursor: pointer;
   font-weight: 500;
   font-size: ${({ theme }) => theme.fontSizes.small};
-  color: #7c7c8a;
+  color: ${({ theme }) => theme.colors.grey_placeholder};
   text-decoration: none;
 
   &:hover {
-    color: #00b4f1;
+    color: ${({ theme }) => theme.colors.blue_300};
   }
+
 `;
-
-
 
 export const Logo = styled.img`
   width: 6.75rem;
