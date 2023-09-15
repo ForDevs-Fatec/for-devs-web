@@ -66,9 +66,9 @@ export function Login() {
       success();
     }).catch(error => {
       errorToast();
+      console.log(error)
     })
   }
-
 
   return (
     <div className={styles.container}>
