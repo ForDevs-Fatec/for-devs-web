@@ -16,14 +16,14 @@ import { toast } from 'react-toastify';
 export function Register() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [checkBoxValue, setCheckBoxValue] = useState({
+  const [role, setRole] = useState({
     admin: false,
     nivel1: false,
     nivel2: false
   });
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-  const [passCheck, setPassCheck] = useState("");
+  const [password, setPassword] = useState("");
   const [passConfirmCheck, setConfirmPassCheck] = useState("");
 
   const navigate = useNavigate();
@@ -66,9 +66,9 @@ export function Register() {
   }
 
   const handleCheckBoxValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setCheckBoxValue({
-      ...checkBoxValue,
-      [event.target.name]: event.target.checked
+    setRole({
+      ...role,
+      [event.target.id]: event.target.checked
     })
   }
 
@@ -78,14 +78,16 @@ export function Register() {
     const data = {
       name,
       email,
-      passCheck,
-      checkBoxValue
+      password,
+      ...(role.admin && {role: 'admin'}),
+      ...(role.nivel1 && {role: 'nivel1'}),
+      ...(role.nivel2 && {role: 'nivel2'})
     };
 
     console.log(data);
 
     api.post(URI.USER_REGISTER, data).then(response => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         navigate('/');
       }
     }).then(() => {
@@ -140,9 +142,9 @@ export function Register() {
               <Input.Root>
                 <Input.IconLeft icon={showPass ? Unlock : Lock} />
                 <Input.TextField
-                  value={passCheck}
+                  value={password}
                   placeholder="Senha"
-                  onChange={e => setPassCheck(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   type={showPass ? "text" : "password"}
                 />
                 <Input.ButtonIcon
@@ -173,7 +175,7 @@ export function Register() {
             <PasswordChecklist
               rules={["minLength", "specialChar", "number", "capital", "match"]}
               minLength={8}
-              value={passCheck}
+              value={password}
               valueAgain={passConfirmCheck}
               messages={{
                 minLength: "A senha tem pelo menos 8 caracteres.",
@@ -186,15 +188,15 @@ export function Register() {
 
             <div>
               <label>admin</label>
-              <input type="checkbox" name="admin" id="admin" checked={checkBoxValue.admin} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="admin" id="admin" checked={role.admin} onChange={handleCheckBoxValue}/>
             </div>
             <div>
               <label>nivel 1</label>
-              <input type="checkbox" name="nivel1" id="nivel1" checked={checkBoxValue.nivel1} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="nivel1" id="nivel1" checked={role.nivel1} onChange={handleCheckBoxValue}/>
             </div>
             <div>
               <label>nivel 2</label>
-              <input type="checkbox" name="nivel2" id="nivel2" checked={checkBoxValue.nivel2} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="nivel2" id="nivel2" checked={role.nivel2} onChange={handleCheckBoxValue}/>
             </div>
           </fieldset>
           <Button.Root type='submit'>

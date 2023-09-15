@@ -14,7 +14,7 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const errorToast = () => toast.error("Usuário ou senha inválidos !", {
+  const errorToast = () => toast.error("Usuário ou senha inválidos!", {
     position: "top-center",
     autoClose: 5000,
     closeOnClick: true,
@@ -24,7 +24,7 @@ export function Login() {
     theme: "dark",
   });
 
- const success = () => toast.success("Login realizado com sucesso !", {
+ const success = () => toast.success("Login realizado com sucesso!", {
     position: "top-center",
     autoClose: 5000,
     closeOnClick: true,
@@ -62,7 +62,8 @@ export function Login() {
       if (response.status === 200) {
         navigate('/dashboard');
       }
-    }).then(() => {
+    }).then((res: any) => {
+      localStorage.setItem('token', res.token)
       success();
     }).catch(error => {
       errorToast();
