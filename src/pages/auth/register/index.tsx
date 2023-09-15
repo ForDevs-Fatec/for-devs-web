@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import PasswordChecklist from 'react-password-checklist';
 
 import { AtSign, Eye, EyeOff, Lock, Unlock, User } from 'lucide-react';
@@ -8,24 +8,93 @@ import { Button } from '../../../components/Button';
 import Logo from '../../../assets/logoVertical.svg'
 
 import styles from './styles.module.css'
+import api from '../../../services/api.service';
+import URI from '../../../utils/enum/uri.enum';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function Register() {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [checkBoxValue, setCheckBoxValue] = useState({
+    admin: false,
+    nivel1: false,
+    nivel2: false
+  });
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-
   const [passCheck, setPassCheck] = useState("");
   const [passConfirmCheck, setConfirmPassCheck] = useState("");
 
-  // Função para alternar entre mostrar e esconder a senha
+  const navigate = useNavigate();
+
+  const errorToast = () => toast.error("Informações incompletas!", {
+    position: "top-center",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+
+  const success = () => toast.success("Usuário criado com sucesso!", {
+    position: "top-center",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+
   const toggleShowPass = () => {
     setShowPass(!showPass);
   };
 
-
-  // Função para alternar entre mostrar e esconder a senha
   const toggleShowConfirmPass = () => {
     setShowConfirmPass(!showConfirmPass);
-  }; 
+  };
+
+
+  const getName = (event: ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  }
+
+  const getEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }
+
+  const handleCheckBoxValue = (event: ChangeEvent<HTMLInputElement>) => {
+    setCheckBoxValue({
+      ...checkBoxValue,
+      [event.target.name]: event.target.checked
+    })
+  }
+
+  function handleRegister(event: FormEvent) {
+    event.preventDefault();
+
+    const data = {
+      name,
+      email,
+      passCheck,
+      checkBoxValue
+    };
+
+    console.log(data);
+
+    api.post(URI.USER_REGISTER, data).then(response => {
+      if (response.status === 200) {
+        navigate('/');
+      }
+    }).then(() => {
+      success();
+    }).catch(error => {
+      errorToast();
+      console.log(error)
+    })
+  }
 
   return (
     <div className={styles.primary_wrapper}>
@@ -39,33 +108,45 @@ export function Register() {
           </section>
         </header>
 
-        <main className={styles.main_wrapper}>
+        <form className={styles.main_wrapper} onSubmit={handleRegister}>
           <fieldset>
             <div className={styles.input_wrapper}>
               <label htmlFor="name">Nome</label>
               <Input.Root>
                 <Input.IconLeft icon={User} />
-                <Input.TextField placeholder="Nome" />
+                <Input.TextField
+                  type='text'
+                  placeholder="Nome"
+                  value={name}
+                  onChange={getName}
+                />
               </Input.Root>
             </div>
             <div className={styles.input_wrapper}>
               <label htmlFor="email">E-mail</label>
               <Input.Root>
                 <Input.IconLeft icon={AtSign} />
-                <Input.TextField placeholder="Email"/>
+                <Input.TextField
+                  type='email'
+                  placeholder="Email"
+                  value={email}
+                  onChange={getEmail}
+                />
               </Input.Root>
-            
+
             </div>
             <div className={styles.input_wrapper}>
               <label htmlFor="password">Senha</label>
               <Input.Root>
                 <Input.IconLeft icon={showPass ? Unlock : Lock} />
                 <Input.TextField
+                  value={passCheck}
                   placeholder="Senha"
                   onChange={e => setPassCheck(e.target.value)}
                   type={showPass ? "text" : "password"}
                 />
                 <Input.ButtonIcon
+                  type='button'
                   icon={showPass ? Eye : EyeOff}
                   onClick={toggleShowPass}
                 />
@@ -83,6 +164,7 @@ export function Register() {
                   type={showConfirmPass ? "text" : "password"}
                 />
                 <Input.ButtonIcon
+                  type='button'
                   icon={showConfirmPass ? Eye : EyeOff}
                   onClick={toggleShowConfirmPass}
                 />
@@ -101,11 +183,24 @@ export function Register() {
                 match: "As senhas coincidem.",
               }}
             />
+
+            <div>
+              <label>admin</label>
+              <input type="checkbox" name="admin" id="admin" checked={checkBoxValue.admin} onChange={handleCheckBoxValue}/>
+            </div>
+            <div>
+              <label>nivel 1</label>
+              <input type="checkbox" name="nivel1" id="nivel1" checked={checkBoxValue.nivel1} onChange={handleCheckBoxValue}/>
+            </div>
+            <div>
+              <label>nivel 2</label>
+              <input type="checkbox" name="nivel2" id="nivel2" checked={checkBoxValue.nivel2} onChange={handleCheckBoxValue}/>
+            </div>
           </fieldset>
-          <Button.Root>
+          <Button.Root type='submit'>
             <Button.Content text="Cadastrar" />
           </Button.Root>
-        </main>
+        </form>
       </section>
     </div>
   );
