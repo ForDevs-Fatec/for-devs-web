@@ -63,8 +63,8 @@ export function Login() {
         navigate('/dashboard');
       }
     }).then((res: any) => {
-      localStorage.setItem('token', res.token)
       success();
+      localStorage.setItem('token', res)
     }).catch(error => {
       errorToast();
       console.log(error)
