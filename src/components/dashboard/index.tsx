@@ -1,29 +1,95 @@
 import Chart from 'react-apexcharts'
 import styles from './styles.module.css'
 
-const OptionsChartLine = {
-    colors: ['#00b4f1'],
+/*Line chart data*/
+const OptionsChartLine: ApexCharts.ApexOptions = {
+    chart: {
+        type: "line",
+    },
+    stroke: {
+        curve: 'smooth',
+    },
     tooltip: {
-        enable: true,
-        theme: 'dark',
+        theme: 'dark'
     },
     grid: {
-        show: false,
+        borderColor: "#535A6C",
+    },
+    series: [
+        {
+            name: "Sales",
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+        }
+    ],
+    xaxis: {
+        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+};
+
+const SeriesChartLine = [
+    {
+        name: "Sales",
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+    }
+];
+
+/*Bar chart data*/
+const OptionsChartBar: ApexCharts.ApexOptions = {
+    chart: {
+        type: 'bar'
     },
     plotOptions: {
         bar: {
-            borderRadius: 8,
-        },
-        line: {
-            curve: 'smooth',
+            horizontal: false
         }
-    }
+    },
+    tooltip: {
+        theme: 'dark'
+    },
+    series: [{
+        data: [{
+            x: 'category A',
+            y: 10
+        }, {
+            x: 'category B',
+            y: 18
+        }, {
+            x: 'category C',
+            y: 13
+        }]
+    }]
+};
+
+/*Pie chart data*/
+const OptionsChartPie: ApexCharts.ApexOptions = {
+    chart: {
+        type: 'pie',
+    },
+    tooltip: {
+        theme: 'dark'
+    },
+    legend: {
+        labels: {
+            colors: '#fff'
+        }
+    },
+    labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
 }
 
-const SeriesChartLine = [{
-    name: 'primeiro',
-    data: [10, 2, 30, 4, 50, 60, 7, 8, 90]
-}]
+const SeriesChartPie = [30, 40, 35, 50, 49, 60, 70, 91, 125]
+
+/*Scatter chart data*/
+const OptionsChartScatter: ApexCharts.ApexOptions = {
+    chart: {
+        type: 'scatter',
+    },
+    tooltip: {
+        theme: 'dark'
+    },
+    labels: ['Apple', 'Mango', 'Orange', 'Watermelon', 'Banana', 'Pineapple', 'Kiwi', 'Strawberry', 'Cherry'],
+}
+
+const SeriesChartScatter = [30, 40, 35, 50, 49, 60, 70, 91, 125]
 
 export function DashboardCharts() {
     return (
@@ -70,7 +136,7 @@ export function DashboardCharts() {
 
             <section className={styles.section_wrapper_grid_5}>
                 <Chart
-                    options={OptionsChartLine}
+                    options={OptionsChartBar}
                     series={SeriesChartLine}
                     type='bar'
                     width='100%'
@@ -80,7 +146,7 @@ export function DashboardCharts() {
 
             <section className={styles.section_wrapper_grid_6}>
                 <Chart
-                    options={OptionsChartLine}
+                    options={OptionsChartBar}
                     series={SeriesChartLine}
                     type='bar'
                     width='100%'
@@ -90,9 +156,9 @@ export function DashboardCharts() {
 
             <section className={styles.section_wrapper_grid_7}>
                 <Chart
-                    options={OptionsChartLine}
-                    series={SeriesChartLine}
-                    type='line'
+                    options={OptionsChartPie}
+                    series={SeriesChartPie}
+                    type='pie'
                     width='100%'
                     height='100%'
                 />
@@ -110,9 +176,9 @@ export function DashboardCharts() {
 
             <section className={styles.section_wrapper_grid_9}>
                 <Chart
-                    options={OptionsChartLine}
+                    options={OptionsChartScatter}
                     series={SeriesChartLine}
-                    type='line'
+                    type='scatter'
                     width='100%'
                     height='100%'
                 />
