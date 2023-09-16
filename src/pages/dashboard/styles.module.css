@@ -1,6 +1,6 @@
 .container {
-    height: 100vh;
     background-color: #202024;
+    padding: 1rem 2rem;
 }
 
 .header_wrapper {
@@ -28,6 +28,23 @@
     color: #E1E1E6;
 }
 
-.main_wrapper {
+.section_subtitle_wrapper {
+    display: flex;
+    align-items: flex-end;
+    width:  100%;
+}
 
+.section_subtitle_wrapper > span {
+    color: #C4C4CC;
+    font-weight: 500;
+}
+
+.main_charts_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+    
+    margin-top: 1rem;
 }
