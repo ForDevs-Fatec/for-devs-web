@@ -5,10 +5,18 @@
 
 .header_wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     width: 100%;
+}
+
+.header_content_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    padding-left: 2rem;
 }
 
 .header_section_wrapper {
