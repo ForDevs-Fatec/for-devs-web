@@ -17,11 +17,7 @@ export function SideBar() {
   // pegar dados do usuario logado
   const token = localStorage.getItem('token');
 
-  console.log('aqui esta o token: ' + token)
-
   const decoded = jwt_decode<tokenDecoded>(token as string);
-
-  console.log(decoded)
 
   // logout do usuario
   const handleLogout = () => {
@@ -66,7 +62,7 @@ export function SideBar() {
             </>
           )}
         </Menu>
-        
+
         <Menu
           menuItemStyles={{
             button: {
