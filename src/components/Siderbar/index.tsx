@@ -2,9 +2,32 @@ import { useState } from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import styles from './styles.module.css'
 import { LayoutDashboard, LogOut, Menu as MenuIcon, Search } from 'lucide-react';
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
+interface tokenDecoded {
+  name: string;
+  email: string;
+  role: number;
+}
 
 export function SideBar() {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
+
+  // pegar dados do usuario logado
+  const token = localStorage.getItem('token');
+
+  console.log('aqui esta o token: ' + token)
+
+  const decoded = jwt_decode<tokenDecoded>(token as string);
+
+  console.log(decoded)
+
+  // logout do usuario
+  const handleLogout = () => {
+    localStorage.clear()
+    navigate('/')
+  }
 
   return (
     <div>
@@ -17,7 +40,7 @@ export function SideBar() {
 
         backgroundColor='#121214'
 
-        
+
       >
         <Menu
           menuItemStyles={{
@@ -30,10 +53,20 @@ export function SideBar() {
 
           className={styles.sidebar_wrapper}
         >
-          <MenuItem icon={<LayoutDashboard size={24} color='#ffffff'/>}> Dashboard </MenuItem>
-          <MenuItem icon={<Search size={24} color='#ffffff'/>}> Pesquisa </MenuItem>
+          {decoded.role === 0 ? (
+            <>
+              <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />}> Dashboard </MenuItem>
+              <MenuItem icon={<Search size={24} color='#ffffff' />}> Pesquisa </MenuItem>
+              <MenuItem icon={<Search size={24} color='#ffffff' />}> Teste </MenuItem>
+            </>
+          ) : (
+            <>
+              <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />}> Dashboard </MenuItem>
+              <MenuItem icon={<Search size={24} color='#ffffff' />}> Pesquisa </MenuItem>
+            </>
+          )}
         </Menu>
-
+        
         <Menu
           menuItemStyles={{
             button: {
@@ -42,14 +75,15 @@ export function SideBar() {
               },
             },
           }}
+          onClick={handleLogout}
         >
-          <MenuItem icon={<LogOut size={24} color='#ffffff'/>}> Sair </MenuItem>
+          <MenuItem icon={<LogOut size={24} color='#ffffff' />}> Sair </MenuItem>
         </Menu>
       </Sidebar>
       <main >
         <div>
           <button className={styles.sb_button} onClick={() => setToggle(!toggle)}>
-            <MenuIcon size={32} color="#ffffff"/>
+            <MenuIcon size={32} color="#ffffff" />
           </button>
         </div>
       </main>

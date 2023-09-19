@@ -60,11 +60,12 @@ export function Login() {
 
     api.post(URI.USER_LOGIN, data).then(response => {
       if (response.status === 200) {
+        localStorage.setItem('token', response.data.token)
+        console.log(response.data.token)
         navigate('/dashboard');
       }
-    }).then((res: any) => {
+    }).then(() => {
       success();
-      localStorage.setItem('token', res)
     }).catch(error => {
       errorToast();
       console.log(error)
