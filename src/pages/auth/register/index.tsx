@@ -1,6 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import PasswordChecklist from 'react-password-checklist';
-
 import { AtSign, Eye, EyeOff, Lock, Unlock, User } from 'lucide-react';
 import { Input } from '../../../components/input';
 import { Button } from '../../../components/Button';
@@ -16,15 +14,9 @@ import { toast } from 'react-toastify';
 export function Register() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [role, setRole] = useState({
-    admin: false,
-    nivel1: false,
-    nivel2: false
-  });
+  const [role, setRole] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
   const [password, setPassword] = useState("");
-  const [passConfirmCheck, setConfirmPassCheck] = useState("");
 
   const navigate = useNavigate();
 
@@ -52,11 +44,6 @@ export function Register() {
     setShowPass(!showPass);
   };
 
-  const toggleShowConfirmPass = () => {
-    setShowConfirmPass(!showConfirmPass);
-  };
-
-
   const getName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   }
@@ -66,10 +53,7 @@ export function Register() {
   }
 
   const handleCheckBoxValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setRole({
-      ...role,
-      [event.target.id]: event.target.checked
-    })
+    setRole(event.target.value)
   }
 
   function handleRegister(event: FormEvent) {
@@ -79,9 +63,7 @@ export function Register() {
       name,
       email,
       password,
-      ...(role.admin && {role: 'admin'}),
-      ...(role.nivel1 && {role: 'nivel1'}),
-      ...(role.nivel2 && {role: 'nivel2'})
+      role: parseInt(role)
     };
 
     console.log(data);
@@ -154,49 +136,18 @@ export function Register() {
                 />
               </Input.Root>
             </div>
-            <div className={styles.input_wrapper}>
-              <label htmlFor="password">Confirme a senha</label>
-              <Input.Root>
-                <Input.IconLeft
-                  icon={showConfirmPass ? Unlock : Lock}
-                />
-                <Input.TextField
-                  placeholder="Confirme a senha"
-                  onChange={e => setConfirmPassCheck(e.target.value)}
-                  type={showConfirmPass ? "text" : "password"}
-                />
-                <Input.ButtonIcon
-                  type='button'
-                  icon={showConfirmPass ? Eye : EyeOff}
-                  onClick={toggleShowConfirmPass}
-                />
-              </Input.Root>
-            </div>
-            <PasswordChecklist
-              rules={["minLength", "specialChar", "number", "capital", "match"]}
-              minLength={8}
-              value={password}
-              valueAgain={passConfirmCheck}
-              messages={{
-                minLength: "A senha tem pelo menos 8 caracteres.",
-                specialChar: "A senha possui caracteres especiais.",
-                number: "A senha contém pelo menos um número.",
-                capital: "A senha inclui pelo menos uma letra maiúscula.",
-                match: "As senhas coincidem.",
-              }}
-            />
 
             <div>
               <label>admin</label>
-              <input type="checkbox" name="admin" id="admin" checked={role.admin} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="admin" id="admin" value={0} onChange={handleCheckBoxValue}/>
             </div>
             <div>
               <label>nivel 1</label>
-              <input type="checkbox" name="nivel1" id="nivel1" checked={role.nivel1} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="nivel1" id="nivel1" value={1} onChange={handleCheckBoxValue}/>
             </div>
             <div>
               <label>nivel 2</label>
-              <input type="checkbox" name="nivel2" id="nivel2" checked={role.nivel2} onChange={handleCheckBoxValue}/>
+              <input type="checkbox" name="nivel2" id="nivel2" value={2} onChange={handleCheckBoxValue}/>
             </div>
           </fieldset>
           <Button.Root type='submit'>
