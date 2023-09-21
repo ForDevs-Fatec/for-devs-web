@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import styles from './styles.module.css'
-import { LayoutDashboard, LogOut, Menu as MenuIcon, Search } from 'lucide-react';
+import { LayoutDashboard, LogOut, Menu as MenuIcon, Search, Users } from 'lucide-react';
 import jwt_decode from "jwt-decode";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 interface tokenDecoded {
   name: string;
   email: string;
@@ -51,14 +51,61 @@ export function SideBar() {
         >
           {decoded.role === 0 ? (
             <>
-              <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />}> Dashboard </MenuItem>
-              <MenuItem icon={<Search size={24} color='#ffffff' />}> Pesquisa </MenuItem>
-              <MenuItem icon={<Search size={24} color='#ffffff' />}> Teste </MenuItem>
+              <Link to='/dashboard'>
+                <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />} rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}>
+                  Dashboard
+                </MenuItem>
+              </Link>
+              <Link to='/search'>
+                <MenuItem icon={<Search size={24} color='#ffffff' />} rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}>
+                  Pesquisa
+                </MenuItem>
+              </Link>
+              <MenuItem icon={<Users size={24} color='#ffffff' />} rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}> Usuários </MenuItem>
             </>
           ) : (
             <>
-              <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />}> Dashboard </MenuItem>
-              <MenuItem icon={<Search size={24} color='#ffffff' />}> Pesquisa </MenuItem>
+              <Link to='/dashboard'>
+                <MenuItem
+                  icon={
+                    <LayoutDashboard
+                      size={24}
+                      color='#ffffff'
+                    />
+                  }
+
+                  rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}
+                > Dashboard </MenuItem>
+              </Link>
+
+              <Link to='Search' className='link'>
+                <MenuItem icon={<Search size={24} color='#ffffff' />} rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}> Pesquisa </MenuItem>
+              </Link>
             </>
           )}
         </Menu>
@@ -73,7 +120,12 @@ export function SideBar() {
           }}
           onClick={handleLogout}
         >
-          <MenuItem icon={<LogOut size={24} color='#ffffff' />}> Sair </MenuItem>
+          <MenuItem icon={<LogOut size={24} color='#ffffff' />} rootStyles={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#00b4f1',
+                    },
+                  }}> Sair </MenuItem>
         </Menu>
       </Sidebar>
       <main >

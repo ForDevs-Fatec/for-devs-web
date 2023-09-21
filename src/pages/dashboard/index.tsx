@@ -11,8 +11,8 @@ export function Dashboard() {
                 <SideBar />
                 <Header.Root>
                     <Header.TitleWrapper>
-                        <Header.TitleContent icon={LayoutDashboard} title='Dashboard' />
-                        <Header.SubTitleContent subtitle='Dashboard' />
+                        <Header.TitleContent icon={LayoutDashboard} title='Dashboard: Análise de produtos' />
+                        <Header.SubTitleContent subtitle='Análises de produtos vendidos pela Americanas' />
                     </Header.TitleWrapper>
                     <Header.LogoWrapper>
                         <Header.Logo />

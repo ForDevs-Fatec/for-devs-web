@@ -1,129 +1,130 @@
-.container {
-  height: 100vh;
-  background-color: #202024;
-}
+import { styled } from 'styled-components'
 
-.main_wrapper {
+export const Container = styled.div`
+    height: 100vh;
+    background-color: #202024;
+`
+
+export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   
   height: 100vh;
   max-width: 634px;
   margin: 0 auto;
-}
+`
 
-/*Header Style*/
-.header_wrapper {
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 2rem 2rem 0 0;
-}
+`
 
-img {
+export const LogoImg = styled.img`
   width: 100px;
   height: 100px;
-}
+`
 
-.header_content {
+export const HeaderContentWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
+`
 
-#header_title_blue {
+export const HeaderContentDiv = styled.div``
+
+export const HeaderTitleBlue = styled.span`
   color: #00b4f1;
   font-weight: 700;
   font-size: 1.5rem;
-}
+`
 
-.header_content span {
+export const HeaderTitleWhite = styled.span`
   color: #e1e1e6;
   font-weight: 700;
   font-size: 1.5rem;
-}
+`
 
-/*Form Main Content Style*/
-.form_wrapper {
+export const MainFormContainer = styled.main`
   display: flex;
   flex-direction: column;
   gap: 3.25rem;
 
   padding: 6rem 2rem 6.5rem 2rem;
-}
+`
 
-.main_title_wrapper {
+export const MainFormTitleSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
+`
 
-.main_title_wrapper > h1 {
+export const MainFormTitle = styled.h1`
   color: #e1e1e6;
   font-weight: 400;
   font-size: 2rem;
-}
+`
 
-.main_title_wrapper > p {
+export const MainFormSubtitle = styled.p`
   color: #c4c4cc;
   font-weight: 400;
-}
+`
 
-.main_inputs_wrapper {
+export const MainForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
+`
 
-.input_wrapper {
+export const MainFormInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
+`
 
-.input_wrapper > span {
+export const MainFormInputTitle = styled.label`
   color: #fff;
   font-weight: 400;
-}
+`
 
-.main_button_wrapper {
+export const ForgotPasswordSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
+`
 
-.main_button_wrapper > span > a {
+export const ForgotPasswordLink = styled.a`
   color: #00b4f1;
   font-weight: 400;
 
   cursor: pointer;
-}
 
-.main_button_wrapper > span > a:hover {
-  text-decoration: underline;
-}
+    &:hover {
+        text-decoration: underline;
+    }
+`
 
-/*Footer Style*/
-footer {
+export const FooterContainer = styled.footer`
   display: flex;
   
   width: 100%;
   padding: 0 2rem 0 2rem;
-}
+`
 
-footer > span {
+export const FooterSpan = styled.span`
   width: 100%;
   padding: 1rem 0 0 0;
   border-top: 2px solid #c4c4cc;
 
   color: #C4C4CC;
-}
+`
 
-footer > span > a {
+export const FooterLink = styled.a`
   font-weight: 700;
   margin-left: 0.25rem;
   color: #00b4f1;
 
   cursor: pointer;
-}
+`

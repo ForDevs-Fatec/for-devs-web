@@ -5,6 +5,7 @@ import {
     Register,
     Dashboard
 } from '../../pages'
+import { SearchPage } from '../../pages/search'
 
 export function MainRoutes() {
     return(
@@ -13,6 +14,7 @@ export function MainRoutes() {
                 <Route path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/search" element={<SearchPage />} />
             </Routes>
         </BrowserRouter>
     )
