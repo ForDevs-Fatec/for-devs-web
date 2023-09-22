@@ -1,17 +1,26 @@
 import Select from 'react-select'
 
-const options = [
-    { value: 'admin', label: 'Administrador' },
-    { value: 'nivel1', label: 'Nivel 1' },
-    { value: 'nivel2', label: 'Nivel 2' },
-]
+interface UserSelectRoleProps {
+    roleOptions: [
+        { value: string, label: string },
+        { value: string, label: string },
+        { value: string, label: string },
+    ];
+    placeholder?: string;
+}
 
-export function UserSelectRole() {
+export function UserSelectRole({roleOptions, placeholder}: UserSelectRoleProps) {
     return (
         <Select
-            options={options}
+            options={roleOptions}
             isClearable
-            placeholder="Selecione um cargo..."
+            placeholder={placeholder}
+            styles={{
+                control: (provided) => ({
+                    ...provided,
+                    width: '12.5rem',
+                })
+            }}
         />
     )
 }

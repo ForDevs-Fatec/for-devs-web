@@ -12,7 +12,13 @@ export const HeaderContainer = styled.header`
 `
 
 export const MainContainer = styled.main`
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 
+    max-height: 1250px;
     height: 100vh;
+
+    overflow-y: scroll;
 `

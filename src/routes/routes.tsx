@@ -4,9 +4,9 @@ import {
     Login,
     Register,
     Dashboard
-} from '../../pages'
-import { SearchPage } from '../../pages/search'
-import { UsersPage } from '../../pages/users'
+} from '../pages'
+import { SearchPage } from '../pages/search'
+import { UsersPage } from '../pages/users'
 
 export function MainRoutes() {
     return(
