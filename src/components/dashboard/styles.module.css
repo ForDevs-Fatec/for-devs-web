@@ -4,8 +4,7 @@
 
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
     box-shadow: 0 0 0.5rem #121214;;
 }
@@ -14,8 +13,7 @@
     grid-area: 1 / 2 / 2 / 3;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
     box-shadow: 0 0 0.5rem #121214;
 }
@@ -24,68 +22,61 @@
     grid-area: 1 / 3 / 2 / 4;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .section_wrapper_grid_4 {
     grid-area: 1 / 4 / 2 / 5;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .section_wrapper_grid_5 {
     grid-area: 2 / 1 / 3 / 3;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .section_wrapper_grid_6 {
     grid-area: 2 / 3 / 3 / 5;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .section_wrapper_grid_7 {
     grid-area: 3 / 1 / 4 / 2;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .section_wrapper_grid_8 {
     grid-area: 3 / 2 / 4 / 3;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1); 
 }
 
 .section_wrapper_grid_9 {
     grid-area: 3 / 3 / 4 / 5;
     padding: 1rem;
 
-    border-radius: 1rem;
-    border: 2px solid #121214;
+    border-radius: 0.5rem;
     background-color: #121214;
-    box-shadow: 0 0 0.5rem #121214; 
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }

@@ -32,11 +32,9 @@ export function SideBar() {
           () => setToggle(false)
         }
         toggled={toggle}
-        breakPoint="always"
+        breakPoint="all"
 
         backgroundColor='#121214'
-
-
       >
         <Menu
           menuItemStyles={{
@@ -51,8 +49,10 @@ export function SideBar() {
         >
           {decoded.role === 0 ? (
             <>
-              <Link to='/dashboard'>
-                <MenuItem icon={<LayoutDashboard size={24} color='#ffffff' />} rootStyles={{
+                <MenuItem 
+                  icon={<LayoutDashboard size={24} color='#ffffff' />}
+                  component={<Link to='/dashboard' />}
+                  rootStyles={{
                     color: '#ffffff',
                     '&:hover': {
                       color: '#00b4f1',
@@ -60,27 +60,25 @@ export function SideBar() {
                   }}>
                   Dashboard
                 </MenuItem>
-              </Link>
-              <Link to='/search'>
-                <MenuItem icon={<Search size={24} color='#ffffff' />} rootStyles={{
-                    color: '#ffffff',
-                    '&:hover': {
-                      color: '#00b4f1',
-                    },
-                  }}>
+              
+                <MenuItem icon={<Search size={24} color='#ffffff' />} component={<Link to='/search'/>} rootStyles={{
+                  color: '#ffffff',
+                  '&:hover': {
+                    color: '#00b4f1',
+                  },
+                }}>
                   Pesquisa
                 </MenuItem>
-              </Link>
-              <MenuItem icon={<Users size={24} color='#ffffff' />} rootStyles={{
-                    color: '#ffffff',
-                    '&:hover': {
-                      color: '#00b4f1',
-                    },
-                  }}> Usuários </MenuItem>
+
+                <MenuItem icon={<Users size={24} color='#ffffff' />} component={<Link to='/users'/>}  rootStyles={{
+                  color: '#ffffff',
+                  '&:hover': {
+                    color: '#00b4f1',
+                  },
+                }}> Usuários </MenuItem>
             </>
           ) : (
             <>
-              <Link to='/dashboard'>
                 <MenuItem
                   icon={
                     <LayoutDashboard
@@ -89,6 +87,8 @@ export function SideBar() {
                     />
                   }
 
+                  component={<Link to='/dashboard' />}
+
                   rootStyles={{
                     color: '#ffffff',
                     '&:hover': {
@@ -96,16 +96,14 @@ export function SideBar() {
                     },
                   }}
                 > Dashboard </MenuItem>
-              </Link>
 
-              <Link to='Search' className='link'>
-                <MenuItem icon={<Search size={24} color='#ffffff' />} rootStyles={{
-                    color: '#ffffff',
-                    '&:hover': {
-                      color: '#00b4f1',
-                    },
-                  }}> Pesquisa </MenuItem>
-              </Link>
+            
+                <MenuItem icon={<Search size={24} color='#ffffff' />} component={<Link to='/search' />} rootStyles={{
+                  color: '#ffffff',
+                  '&:hover': {
+                    color: '#00b4f1',
+                  },
+                }}> Pesquisa </MenuItem>
             </>
           )}
         </Menu>
@@ -121,11 +119,11 @@ export function SideBar() {
           onClick={handleLogout}
         >
           <MenuItem icon={<LogOut size={24} color='#ffffff' />} rootStyles={{
-                    color: '#ffffff',
-                    '&:hover': {
-                      color: '#00b4f1',
-                    },
-                  }}> Sair </MenuItem>
+            color: '#ffffff',
+            '&:hover': {
+              color: '#00b4f1',
+            },
+          }}> Sair </MenuItem>
         </Menu>
       </Sidebar>
       <main >
