@@ -10,43 +10,6 @@
     width: 100%;
 }
 
-.header_content_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-
-    padding-left: 2rem;
-}
-
-.header_section_wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.section_title_wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.section_title_wrapper > h1{
-    color: #E1E1E6;
-}
-
-.section_subtitle_wrapper {
-    display: flex;
-    align-items: flex-end;
-    width:  100%;
-}
-
-.section_subtitle_wrapper > span {
-    color: #C4C4CC;
-    font-weight: 500;
-}
-
 .main_charts_wrapper {
     display: grid;
 

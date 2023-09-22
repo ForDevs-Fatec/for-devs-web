@@ -3,11 +3,33 @@ import { Eye, EyeOff, Lock, LogIn, Mail, Unlock } from 'lucide-react'
 import Logo from '../../../assets/logoVertical.svg'
 import { Input } from '../../../components/input'
 import { Button } from '../../../components/Button'
-import styles from './styles.module.css'
 import api from '../../../services/api.service'
 import URI from '../../../utils/enum/uri.enum'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+
+import {
+  Container,
+  MainContainer, 
+  HeaderContainer, 
+  LogoImg, 
+  HeaderContentWrapper, 
+  HeaderContentDiv, 
+  HeaderTitleBlue, 
+  HeaderTitleWhite, 
+  MainFormContainer, 
+  MainFormTitleSection, 
+  MainFormTitle, 
+  MainFormSubtitle, 
+  MainForm, 
+  MainFormInputWrapper, 
+  MainFormInputTitle, 
+  ForgotPasswordSection, 
+  ForgotPasswordLink, 
+  FooterContainer, 
+  FooterSpan, 
+  FooterLink
+} from './styles'
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -73,30 +95,30 @@ export function Login() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.main_wrapper}>
+    <Container>
+      <MainContainer>
         {/* Header */}
-        <header className={styles.header_wrapper}>
-          <img src={Logo} alt="Fordevs logo-marca" />
-          <div className={styles.header_content}>
-            <div>
-              <span id={styles.header_title_blue}>Log</span>
-              <span>in</span>
-            </div>
+        <HeaderContainer>
+          <LogoImg src={Logo} alt="Fordevs logo-marca" />
+          <HeaderContentWrapper>
+            <HeaderContentDiv>
+              <HeaderTitleBlue>Log</HeaderTitleBlue>
+              <HeaderTitleWhite>in</HeaderTitleWhite>
+            </HeaderContentDiv>
             <LogIn size={24} color="#E1E1E6" />
-          </div>
-        </header>
+          </HeaderContentWrapper>
+        </HeaderContainer>
 
         {/* Main */}
-        <main className={styles.form_wrapper}>
-          <section className={styles.main_title_wrapper}>
-            <h1>Bem vindo !</h1>
-            <p>Para acessar a plataforma, faça seu login.</p>
-          </section>
+        <MainFormContainer>
+          <MainFormTitleSection>
+            <MainFormTitle>Bem vindo !</MainFormTitle>
+            <MainFormSubtitle>Para acessar a plataforma, faça seu login.</MainFormSubtitle>
+          </MainFormTitleSection>
 
-          <form className={styles.main_inputs_wrapper} onSubmit={handleSubmit}>
-            <div className={styles.input_wrapper}>
-              <span>E-mail</span>
+          <MainForm onSubmit={handleSubmit}>
+            <MainFormInputWrapper>
+              <MainFormInputTitle>E-mail</MainFormInputTitle>
               <Input.Root>
                 <Input.IconLeft icon={Mail} />
                 <Input.TextField
@@ -107,9 +129,10 @@ export function Login() {
                   onChange={handleEmailChange}
                 />
               </Input.Root>
-            </div>
-            <div className={styles.input_wrapper}>
-              <span>Senha</span>
+            </MainFormInputWrapper>
+
+            <MainFormInputWrapper>
+              <MainFormInputTitle>Senha</MainFormInputTitle>
               <Input.Root>
                 <Input.IconLeft icon={showPassword ? Unlock : Lock} />
                 <Input.TextField
@@ -125,28 +148,26 @@ export function Login() {
                   type='button'
                 />
               </Input.Root>
-            </div>
+            </MainFormInputWrapper>
 
             <Button.Root type='submit'>
               <Button.Content text="Acessar" />
             </Button.Root>
-          </form>
+          </MainForm>
 
-          <section className={styles.main_button_wrapper}>
-            <span>
-              <a>Esqueceu sua senha ?</a>
-            </span>
-          </section>
-        </main>
+          <ForgotPasswordSection>
+              <ForgotPasswordLink>Esqueceu sua senha ?</ForgotPasswordLink>
+          </ForgotPasswordSection>
+        </MainFormContainer>
 
         {/* Footer */}
-        <footer>
-          <span>
+        <FooterContainer>
+          <FooterSpan>
             Não possui conta?
-            <a href="/register">Cadastre-se</a>
-          </span>
-        </footer>
-      </div>
-    </div>
+            <FooterLink href="/register">Cadastre-se</FooterLink>
+          </FooterSpan>
+        </FooterContainer>
+      </MainContainer>
+    </Container>
   );
 }

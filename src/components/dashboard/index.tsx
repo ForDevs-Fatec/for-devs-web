@@ -21,8 +21,15 @@ const OptionsChartLine: ApexCharts.ApexOptions = {
             data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
         }
     ],
+    title: {
+        text: "Logarithmic Scale",
+        align: "left"
+      },
     xaxis: {
-        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        categories: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        title: {
+            text: 'teste'
+        }
     }
 };
 
