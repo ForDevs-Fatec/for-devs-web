@@ -30,7 +30,7 @@ const mapRoleToLabel = (role: number): string => {
 
 export function UsersPage() {
     const [users, setUsers] = useState<UserData[] | null>([]);
-
+    const token = 'Bearer ' + localStorage.getItem('token')
     const errorToast = () => toast.error("Erro ao excluir usuário!", {
         position: "top-center",
         autoClose: 5000,
@@ -51,18 +51,37 @@ export function UsersPage() {
         theme: "dark",
     });
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await api.get<UserData[]>(URI.USER);
-                setUsers(response.data);  // Usando uma função para garantir a tipagem correta
-            } catch (error) {
-                console.error('Error fetching users:', error);
-            }
-        };
+    const fetchUsers = async () => {
+        try {
+            const response = await api.get<UserData[]>(URI.USER, {
+                headers: {
+                    Authorization: token
+                }
+            });
+            setUsers(response.data);  // Usando uma função para garantir a tipagem correta
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    };
 
+    useEffect(() => {
         fetchUsers();
     }, []);
+
+    const deleteUser = async (userId: any) => {
+        try {
+            const response = await api.delete(URI.USER_DELETE + '/' + userId, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            if(response.status == 200){
+                await fetchUsers()
+            }
+        } catch (error) {
+            console.error('Error deleting user:', error)
+        }
+    }
 
     return (
         <Container>
@@ -92,6 +111,7 @@ export function UsersPage() {
                                 placeholder={mapRoleToLabel(user.role)}
                             />
                             <UserComponent.RemoveButton
+                                onClick={() => deleteUser(user.id)}
                                 icon={Trash}
                             />
                         </UserComponent.Root>
