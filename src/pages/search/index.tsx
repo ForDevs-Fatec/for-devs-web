@@ -4,8 +4,23 @@ import { SideBar } from "../../components/sidebar";
 import { Input } from "../../components/input";
 import { Container, HeaderContainer, MainContainer, MainSectionItems } from "./styles";
 import { SearchItem } from "../../components/searchItem";
+import apiPln from "../../services/api.service";
+import URI from "../../utils/enum/uri.enum";
+import { useState } from "react";
 
 export function SearchPage() {
+
+    const [data, setData]: any[] = useState([])
+
+    const searchHandler = async (param: any) => {
+        try {
+            const response = await apiPln.get(URI.PESQUISA_PLN + '/' + param)
+            setData(response.data)
+        } catch (error) {
+            console.error('Error searching:', error)
+        }
+    }
+
     return (
         <Container>
             <HeaderContainer>

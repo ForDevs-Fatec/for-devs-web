@@ -4,6 +4,8 @@ enum URI {
     USER_DELETE = '/user',
     USER_UPDATE = '/user',
     USER_LOGIN = '/user/login',
+
+    PESQUISA_PLN = '/pesquisa'
 }
 
 export default URI;
