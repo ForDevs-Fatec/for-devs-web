@@ -2,11 +2,12 @@ import { Search } from "lucide-react";
 import { Header } from "../../components/header";
 import { SideBar } from "../../components/sidebar";
 import { Input } from "../../components/input";
-import { Container, HeaderContainer, MainContainer, MainSectionItems } from "./styles";
+import { Container, HeaderContainer, MainContainer, MainSectionItems, SearchSectionWrapper, SectionInput, SectionButton } from "./styles";
 import { SearchItem } from "../../components/searchItem";
 import apiPln from "../../services/api.service";
 import URI from "../../utils/enum/uri.enum";
 import { useState } from "react";
+import { Button } from "../../components/Button";
 
 export function SearchPage() {
 
@@ -36,14 +37,25 @@ export function SearchPage() {
             </HeaderContainer>
 
             <MainContainer>
-                <Input.Root>
-                    <Input.IconLeft icon={Search} />
-                    <Input.TextField
-                        type="text"
-                        placeholder="Pesquisar"
-                        autoComplete="search"
-                    />
-                </Input.Root>
+                <SearchSectionWrapper>
+                    <SectionInput>
+                    <Input.Root>
+                        <Input.IconLeft icon={Search} />
+                        <Input.TextField
+                            type="text"
+                            placeholder="Digite sua pesquisa..."
+                            autoComplete="search"
+                        />
+                    </Input.Root>
+                    </SectionInput>
+
+                    <SectionButton>
+                        <Button.Root>
+                            <Button.Content text="Pesquisar" />
+                            <Button.Icon icon={Search} />
+                        </Button.Root>
+                    </SectionButton>
+                </SearchSectionWrapper>
 
                 <MainSectionItems>
 

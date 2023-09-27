@@ -15,6 +15,19 @@ export const HeaderContainer = styled.header`
 
 export const MainContainer = styled.main``
 
+export const SearchSectionWrapper = styled.section`
+    display: flex;
+    gap: 0.5rem
+`
+
+export const SectionInput = styled.section`
+    width: 90%;
+`
+
+export const SectionButton = styled.section`
+    width: 10%;
+`
+
 export const MainSectionItems = styled.section`
     display: flex;
     flex-direction: column;
