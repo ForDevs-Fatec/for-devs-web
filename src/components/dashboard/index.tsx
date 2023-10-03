@@ -1,5 +1,6 @@
 import Chart from 'react-apexcharts'
-import styles from './styles.module.css'
+
+import { SectionWrapperGrid_1, SectionWrapperGrid_2, SectionWrapperGrid_3, SectionWrapperGrid_4, SectionWrapperGrid_5, SectionWrapperGrid_6, SectionWrapperGrid_7, SectionWrapperGrid_8, SectionWrapperGrid_9 } from './styles'
 
 /*Line chart data*/
 const OptionsChartLine: ApexCharts.ApexOptions = {
@@ -145,7 +146,7 @@ const OptionsChartScatter: ApexCharts.ApexOptions = {
 export function DashboardCharts() {
     return (
         <>
-            <section className={styles.section_wrapper_grid_1}>
+            <SectionWrapperGrid_1>
                 <Chart
                     options={OptionsChartLine}
                     series={SeriesChartLine}
@@ -153,9 +154,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_1>
 
-            <section className={styles.section_wrapper_grid_2}>
+            <SectionWrapperGrid_2>
                 <Chart
                     options={OptionsChartLine}
                     series={SeriesChartLine}
@@ -163,9 +164,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_2>
 
-            <section className={styles.section_wrapper_grid_3}>
+            <SectionWrapperGrid_3>
                 <Chart
                     options={OptionsChartLine}
                     series={SeriesChartLine}
@@ -173,9 +174,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_3>
 
-            <section className={styles.section_wrapper_grid_4}>
+            <SectionWrapperGrid_4>
                 <Chart
                     options={OptionsChartLine}
                     series={SeriesChartLine}
@@ -183,9 +184,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_4>
 
-            <section className={styles.section_wrapper_grid_5}>
+            <SectionWrapperGrid_5>
                 <Chart
                     options={OptionsChartBar}
                     series={SeriesChartLine}
@@ -193,9 +194,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_5>
 
-            <section className={styles.section_wrapper_grid_6}>
+            <SectionWrapperGrid_6>
                 <Chart
                     options={OptionsChartBar}
                     series={SeriesChartLine}
@@ -203,9 +204,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_6>
 
-            <section className={styles.section_wrapper_grid_7}>
+            <SectionWrapperGrid_7>
                 <Chart
                     options={OptionsChartPie}
                     series={SeriesChartPie}
@@ -213,9 +214,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_7>
 
-            <section className={styles.section_wrapper_grid_8}>
+            <SectionWrapperGrid_8>
                 <Chart
                     options={OptionsChartLine}
                     series={SeriesChartLine}
@@ -223,9 +224,9 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_8>
 
-            <section className={styles.section_wrapper_grid_9}>
+            <SectionWrapperGrid_9>
                 <Chart
                     options={OptionsChartScatter}
                     series={SeriesChartScatter}
@@ -233,7 +234,7 @@ export function DashboardCharts() {
                     width='100%'
                     height='100%'
                 />
-            </section>
+            </SectionWrapperGrid_9>
         </>
     )
 }

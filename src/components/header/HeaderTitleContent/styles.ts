@@ -7,5 +7,5 @@ export const HeaderTitleContainer = styled.div`
 `
 
 export const HeaderTitle = styled.h1`
-    color: #E1E1E6;
+    color: ${({theme}) => theme.colors.white};
 `

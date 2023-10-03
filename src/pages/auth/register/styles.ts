@@ -2,7 +2,7 @@ import {styled} from 'styled-components'
 
 export const Container = styled.div`
     height: 100vh;
-    background-color: #202024;
+    background-color: ${({theme}) => theme.colors.black_300};
 `
 
 export const MainContainer = styled.main`
@@ -32,9 +32,9 @@ export const HeaderLogo = styled.img`
 `
 
 export const HeaderTitle = styled.span`
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #E1E1E6;
+    font-size: ${({theme}) => theme.fontSizes.large};
+    font-weight: ${({theme}) => theme.fontWeights.bold};
+    color: ${({theme}) => theme.colors.white};
 `
 
 export const FormContainer = styled.form`
@@ -65,9 +65,9 @@ export const FormInputWrapper = styled.div`
 `
 
 export const FormInputLabel = styled.label`
-  color: #ffffff;
+  color: ${({theme}) => theme.colors.white};
 `
-
+/* Retirar essas linhas de códigos */
 export const FormCheckboxSectionContainer = styled.section`
     display: flex;
     align-items: center;

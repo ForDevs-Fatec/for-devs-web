@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { useState } from 'react'
 import { Eye, EyeOff, Lock, LogIn, Mail, Unlock } from 'lucide-react'
 import Logo from '../../../assets/logoVertical.svg'
 import { Input } from '../../../components/input'
@@ -7,33 +7,30 @@ import api from '../../../services/api.service'
 import URI from '../../../utils/enum/uri.enum'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
-
 import {
-  Container,
-  MainContainer, 
-  HeaderContainer, 
-  LogoImg, 
-  HeaderContentWrapper, 
-  HeaderContentDiv, 
-  HeaderTitleBlue, 
-  HeaderTitleWhite, 
-  MainFormContainer, 
-  MainFormTitleSection, 
-  MainFormTitle, 
-  MainFormSubtitle, 
-  MainForm, 
-  MainFormInputWrapper, 
-  MainFormInputTitle, 
-  ForgotPasswordSection, 
-  ForgotPasswordLink, 
-  FooterContainer, 
-  FooterSpan, 
-  FooterLink
+  Container, MainContainer, HeaderContainer, LogoImg, HeaderContentWrapper, HeaderContentDiv, HeaderTitleBlue, HeaderTitleWhite, MainFormContainer, MainFormTitleSection, MainFormTitle, MainFormSubtitle, MainForm, MainFormInputWrapper, MainFormInputTitle,FooterContainer, FooterSpan, FooterLink, SpanError
 } from './styles'
 
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const loginUserSchema = z.object({
+  email: z.string()
+  .nonempty('Email obrigatório para o login !')
+  .email('Formato de e-mail inválido')
+  .transform(value => value.toLowerCase()),
+  password: z.string()
+  .nonempty('Senha obrigatoria para o login !'),
+})
+
+type LoginUserFormData = z.infer<typeof loginUserSchema>
+
 export function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { register, handleSubmit, formState: { errors }} = useForm<LoginUserFormData>({
+    resolver: zodResolver(loginUserSchema)
+  })
+
   const [showPassword, setShowPassword] = useState(false);
 
   const errorToast = () => toast.error("Usuário ou senha inválidos!", {
@@ -58,27 +55,12 @@ export function Login() {
 
   const navigate = useNavigate();
 
-  // Função para alternar entre mostrar e esconder a senha
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-
-    const data = {
-      email,
-      password
-    };
+  function handleLoginSubmit(data: LoginUserFormData) {
+    console.log(data)
 
     api.post(URI.USER_LOGIN, data).then(response => {
       if (response.status === 200) {
@@ -116,7 +98,7 @@ export function Login() {
             <MainFormSubtitle>Para acessar a plataforma, faça seu login.</MainFormSubtitle>
           </MainFormTitleSection>
 
-          <MainForm onSubmit={handleSubmit}>
+          <MainForm onSubmit={handleSubmit(handleLoginSubmit)}>
             <MainFormInputWrapper>
               <MainFormInputTitle>E-mail</MainFormInputTitle>
               <Input.Root>
@@ -125,10 +107,10 @@ export function Login() {
                   type="email"
                   placeholder="E-mail"
                   autoComplete="username"
-                  value={email}
-                  onChange={handleEmailChange}
+                  {...register('email')}
                 />
               </Input.Root>
+              {errors.email && <SpanError>{errors.email.message}</SpanError>}
             </MainFormInputWrapper>
 
             <MainFormInputWrapper>
@@ -139,8 +121,7 @@ export function Login() {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Senha"
                   autoComplete="current-password"
-                  value={password}
-                  onChange={handlePasswordChange}
+                  {...register('password')}
                 />
                 <Input.ButtonIcon
                   icon={showPassword ? Eye : EyeOff}
@@ -148,16 +129,13 @@ export function Login() {
                   type='button'
                 />
               </Input.Root>
+              {errors.password && <SpanError>{errors.password.message}</SpanError>}
             </MainFormInputWrapper>
 
             <Button.Root type='submit'>
               <Button.Content text="Acessar" />
             </Button.Root>
           </MainForm>
-
-          <ForgotPasswordSection>
-              <ForgotPasswordLink>Esqueceu sua senha ?</ForgotPasswordLink>
-          </ForgotPasswordSection>
         </MainFormContainer>
 
         {/* Footer */}

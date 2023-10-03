@@ -7,6 +7,6 @@ export const HeaderSubTitleContainer = styled.div`
 `
 
 export const HeaderSubTitle = styled.span`
-    color: #C4C4CC;
-    font-weight: 500;
+    color: ${({theme}) => theme.colors.grey_300};
+    font-weight: ${({theme}) => theme.fontWeights.semi_bold};
 `

@@ -7,7 +7,7 @@ export const InputTextFieldStyled = styled.input`
     background-color: transparent;
     
     font-size: 1rem;
-    color: ${({ theme }) => theme.colors.gray_text_primary};
+    color: ${({ theme }) => theme.colors.grey_300};
     
     border: 0;
 
@@ -16,6 +16,6 @@ export const InputTextFieldStyled = styled.input`
     }
 
     &::placeholder {
-        color: ${({ theme }) => theme.colors.gray_placeholder};
+        color: ${({ theme }) => theme.colors.grey_500};
     }
 `;

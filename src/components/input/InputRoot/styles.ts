@@ -9,7 +9,7 @@ export const InputRootContainer = styled.div`
 
     padding: 1rem;
     
-    background-color: ${({theme}) => theme.colors.grey_background};
+    background-color: ${({theme}) => theme.colors.black_700};
     
     border-radius: 0.375rem;
 `

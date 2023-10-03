@@ -1,15 +1,12 @@
-import { InputHTMLAttributes } from "react";
-import { InputTextFieldStyled } from "./styles";
+import { InputHTMLAttributes, forwardRef } from 'react';
+import { InputTextFieldStyled } from './styles';
 
 interface InputTextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-    placeholder: string;
+  placeholder: string;
 }
 
-export function InputTextField({placeholder, ...rest}: InputTextFieldProps) {
-    return(
-        <InputTextFieldStyled
-            placeholder={placeholder}
-            {...rest}
-        />
-    )
-}
+export const InputTextField = forwardRef<HTMLInputElement, InputTextFieldProps>(
+  ({ placeholder, ...rest }, ref) => {
+    return <InputTextFieldStyled placeholder={placeholder} {...rest} ref={ref} />;
+  }
+);
