@@ -1,13 +1,14 @@
 import { SideBar } from '../../components/sidebar'
 import { DashboardCharts } from '../../components/dashboard'
-import styles from './styles.module.css'
 import { LayoutDashboard } from 'lucide-react'
 import { Header } from '../../components/header'
 
+import { Container, HeaderWrapper, MainContent} from './styles'
+
 export function Dashboard() {
     return (
-        <div className={styles.container}>
-            <header className={styles.header_wrapper}>
+        <Container>
+            <HeaderWrapper>
                 <SideBar />
                 <Header.Root>
                     <Header.TitleWrapper>
@@ -18,10 +19,10 @@ export function Dashboard() {
                         <Header.Logo />
                     </Header.LogoWrapper>
                 </Header.Root>
-            </header>
-            <main className={styles.main_charts_wrapper}>
+            </HeaderWrapper>
+            <MainContent>
                 <DashboardCharts />
-            </main>
-        </div>
+            </MainContent>
+        </Container>
     )
 }  
