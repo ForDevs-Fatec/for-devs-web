@@ -60,8 +60,6 @@ export function Login() {
   };
 
   function handleLoginSubmit(data: LoginUserFormData) {
-    console.log(data)
-
     api.post(URI.USER_LOGIN, data).then(response => {
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token)

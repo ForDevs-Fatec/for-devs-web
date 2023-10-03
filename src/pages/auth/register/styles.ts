@@ -67,32 +67,7 @@ export const FormInputWrapper = styled.div`
 export const FormInputLabel = styled.label`
   color: ${({theme}) => theme.colors.white};
 `
-/* Retirar essas linhas de códigos */
-export const FormCheckboxSectionContainer = styled.section`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    width: 100%;
-
-    margin-top: 2rem;
-`
-
-export const FormCheckboxWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-`
-
-export const FormCheckboxLabel = styled.label`
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 400;
-`
-
-export const FormCheckboxInput = styled.input`
-    width: 1rem;
-    height: 1rem;
-
-    cursor: pointer;
+export const SpanError = styled.span`
+    color: ${({theme}) => theme.colors.red_error};
 `
