@@ -21,11 +21,11 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #202024;
+  background: #373636;
 }
 
 *::-webkit-scrollbar-thumb {
   background-color: #121214;
   border-radius: 10px;
-  border: 3px solid #202024;
+  border: 3px solid #373636;
 }

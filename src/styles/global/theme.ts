@@ -1,13 +1,5 @@
 const theme = {
     colors:{
-        grey_background: "#040303",
-        grey_primary_background: "#202024",
-        grey_secondary_background: "#29292e",
-        grey_tertiary_background: "#323238",
-        grey_placeholder: "#7c7c8a",
-        gray_text_primary: "#c4c4cc",
-        gray_title: "#e1e1e6",
-
         white: "#F8F7F3",
         
         black_300: "#373636",

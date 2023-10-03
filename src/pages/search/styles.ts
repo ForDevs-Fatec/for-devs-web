@@ -2,7 +2,7 @@ import {styled} from 'styled-components'
 
 export const Container = styled.div`
     height: 100vh;
-    background-color: #202024;
+    background-color: ${({theme}) => theme.colors.black_300};
     padding: 1rem 2rem;
 `
 

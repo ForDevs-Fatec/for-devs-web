@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const Container = styled.div`
-    background-color: ${({theme}) => theme.colors.grey_primary_background};
+    background-color: ${({theme}) => theme.colors.black_300};
     padding: 1rem 2rem;
 `
 export const HeaderContainer = styled.header`
@@ -20,5 +20,5 @@ export const MainContainer = styled.main`
     max-height: 1250px;
     height: 100vh;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 `
