@@ -6,6 +6,7 @@ import { SectionWrapperGrid_1, SectionWrapperGrid_2, SectionWrapperGrid_3, Secti
 const OptionsChartLine: ApexCharts.ApexOptions = {
     chart: {
         type: "line",
+        stacked: false,
     },
     stroke: {
         curve: 'smooth',
@@ -13,6 +14,7 @@ const OptionsChartLine: ApexCharts.ApexOptions = {
     tooltip: {
         theme: 'dark'
     },
+   
     grid: {
         borderColor: "#535A6C",
     },
