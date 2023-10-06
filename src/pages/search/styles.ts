@@ -15,16 +15,29 @@ export const HeaderContainer = styled.header`
 export const MainContainer = styled.main``
 
 export const SearchSectionWrapper = styled.section`
-    display: flex;
-    gap: 0.5rem
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.5rem;
+
+    @media (max-width: 564px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `
 
 export const SectionInput = styled.section`
-    width: 90%;
+    grid-column: 1/10;
+
+    @media (max-width: 564px) {
+        grid-column: 1/2;
+    }
 `
 
 export const SectionButton = styled.section`
-    width: 10%;
+    grid-column: 10/11;
+
+    @media (max-width: 564px) {
+        grid-column: 1/2;
+    }
 `
 
 export const MainSectionItems = styled.section`

@@ -41,24 +41,24 @@ export function SearchPage() {
             <MainContainer>
                 <SearchSectionWrapper>
                     <SectionInput>
-                    <Input.Root>
-                        <Input.IconLeft icon={Search} />
-                        <Input.TextField
-                            type="text"
-                            placeholder="Digite sua pesquisa..."
-                            autoComplete="search"
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                    </Input.Root>
+                        <Input.Root>
+                            <Input.IconLeft icon={Search} />
+                            <Input.TextField
+                                type="text"
+                                placeholder="Digite sua pesquisa..."
+                                autoComplete="search"
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                        </Input.Root>
                     </SectionInput>
 
                     <SectionButton
-                    onClick={() => searchHandler(text)}>
-                        <Button.Root>
-                            <Button.Content text="Pesquisar" />
-                            <Button.Icon icon={Search} />
-                            
-                        </Button.Root>
+                        onClick={() => searchHandler(text)}>
+                            <Button.Root>
+                                <Button.Content text="Pesquisar" />
+                                <Button.Icon icon={Search} />
+                                
+                            </Button.Root>
                     </SectionButton>
                 </SearchSectionWrapper>
 
