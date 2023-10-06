@@ -16,7 +16,7 @@ export const HeaderWrapper = styled.header`
 export const MainContent = styled.main`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 
     column-gap: 1.5rem;
     row-gap: 2rem;
@@ -26,7 +26,7 @@ export const MainContent = styled.main`
 
     @media (max-width: 1600px) {
         grid-template-columns: 2fr 2fr 2fr 2fr;
-        grid-template-rows: 1fr 1fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
     }
 
     @media (max-width: 870px) {

@@ -7,6 +7,7 @@ export const SectionWrapperGrid = styled.section`
 `
 
 export const SectionWrapperGrid_1 = styled(SectionWrapperGrid)`
+    height: 250px;
     grid-column: 1 / 2;
     padding: 1rem;
 
@@ -20,6 +21,7 @@ export const SectionWrapperGrid_1 = styled(SectionWrapperGrid)`
 `
 
 export const SectionWrapperGrid_2 = styled(SectionWrapperGrid)`
+    height: 250px;
     grid-column: 2 / 3;
     padding: 1rem;
 
@@ -33,6 +35,7 @@ export const SectionWrapperGrid_2 = styled(SectionWrapperGrid)`
 `
 
 export const SectionWrapperGrid_3 = styled(SectionWrapperGrid)`
+    height: 250px;
     grid-column: 3 / 4;
     padding: 1rem;
 
@@ -46,6 +49,7 @@ export const SectionWrapperGrid_3 = styled(SectionWrapperGrid)`
 `
 
 export const SectionWrapperGrid_4 = styled(SectionWrapperGrid)`
+    height: 250px;
     grid-column: 4 / 5;
     padding: 1rem;
 
@@ -77,8 +81,17 @@ export const SectionWrapperGrid_6 = styled(SectionWrapperGrid)`
 `
 
 export const SectionWrapperGrid_7 = styled(SectionWrapperGrid)`
+    display: flex;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+
     grid-column: 1 / 2;
     padding: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     
     @media (max-width: 1600px) {
@@ -94,7 +107,6 @@ export const SectionWrapperGrid_8 = styled(SectionWrapperGrid)`
     grid-column: 2 / 3;
     padding: 1rem;
 
-    
     @media (max-width: 1600px) {
         grid-column: 3 / 5;
     }
