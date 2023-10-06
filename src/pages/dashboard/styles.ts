@@ -4,6 +4,10 @@ export const Container = styled.div`
     padding: 1rem 2rem;
     width: 100%;
     height: 100vh;
+
+    @media (max-width: 870px) {
+        padding: 1rem;
+    }
 `
 
 export const HeaderWrapper = styled.header`

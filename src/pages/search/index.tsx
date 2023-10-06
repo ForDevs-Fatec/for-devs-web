@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Search, Home } from "lucide-react";
 import { Header } from "../../components/header";
 import { SideBar } from "../../components/sidebar";
 import { Input } from "../../components/input";
@@ -56,15 +56,12 @@ export function SearchPage() {
                         onClick={() => searchHandler(text)}>
                             <Button.Root>
                                 <Button.Content text="Pesquisar" />
-                                <Button.Icon icon={Search} />
-                                
                             </Button.Root>
                     </SectionButton>
                 </SearchSectionWrapper>
 
                 <MainSectionItems style={{maxWidth: '100%', wordWrap: 'break-word'}}>
                     {data.map((x  : any) => (
-
                         <SearchItem.Root>
                             <SearchItem.ItemContent>
                                 <SearchItem.ItemTitle title={x.review_title} />

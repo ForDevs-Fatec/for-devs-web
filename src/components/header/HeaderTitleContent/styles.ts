@@ -8,4 +8,8 @@ export const HeaderTitleContainer = styled.div`
 
 export const HeaderTitle = styled.h1`
     color: ${({theme}) => theme.colors.white};
+
+    @media (max-width: 370px) {
+        font-size: ${({theme}) => theme.fontSizes.medium};
+    }
 `
