@@ -9,11 +9,11 @@ interface HeaderTitleContentProps {
 export function HeaderTitleContent({icon: Icon, title}: HeaderTitleContentProps) {
     return(
         <HeaderTitleContainer>
-            <Icon 
-                size={32}
-                color='#ffffff'
-            />
-            <HeaderTitle>{title}</HeaderTitle>
+                <Icon 
+                    size={32}
+                    color='#ffffff'
+                />
+                <HeaderTitle>{title}</HeaderTitle>
         </HeaderTitleContainer>
     )
 }

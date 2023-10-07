@@ -7,7 +7,7 @@ export const ButtonPrimaryStyled = styled.button`
     gap: 1rem;
     
     width: 100%;
-    padding: 1rem 0.5rem;
+    padding: 1.2rem;
 
     border: none;
     border-radius: 0.375rem;

@@ -6,5 +6,9 @@ export const HeaderRootContainer = styled.div`
     justify-content: space-between;
     width: 100%;
 
-    padding-left: 2rem;
+    padding-left: 1rem;
+
+    @media (max-width: 870px) {
+        padding: 0;
+    }
 `;
