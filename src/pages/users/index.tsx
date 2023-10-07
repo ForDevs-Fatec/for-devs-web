@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import api from '../../services/api.service'
 import URI from '../../utils/enum/uri.enum'
 import { toast } from 'react-toastify';
+import { Button } from "@/components/ui/button"
 
 interface UserData {
     id: number;
@@ -31,6 +32,7 @@ const mapRoleToLabel = (role: number): string => {
 export function UsersPage() {
     const [users, setUsers] = useState<UserData[] | null>([]);
     const token = 'Bearer ' + localStorage.getItem('token')
+
     const errorToast = () => toast.error("Erro ao excluir usuário!", {
         position: "top-center",
         autoClose: 5000,
@@ -75,7 +77,7 @@ export function UsersPage() {
                     Authorization: token
                 }
             })
-            if(response.status == 200){
+            if (response.status == 200) {
                 await fetchUsers()
             }
         } catch (error) {
@@ -98,7 +100,7 @@ export function UsersPage() {
             </HeaderContainer>
 
             <MainContainer>
-                {users?.map((user: UserData) => {
+                {/* {users?.map((user: UserData) => {
                     return (
                         <UserComponent.Root key={user.id}>
                             <UserComponent.Content name={user.name} email={user.email} />
@@ -116,7 +118,9 @@ export function UsersPage() {
                             />
                         </UserComponent.Root>
                     )
-                })}
+                })} */}
+
+                <Button className="">Click me</Button>
             </MainContainer>
         </Container>
     )
