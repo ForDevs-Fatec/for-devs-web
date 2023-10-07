@@ -48,3 +48,28 @@ export const MainSectionItems = styled.section`
 
     padding: 2.5rem 0;
 `
+
+export const NoDataSection = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    
+    width: 100%;
+    height: 500px;
+`
+
+export const ImgData = styled.img`
+    width: 300px;
+    height: 300px;
+`
+
+export const NoDataTextTitle = styled.h1`
+    font-size: ${({theme}) => theme.fontSizes.x_large};
+    color: ${({theme}) => theme.colors.white};
+`
+
+export const NoDataTextSubtitle = styled.p`
+    color: ${({theme}) => theme.colors.grey_300};
+`

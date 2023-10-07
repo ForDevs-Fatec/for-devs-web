@@ -1,13 +1,14 @@
-import { Search, Home } from "lucide-react";
+import { Search } from "lucide-react";
 import { Header } from "../../components/header";
 import { SideBar } from "../../components/sidebar";
 import { Input } from "../../components/input";
-import { Container, HeaderContainer, MainContainer, MainSectionItems, SearchSectionWrapper, SectionInput, SectionButton } from "./styles";
+import { Container, HeaderContainer, MainContainer, MainSectionItems, SearchSectionWrapper, SectionInput, SectionButton, NoDataSection, NoDataTextTitle, NoDataTextSubtitle, ImgData } from "./styles";
 import { SearchItem } from "../../components/searchItem";
 import apiPln from "../../services/api-pln.service";
 import URI from "../../utils/enum/uri.enum";
 import { useState } from "react";
 import { Button } from "../../components/Button";
+import ImgDataSearch from '../../assets/location_search.svg'
 
 export function SearchPage() {
 
@@ -25,7 +26,7 @@ export function SearchPage() {
     }
 
     return (
-        <Container style={{height: data.length >= 8 ? '100%' : '100vh'}}>
+        <Container>
             <HeaderContainer>
                 <SideBar />
                 <Header.Root>
@@ -60,7 +61,15 @@ export function SearchPage() {
                     </SectionButton>
                 </SearchSectionWrapper>
 
-                <MainSectionItems style={{maxWidth: '100%', wordWrap: 'break-word'}}>
+                <MainSectionItems>
+                    {data.length === 0
+                    &&
+                    <NoDataSection>
+                        <ImgData src={ImgDataSearch} alt='no data' />
+                        <NoDataTextTitle>Nenhum resultado encontrado</NoDataTextTitle>
+                        <NoDataTextSubtitle>Por favor, pesquise por um termo.</NoDataTextSubtitle>
+                    </NoDataSection>
+                    }
                     {data.map((x  : any) => (
                         <SearchItem.Root>
                             <SearchItem.ItemContent>
@@ -69,106 +78,6 @@ export function SearchPage() {
                             </SearchItem.ItemContent>
                         </SearchItem.Root>
                     ))}
-
-{/*     
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root>
-
-                    <SearchItem.Root>
-                        <SearchItem.ItemContent>
-                            <SearchItem.ItemTitle title='Título' />
-                            <SearchItem.ItemSubTitle subtitle='Subtítulo' />
-                        </SearchItem.ItemContent>
-                    </SearchItem.Root> */}
-
                 </MainSectionItems>
             </MainContainer>
         </Container>
