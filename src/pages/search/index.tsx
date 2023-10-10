@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 import { Header } from "../../components/header";
-import { SideBar } from "../../components/sidebar";
+import { SideBarMenu } from "../../components/sideMenu";
 import { Input } from "../../components/input";
 import { Container, HeaderContainer, MainContainer, MainSectionItems, SearchSectionWrapper, SectionInput, SectionButton, NoDataSection, NoDataTextTitle, NoDataTextSubtitle, ImgData } from "./styles";
 import { SearchItem } from "../../components/searchItem";
@@ -28,7 +28,7 @@ export function SearchPage() {
     return (
         <Container>
             <HeaderContainer>
-                <SideBar />
+                <SideBarMenu />
                 <Header.Root>
                     <Header.TitleWrapper>
                         <Header.TitleContent icon={Search} title='Pesquisa' />

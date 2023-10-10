@@ -1,13 +1,12 @@
-import { Trash, Users } from 'lucide-react'
+import { Users, Trash } from 'lucide-react'
 import { Header } from '../../components/header'
-import { SideBar } from '../../components/sidebar'
 import { Container, HeaderContainer, MainContainer } from './styles'
-import { UserComponent } from '../../components/userComponent'
 import { useEffect, useState } from 'react'
 import api from '../../services/api.service'
 import URI from '../../utils/enum/uri.enum'
 import { toast } from 'react-toastify';
-import { Button } from "@/components/ui/button"
+import { SideBarMenu } from '@/components/sideMenu'
+import { UserComponent } from '@/components/userComponent'
 
 interface UserData {
     id: number;
@@ -88,7 +87,7 @@ export function UsersPage() {
     return (
         <Container>
             <HeaderContainer>
-                <SideBar />
+                <SideBarMenu />
                 <Header.Root>
                     <Header.TitleWrapper>
                         <Header.TitleContent icon={Users} title='Usuários' />
@@ -100,7 +99,7 @@ export function UsersPage() {
             </HeaderContainer>
 
             <MainContainer>
-                {/* {users?.map((user: UserData) => {
+                {users?.map((user: UserData) => {
                     return (
                         <UserComponent.Root key={user.id}>
                             <UserComponent.Content name={user.name} email={user.email} />
@@ -118,9 +117,7 @@ export function UsersPage() {
                             />
                         </UserComponent.Root>
                     )
-                })} */}
-
-                <Button className="">Click me</Button>
+                })}
             </MainContainer>
         </Container>
     )

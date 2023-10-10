@@ -122,7 +122,7 @@ export function Register() {
         <main className='flex flex-col justify-center h-full'>
           <form onSubmit={handleSubmit(handleRegister)} className='flex flex-col'>
             <div className='flex flex-col gap-6 mb-16'>
-              <div className='flex flex-col gap-1.5'>
+              <div className='flex flex-col gap-1'>
                 <div className='flex items-center justify-between'>
                   <label htmlFor="name" className='text-white'>Nome</label>
                   {errors.name && <span className='text-red-500 text-sm'>{errors.name.message}</span>}
@@ -136,7 +136,7 @@ export function Register() {
                 />
               </div>
 
-              <div className='flex flex-col gap-1.5'>
+              <div className='flex flex-col gap-1'>
                 <div className='flex items-center justify-between'>
                   <label htmlFor="email" className='text-white'>E-mail</label>
                   {errors.email && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
@@ -150,12 +150,12 @@ export function Register() {
                 />
               </div>
 
-              <div className='flex flex-col gap-1.5'>
+              <div className='flex flex-col gap-1'>
                 <div className='flex items-center justify-between'>
                   <label htmlFor="password" className='text-white'>Senha</label>
                   {errors.password && <span className='text-red-500 text-sm'>{errors.password.message}</span>}
                 </div>
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-1'>
                   <Input
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Senha"
@@ -175,9 +175,9 @@ export function Register() {
 
             <div>
               {loading ?
-                <Button type='submit' className='flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >
+                <Button type='submit' disabled className='flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >
                   <Loader2 className='animate-spin' />
-                  Carregando
+                  Cadastrando
                 </Button>
                 :
                 <Button type='submit' className='w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >

@@ -1,4 +1,4 @@
-import { SideBar } from '../../components/sidebar'
+import { SideBarMenu } from '@/components/sideMenu'
 import { DashboardCharts } from '../../components/dashboard'
 import { LayoutDashboard } from 'lucide-react'
 import { Header } from '../../components/header'
@@ -9,7 +9,7 @@ export function Dashboard() {
     return (
         <Container>
             <HeaderWrapper>
-                <SideBar />
+                <SideBarMenu />
                 <Header.Root>
                     <Header.TitleWrapper>
                         <Header.TitleContent icon={LayoutDashboard} title='Dashboard' />
