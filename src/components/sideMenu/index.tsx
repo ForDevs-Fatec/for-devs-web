@@ -26,7 +26,7 @@ import {
 import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut } from 'lucide-react'
 import Logo from '@/assets/logoVertical.svg'
 import jwt_decode from "jwt-decode";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface tokenDecoded {
     name: string;
@@ -36,26 +36,43 @@ interface tokenDecoded {
 
 export function SideBarMenu() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const [activeRoute, setActiveRoute] = useState('');
 
     // pegar dados do usuario logado
     const token = localStorage.getItem('token');
-
     const decoded = jwt_decode<tokenDecoded>(token as string);
-   
     const splitName = decoded.name.split(' '); // Obtenha o primeiro nome
-
     const firstInitial = splitName[0].charAt(0); // Pegue a primeira letra do primeiro nome
     const secondInitial = splitName[1].toUpperCase().charAt(0); // Pegue a primeira letra do segundo nome
-
-    const colors = ['bg-zinc-500', 'bg-emerald-500', 'bg-cyan-500', 'bg-fuchsia-500', 'bg-rose-500', 'bg-orange-500', 'bg-yellow-500', 'bg-lime-500', 'bg-teal-500', 'bg-blue-500', 'bg-indigo-500', 'bg-violet-500', 'bg-purple-500', 'bg-pink-500', 'bg-red-500', 'bg-blueGray-500']
-
+    
+    const colors = [
+        'bg-zinc-500',
+        'bg-emerald-500',
+        'bg-cyan-500',
+        'bg-fuchsia-500',
+        'bg-rose-500',
+        'bg-orange-500',
+        'bg-yellow-500',
+        'bg-lime-500',
+        'bg-teal-500',
+        'bg-blue-500',
+        'bg-indigo-500',
+        'bg-violet-500',
+        'bg-purple-500',
+        'bg-pink-500',
+        'bg-red-500',
+        'bg-blueGray-500']
     const [color, setColor] = useState(colors[Math.floor(Math.random() * colors.length)])
-
+    
     useEffect(() => {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         setColor(randomColor);
     }, [decoded, colors]);
 
+    useEffect(() => {
+        setActiveRoute(location.pathname); 
+      }, [location]);
 
     // logout do usuario
     const handleLogout = () => {
@@ -94,29 +111,41 @@ export function SideBarMenu() {
                 <div className="flex flex-col h-4/5 gap-2">
                     {decoded.role === 0 ? (
                         <>
-                            <Button className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700" onClick={goToDashboard}>
+                            <Button
+                                data-active={activeRoute === '/dashboard'}
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
+                                onClick={goToDashboard}
+                            >
                                 <BarChart2 size={24} />
                                 Dashboard
                             </Button>
 
-                            <Button className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700' onClick={goToSearch}>
+                            <Button
+                                data-active={activeRoute === '/search'}
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                onClick={goToSearch}
+                            >
                                 <Search size={24} />
                                 Pesquisa
                             </Button>
 
-                            <Button className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700' onClick={goToUsers}>
+                            <Button
+                                data-active={activeRoute === '/users'}
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                onClick={goToUsers}
+                            >
                                 <Users size={24} />
                                 Usuários
                             </Button>
                         </>
                     ) : (
                         <>
-                            <Button className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700" onClick={goToDashboard}>
+                            <Button data-active={activeRoute === '/dashboard'} className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active='true']:bg-zinc-700" onClick={goToDashboard}>
                                 <BarChart2 size={24} />
                                 Dashboard
                             </Button>
 
-                            <Button className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700' onClick={goToSearch}>
+                            <Button data-active={activeRoute === '/search'} className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' onClick={goToSearch}>
                                 <Search size={24} />
                                 Pesquisa
                             </Button>

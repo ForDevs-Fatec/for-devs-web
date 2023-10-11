@@ -7,6 +7,7 @@ import URI from '../../utils/enum/uri.enum'
 import { toast } from 'react-toastify';
 import { SideBarMenu } from '@/components/sideMenu'
 import { UserComponent } from '@/components/userComponent'
+import { HeaderComponent } from '@/components/headerComponent'
 
 interface UserData {
     id: number;
@@ -87,15 +88,7 @@ export function UsersPage() {
     return (
         <Container>
             <HeaderContainer>
-                <SideBarMenu />
-                <Header.Root>
-                    <Header.TitleWrapper>
-                        <Header.TitleContent icon={Users} title='Usuários' />
-                    </Header.TitleWrapper>
-                    <Header.LogoWrapper>
-                        <Header.Logo />
-                    </Header.LogoWrapper>
-                </Header.Root>
+                <HeaderComponent />
             </HeaderContainer>
 
             <MainContainer>

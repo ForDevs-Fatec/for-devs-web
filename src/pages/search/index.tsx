@@ -7,8 +7,8 @@ import { SearchItem } from "../../components/searchItem";
 import apiPln from "../../services/api-pln.service";
 import URI from "../../utils/enum/uri.enum";
 import { useState } from "react";
-import { Button } from "../../components/Button";
 import ImgDataSearch from '../../assets/location_search.svg'
+import { HeaderComponent } from "@/components/headerComponent";
 
 export function SearchPage() {
 
@@ -28,15 +28,7 @@ export function SearchPage() {
     return (
         <Container>
             <HeaderContainer>
-                <SideBarMenu />
-                <Header.Root>
-                    <Header.TitleWrapper>
-                        <Header.TitleContent icon={Search} title='Pesquisa' />
-                    </Header.TitleWrapper>
-                    <Header.LogoWrapper>
-                        <Header.Logo />
-                    </Header.LogoWrapper>
-                </Header.Root>
+                <HeaderComponent />
             </HeaderContainer>
 
             <MainContainer>
@@ -53,11 +45,8 @@ export function SearchPage() {
                         </Input.Root>
                     </SectionInput>
 
-                    <SectionButton
-                        onClick={() => searchHandler(text)}>
-                            <Button.Root>
-                                <Button.Content text="Pesquisar" />
-                            </Button.Root>
+                    <SectionButton onClick={() => searchHandler(text)}>
+                      
                     </SectionButton>
                 </SearchSectionWrapper>
 

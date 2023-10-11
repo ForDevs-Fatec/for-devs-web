@@ -1,27 +1,16 @@
-import { SideBarMenu } from '@/components/sideMenu'
-import { DashboardCharts } from '../../components/dashboard'
-import { LayoutDashboard } from 'lucide-react'
-import { Header } from '../../components/header'
-
-import { Container, HeaderWrapper, MainContent} from './styles'
+import { DashboardCharts } from '@/components/dashboard';
+import { HeaderComponent } from '@/components/headerComponent'
 
 export function Dashboard() {
+
+
     return (
-        <Container>
-            <HeaderWrapper>
-                <SideBarMenu />
-                <Header.Root>
-                    <Header.TitleWrapper>
-                        <Header.TitleContent icon={LayoutDashboard} title='Dashboard' />
-                    </Header.TitleWrapper>
-                    <Header.LogoWrapper>
-                        <Header.Logo />
-                    </Header.LogoWrapper>
-                </Header.Root>
-            </HeaderWrapper>
-            <MainContent>
+        <div className='p-4 h-screen w-full'>
+            <HeaderComponent />
+
+            <div className='w-full mt-8'>
                 <DashboardCharts />
-            </MainContent>
-        </Container>
+            </div>
+        </div>
     )
 }  
