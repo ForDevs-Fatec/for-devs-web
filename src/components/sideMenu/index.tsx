@@ -47,7 +47,6 @@ export function SideBarMenu() {
     const secondInitial = splitName[1].toUpperCase().charAt(0); // Pegue a primeira letra do segundo nome
     
     const colors = [
-        'bg-zinc-500',
         'bg-emerald-500',
         'bg-cyan-500',
         'bg-fuchsia-500',
@@ -94,10 +93,8 @@ export function SideBarMenu() {
 
     return (
         <Sheet>
-            <SheetTrigger>
-                <Button className='bg-transparent p-3 hover:bg-zinc-700'>
-                    <MenuIcon size={24} className='text-zinc-50' />
-                </Button>
+            <SheetTrigger className='p-3 rounded-md transition-all hover:bg-zinc-700'>
+                <MenuIcon size={24} className='text-zinc-50' />
             </SheetTrigger>
             <SheetContent side={'left'} className='bg-zinc-800 w-80 text-zinc-50 border-zinc-700'>
                 <SheetHeader>
@@ -164,7 +161,7 @@ export function SideBarMenu() {
                             </AvatarFallback>
                         </Avatar>
                     </div>
-                    <div>
+                    <div className='pl-4'>
                         <div className='font-bold text-lg whitespace-nowrap text-ellipsis overflow-hidden w-44'>{decoded.name}</div>
                         <div className='text-zinc-500'>
                             {decoded.role === 0 && 'Administrador' || decoded.role === 1 && 'Usuário Comum' || decoded.role === 2 && 'Pesquisador'}
@@ -172,7 +169,7 @@ export function SideBarMenu() {
                     </div>
                     <div>
                         <DropdownMenu>
-                            <DropdownMenuTrigger>
+                            <DropdownMenuTrigger className='p-3 rounded-md transition-all hover:bg-zinc-700'>
                                 <MoreVertical size={24} />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56 bg-zinc-950 text-zinc-50 border-zinc-500" >
@@ -183,7 +180,7 @@ export function SideBarMenu() {
                                 <DropdownMenuSeparator className='bg-zinc-500' />
 
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem className='hover:cursor-pointer'>
+                                    <DropdownMenuItem className='hover:cursor-pointer' disabled>
                                         Editar perfil
                                         <DropdownMenuShortcut>
                                             <UserCog size={16} />

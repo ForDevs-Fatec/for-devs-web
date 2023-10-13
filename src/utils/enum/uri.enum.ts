@@ -5,7 +5,7 @@ enum URI {
     USER_UPDATE = '/user',
     USER_LOGIN = '/user/login',
 
-    PESQUISA_PLN = '/pesquisa'
+    PESQUISA_PLN = '/pesquisa/'
 }
 
 export default URI;
