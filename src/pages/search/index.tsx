@@ -90,28 +90,13 @@ export function SearchPage() {
         <div className='p-4 h-screen w-full'>
             <HeaderComponent />
             <div className='flex flex-col gap-2 py-8 px-12'>
-                <div className='flex gap-2'>
-                    <Input
-                        placeholder="Digite sua pesquisa..."
-                        onChange={(e) => setText(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && searchHandler(text)}
-                        className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'
-                    />
 
-                    {loading ? (
-                        <Button type='submit' disabled className='flex items-center justify-center gap-3 p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >
-                            <Loader2 className='animate-spin' />
-                            Pesquisando
-                        </Button>
-                    ) : (
-                        <Button
-                            onClick={() => searchHandler(text)}
-                            className='flex items-center justify-center gap-1 p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all'
-                        >
-                            Pesquisar
-                        </Button>
-                    )}
-                </div>
+                <Input
+                    placeholder="Digite sua pesquisa..."
+                    onChange={(e) => setText(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && searchHandler(text)}
+                    className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'
+                />
 
 
                 {loading ? (
@@ -128,7 +113,7 @@ export function SearchPage() {
                         </section>
                     ) : (
                         <div className='border p-2 rounded-sm  shadow-2xl'>
-                            <Table className='h-[700px] overflow-visible'>
+                            <Table className='h-[680px] overflow-visible'>
                                 <TableCaption>
                                     <div className="flex justify-between mt-4">
                                         <div className="flex justify-center mt-4">

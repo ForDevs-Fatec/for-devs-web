@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 
-import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut } from 'lucide-react'
+import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut, TrendingUp } from 'lucide-react'
 import Logo from '@/assets/logoVertical.svg'
 import jwt_decode from "jwt-decode";
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -91,6 +91,10 @@ export function SideBarMenu() {
         navigate('/users')
     }
 
+    const goToMetrics = () => {
+        navigate('/metrics')
+    }
+
     return (
         <Sheet>
             <SheetTrigger className='p-3 rounded-md transition-all hover:bg-zinc-700'>
@@ -124,6 +128,15 @@ export function SideBarMenu() {
                             >
                                 <Search size={24} />
                                 Pesquisa
+                            </Button>
+
+                            <Button
+                                data-active={activeRoute === '/metrics'}
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
+                                onClick={goToMetrics}
+                            >
+                                <TrendingUp size={24} />
+                                Métricas
                             </Button>
 
                             <Button
