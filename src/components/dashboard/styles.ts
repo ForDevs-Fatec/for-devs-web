@@ -1,131 +1,211 @@
 import { styled } from 'styled-components'
 
-export const SectionWrapperGrid = styled.section`
-    border-radius: 0.5rem;
-    background-color: ${({theme}) => theme.colors.black_700};
-    box-shadow: 0 0 0.5rem ${({theme}) => theme.colors.black_700};
-`
+export const Container = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: 0.5rem;
 
-export const SectionWrapperGrid_1 = styled(SectionWrapperGrid)`
-    height: 250px;
-    grid-column: 1 / 2;
-    padding: 1rem;
+    height: 100%;
 
-    @media (max-width: 1600px) {
-        grid-column: 1 / 3;
+    @media (max-width: 1368px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(10, minmax(0, 1fr));
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
-    }
-`
-
-export const SectionWrapperGrid_2 = styled(SectionWrapperGrid)`
-    height: 250px;
-    grid-column: 2 / 3;
-    padding: 1rem;
-
-    @media (max-width: 1600px) {
-        grid-column: 3 / 5;
-    }
-
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-template-rows: repeat(18, minmax(0, 1fr));
     }
 `
+export const ChartWrapper_1 = styled.div`
+    @media (max-width: 1368px) {
+        grid-column: span 2 / span 2;
+        grid-row: span 2 / span 2;
 
-export const SectionWrapperGrid_3 = styled(SectionWrapperGrid)`
-    height: 250px;
-    grid-column: 3 / 4;
-    padding: 1rem;
+        grid-column-start: 1;
+        grid-column-end: 2;
 
-    @media (max-width: 1600px) {
-        grid-column: 1 / 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+    @media (max-width: 768px) {
+        grid-row-start: 1;
+        grid-row-end: 3;
     }
 `
 
-export const SectionWrapperGrid_4 = styled(SectionWrapperGrid)`
-    height: 250px;
-    grid-column: 4 / 5;
-    padding: 1rem;
+export const ChartWrapper_2 = styled.div`
+    @media (max-width: 1368px) {
+        grid-column: span 2 / span 2;
+        grid-row: span 2 / span 2;
 
-    @media (max-width: 1600px) {
-        grid-column: 3 / 5;
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        grid-row-start: 1;
+        grid-row-end: 3;
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
-    }
-`
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
 
-export const SectionWrapperGrid_5 = styled(SectionWrapperGrid)`
-    grid-column: 1 / 3;
-    padding: 1rem;
-
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+        grid-row-start: 3;
+        grid-row-end: 5;
     }
 `
 
-export const SectionWrapperGrid_6 = styled(SectionWrapperGrid)`
-    grid-column: 3 / 5;
-    padding: 1rem;
+export const ChartWrapper_3 = styled.div`
+    @media (max-width: 1368px) {
+        grid-column: span 2 / span 2;
+        grid-row: span 2 / span 2;
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 5;
+        grid-row-end: 7;
     }
 `
 
-export const SectionWrapperGrid_7 = styled(SectionWrapperGrid)`
-    display: flex;
-    height: 250px;
-    align-items: center;
-    justify-content: center;
+export const ChartWrapper_4 = styled.div`
+    @media (max-width: 1368px) {
+        grid-column: span 2 / span 2;
+        grid-row: span 2 / span 2;
 
-    grid-column: 1 / 2;
-    padding: 1rem;
+        grid-column-start: 2;
+        grid-column-end: 3;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    
-    @media (max-width: 1600px) {
-        grid-column: 1 / 3;
+        grid-row-start: 3;
+        grid-row-end: 5;
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 7;
+        grid-row-end: 9;
     }
 `
 
-export const SectionWrapperGrid_8 = styled(SectionWrapperGrid)`
-    grid-column: 2 / 3;
-    padding: 1rem;
+export const ChartWrapper_5 = styled.div`
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
 
-    @media (max-width: 1600px) {
-        grid-column: 3 / 5;
+    @media (max-width: 1368px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 5;
+        grid-row-end: 7;
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 9;
+        grid-row-end: 11;
+    }
+`
+
+export const ChartWrapper_6 = styled.div`
+    grid-column: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row: span 2 / span 2;
+
+    @media (max-width: 1368px) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        grid-row-start: 5;
+        grid-row-end: 7;
+    }
+
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 11;
+        grid-row-end: 13;
     }
 `
 
-export const SectionWrapperGrid_9 = styled(SectionWrapperGrid)`
-    grid-column: 3 / 5;
-    padding: 1rem;
+export const ChartWrapper_7 = styled.div`
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
 
-    
-    @media (max-width: 1600px) {
-        grid-column: 1 / 5;
+    @media (max-width: 1368px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 7;
+        grid-row-end: 9;
     }
 
-    @media (max-width: 870px) {
-        grid-column: 1 / 5;
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 13;
+        grid-row-end: 15;
     }
 `
+
+export const ChartWrapper_8 = styled.div`
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
+
+    @media (max-width: 1368px) {
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        grid-row-start: 7;
+        grid-row-end: 9;
+    }
+
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 15;
+        grid-row-end: 17;
+    }
+`
+
+export const ChartWrapper_9 = styled.div`
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+
+    @media (max-width: 1368px) {
+        grid-row-start: 9;
+        grid-row-end: 11;
+    }
+
+    @media (max-width: 768px) {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 17;
+        grid-row-end: 19;
+    }
+`
+
+
+
+
+
+
+
+

@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 
 export const Container = styled.div`
     padding: 1rem 2rem;
+    max-height: 1250px;
 `
 export const HeaderContainer = styled.header`
     display: flex;
@@ -16,8 +17,9 @@ export const MainContainer = styled.main`
     align-items: center;
     gap: 1rem;
 
-    max-height: 1250px;
-    height: 100vh;
+    padding: 0rem 2rem 2rem 2rem;
 
-    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 780px;
+    width: 100%;
 `

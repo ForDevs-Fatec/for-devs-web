@@ -1,37 +1,35 @@
 import { useState } from 'react'
-import { Eye, EyeOff, Lock, LogIn, Mail, Unlock } from 'lucide-react'
-import Logo from '../../../assets/logoVertical.svg'
-import { Input } from '../../../components/input'
-import { Button } from '../../../components/Button'
+import { Eye, EyeOff, LogIn, Loader2} from 'lucide-react'
+import Logo from '@/assets/logoVertical.svg'
 import api from '../../../services/api.service'
 import URI from '../../../utils/enum/uri.enum'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
-import {
-  Container, MainContainer, HeaderContainer, LogoImg, HeaderContentWrapper, HeaderContentDiv, HeaderTitleBlue, HeaderTitleWhite, MainFormContainer, MainFormTitleSection, MainFormTitle, MainFormSubtitle, MainForm, MainFormInputWrapper, MainFormInputTitle,FooterContainer, FooterSpan, FooterLink, SpanError
-} from './styles'
-
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Separator } from "@/components/ui/separator"
 
 const loginUserSchema = z.object({
   email: z.string()
-  .nonempty('Email obrigatório para o login !')
-  .email('Formato de e-mail inválido')
-  .transform(value => value.toLowerCase()),
+    .nonempty('Email obrigatório para o login !')
+    .email('Formato de e-mail inválido')
+    .transform(value => value.toLowerCase()),
   password: z.string()
-  .nonempty('Senha obrigatoria para o login !'),
+    .nonempty('Senha obrigatoria para o login !'),
 })
 
 type LoginUserFormData = z.infer<typeof loginUserSchema>
 
 export function Login() {
-  const { register, handleSubmit, formState: { errors }} = useForm<LoginUserFormData>({
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginUserFormData>({
     resolver: zodResolver(loginUserSchema)
   })
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const errorToast = () => toast.error("Usuário ou senha inválidos!", {
     position: "top-center",
@@ -43,7 +41,7 @@ export function Login() {
     theme: "dark",
   });
 
- const success = () => toast.success("Login realizado com sucesso!", {
+  const success = () => toast.success("Login realizado com sucesso!", {
     position: "top-center",
     autoClose: 5000,
     closeOnClick: true,
@@ -60,6 +58,8 @@ export function Login() {
   };
 
   function handleLoginSubmit(data: LoginUserFormData) {
+    setLoading(true);
+
     api.post(URI.USER_LOGIN, data).then(response => {
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token)
@@ -71,79 +71,97 @@ export function Login() {
     }).catch(error => {
       errorToast();
       console.log(error)
+    }).finally(() => {
+      setLoading(false);
     })
   }
 
   return (
-    <Container>
-      <MainContainer>
-        {/* Header */}
-        <HeaderContainer>
-          <LogoImg src={Logo} alt="Fordevs logo-marca" />
-          <HeaderContentWrapper>
-            <HeaderContentDiv>
-              <HeaderTitleBlue>Log</HeaderTitleBlue>
-              <HeaderTitleWhite>in</HeaderTitleWhite>
-            </HeaderContentDiv>
-            <LogIn size={24} color="#E1E1E6" />
-          </HeaderContentWrapper>
-        </HeaderContainer>
+    <div className='flex h-screen items-center justify-center'>
+      <div className='flex flex-col justify-between max-w-xl w-full h-3/4 px-8'>
 
-        {/* Main */}
-        <MainFormContainer>
-          <MainFormTitleSection>
-            <MainFormTitle>Bem vindo !</MainFormTitle>
-            <MainFormSubtitle>Para acessar a plataforma, faça seu login.</MainFormSubtitle>
-          </MainFormTitleSection>
+        <header className='flex items-center justify-between'>
+          <section>
+            <img src={Logo} alt="logo fordevs" className='h-12 w-12'/>
+          </section>
 
-          <MainForm onSubmit={handleSubmit(handleLoginSubmit)}>
-            <MainFormInputWrapper>
-              <MainFormInputTitle>E-mail</MainFormInputTitle>
-              <Input.Root>
-                <Input.IconLeft icon={Mail} />
-                <Input.TextField
+          <section className='flex gap-2 items-center'>
+            <div>
+              <span className='text-2xl text-blue-400 font-bold'>Log</span>
+              <span className='text-2xl text-white font-bold'>in</span>
+            </div>
+            <LogIn color='white'/>
+          </section>
+        </header>
+
+        <main className='flex flex-col gap-16'>
+          <div className='flex flex-col gap-1'>
+            <h1 className='text-4xl text-white'>Bem vindo !</h1>
+            <p className='text-zinc-400'> Para acessar a plataforma, faça o login.</p>
+          </div>
+
+          <form onSubmit={handleSubmit(handleLoginSubmit)} className='flex flex-col'>
+            <div className='flex flex-col gap-6 mb-16'>
+              <div className='flex flex-col gap-1'>
+                <div className='flex items-center justify-between'>
+                  <label htmlFor="email" className='text-white'>E-mail</label>
+                  {errors.email && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
+                </div>
+                <Input
                   type="email"
                   placeholder="E-mail"
                   autoComplete="username"
                   {...register('email')}
-                />
-              </Input.Root>
-              {errors.email && <SpanError>{errors.email.message}</SpanError>}
-            </MainFormInputWrapper>
 
-            <MainFormInputWrapper>
-              <MainFormInputTitle>Senha</MainFormInputTitle>
-              <Input.Root>
-                <Input.IconLeft icon={showPassword ? Unlock : Lock} />
-                <Input.TextField
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Senha"
-                  autoComplete="current-password"
-                  {...register('password')}
+                  className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'
                 />
-                <Input.ButtonIcon
-                  icon={showPassword ? Eye : EyeOff}
-                  onClick={togglePasswordVisibility}
-                  type='button'
-                />
-              </Input.Root>
-              {errors.password && <SpanError>{errors.password.message}</SpanError>}
-            </MainFormInputWrapper>
+              </div>
 
-            <Button.Root type='submit'>
-              <Button.Content text="Acessar" />
-            </Button.Root>
-          </MainForm>
-        </MainFormContainer>
+              <div className='flex flex-col gap-1'>
+              <div className='flex items-center justify-between'>
+                  <label htmlFor="password" className='text-white'>Senha</label>
+                  {errors.password && <span className='text-red-500 text-sm'>{errors.password.message}</span>}
+                </div>
+                <div className='flex items-center gap-1'>
+                  <Input 
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Senha"
+                    {...register('password')}
+                    className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'
+                  />
+                  <Button
+                    onClick={togglePasswordVisibility}
+                    type='button'
+                    className='bg-zinc-950 text-white p-4 h-12 rounded-sm border border-zinc-400 hover:bg-zinc-800'
+                  >
+                    {showPassword ? <Eye /> : <EyeOff />}
+                  </Button>
+                </div>
+              </div>
+            </div>
 
-        {/* Footer */}
-        <FooterContainer>
-          <FooterSpan>
-            Não possui conta?
-            <FooterLink href="/register">Cadastre-se</FooterLink>
-          </FooterSpan>
-        </FooterContainer>
-      </MainContainer>
-    </Container>
+            <div>
+              {loading?
+              <Button type='submit' disabled className='flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >
+                <Loader2 className='animate-spin'/>
+                Acessando
+              </Button>
+              :
+              <Button type='submit' className='w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all' >
+                Acessar
+              </Button>
+              }
+            </div>
+          </form>
+        </main>
+
+        <div className='flex flex-col gap-8'>
+          <Separator />
+          <footer>
+            <span className='text-zinc-400'>Não possui conta ? <a href="/register" className='font-bold text-blue-400 hover:cursor-pointer hover:text-blue-500 hover:transition-colors'>Cadastre-se</a></span>
+          </footer>
+        </div>
+      </div>
+    </div>
   );
 }
