@@ -157,8 +157,14 @@ export function Login() {
 
         <div className='flex flex-col gap-8'>
           <Separator />
-          <footer>
-            <span className='text-zinc-400'>Não possui conta ? <a href="/register" className='font-bold text-blue-400 hover:cursor-pointer hover:text-blue-500 hover:transition-colors'>Cadastre-se</a></span>
+          <footer className='flex flex-col items-center'>
+            <span className='text-zinc-300 font-bold'>
+              Não possui conta?
+            </span>
+
+            <span className='w-96 text-center text-zinc-500'>
+              Entre em contato com o administrador do sistema para criar uma conta.
+            </span>
           </footer>
         </div>
       </div>

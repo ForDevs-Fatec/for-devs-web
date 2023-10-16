@@ -130,45 +130,45 @@ export function MetricsPage() {
           <div className='bg-zinc-800 w-full h-40 p-6 rounded-md shadow-lg'>
             <div>
               <div className='flex gap-4'>
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Pré processamento</span>
                     <span className='text-3xl font-bold text-white'>{`Média ${preprocessamentoAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Pré processamento</span>
                   </div>
                 </div>
   
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Stopword</span>
                     <span className='text-3xl font-bold text-white'>{`Média ${stopwordAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Stopword</span>
                   </div>
                 </div>
   
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Tokenização</span>
                     <span className='text-3xl font-bold text-white'>{`Média ${tokenizacaoAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Tokenização</span>
                   </div>
                 </div>
   
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Analise de sentimentos</span>
                     <span className='text-3xl font-bold text-white'>{`Média ${analiseSentimentosAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Analise de sentimentos</span>
                   </div>
                 </div>
   
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Classificação de tema</span>
                     <span className='text-3xl font-bold text-white'>{`Média ${classificacaoTemaAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Classificação de tema</span>
                   </div>
                 </div>
   
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md'>
-                  <div className='flex flex-col justify-center items-center h-full'>
+                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
+                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
+                    <span className='text-zinc-400'>Pesquisa PLN</span>
                     <span className='text-4xl font-bold text-white'>{`Média ${pesquisaPLNAverage.toFixed(1)}s`}</span>
-                    <span className='text-xl font-bold text-white'>Pesquisa PLN</span>
                   </div>
                 </div>
               </div>
