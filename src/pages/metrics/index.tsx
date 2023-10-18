@@ -112,8 +112,6 @@ function generateRandomDataAndAverage(numPoints = 7) {
     return { data, average };
 }
 
-
-
 export function MetricsPage() {
     const { data: tokenizacaoData, average: tokenizacaoAverage } = generateRandomDataAndAverage(7);
     const { data: preprocessamentoData, average: preprocessamentoAverage } = generateRandomDataAndAverage(7);

@@ -145,8 +145,6 @@ export function HeaderComponent() {
         })
     }
 
-
-
     return (
         <div className='flex items-center gap-8'>
             <SideBarMenu />
@@ -235,7 +233,6 @@ export function HeaderComponent() {
                                                     </Label>
                                                     {errors.userRole && <span className='text-red-500 text-sm'>{errors.userRole.message}</span>}
                                                     <Select
-
                                                         {...register('userRole')}
                                                     >
                                                         <SelectTrigger className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'>

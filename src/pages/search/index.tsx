@@ -6,7 +6,6 @@ import { HeaderComponent } from "@/components/headerComponent";
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
     Table,
     TableBody,
@@ -16,10 +15,9 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge"
 import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import Gif from '@/assets/techny-searching-the-web-on-tablet.gif'
 
 type PlnData = {
     id: number,
@@ -107,7 +105,7 @@ export function SearchPage() {
                 ) : (
                     data.length === 0 ? (
                         <section className="flex items-center justify-center flex-col w-full h-full">
-                            <img className='w-80 h-80' src={ImgDataSearch} alt='no data' />
+                            <img className='w-80 h-80' src={Gif} alt='no data' />
                             <h1 className='text-2xl text-zinc-50'>Nenhum resultado encontrado</h1>
                             <span className='text-zinc-400'>Por favor, pesquise por um termo.</span>
                         </section>
