@@ -1,6 +1,7 @@
 import { LineChartComponent } from '@/data/chartLineData';
 import { ChartBarComponent } from '@/data/chartBarData';
 import { DonutsChartComponent } from '@/data/chartDonuts';
+import { BarMedChartComponent } from '@/data/chartBarDataMed';
 
 export function DashboardCharts() {
     return (
@@ -17,7 +18,7 @@ export function DashboardCharts() {
 
                             <div className='bg-zinc-700 w-[25%] h-full rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer'>
                                 <div className='h-full w-full py-4'>
-                                <ChartBarComponent />
+                                    <BarMedChartComponent />
                                 </div>
                             </div>
 
@@ -28,18 +29,9 @@ export function DashboardCharts() {
                     </div>
                 </div>
 
-                <div className='flex flex-col gap-4 bg-zinc-800 w-full h-screen rounded-md shadow-lg p-6'>
+                <div className='bg-zinc-800 w-full h-[cd ..%] rounded-md shadow-lg p-6'>
                     <div className='bg-zinc-700 w-full h-full p-4 rounded-md shadow-lg'>
                        <LineChartComponent />
-                    </div>
-                    <div className='flex gap-4 h-full'>
-                        <div className='bg-zinc-700 w-1/2 p-4 h-full rounded-md shadow-lg'>
-                            <DonutsChartComponent />
-                        </div>
-
-                        <div className='bg-zinc-700 w-1/2 h-full p-4 rounded-md shadow-lg'>
-                            <DonutsChartComponent />
-                        </div>
                     </div>
                 </div>
             </div>

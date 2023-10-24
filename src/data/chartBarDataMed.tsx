@@ -4,85 +4,74 @@ import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-type BarChartData = {
+type BarMedChartProps = {
   classificacao_tema: number;
-  sentiment_text: string;
   quantidade: number;
+  overall_rating: number;
 };
 
-export function ChartBarComponent() {
-  const [dataBarChart, setDataBarChart] = useState<BarChartData[]>([]);
+export function BarMedChartComponent() {
+  const [dataBarMedChart, setDataBarMedChart] = useState<BarMedChartProps[]>(
+    []
+  );
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
       apiPln
-        .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
+        .get<BarMedChartProps[]>(URI.MEDIA_TEMAS)
         .then((response) => {
-          const barData = response.data;
-          const barDataNoNull = barData.filter(
-            (item) =>
-              item.classificacao_tema !== null && item.classificacao_tema !== 1
-          );
+          const data = response.data;
+          setDataBarMedChart(data);
           setLoading(false);
-          setDataBarChart(barDataNoNull);
         })
         .catch((error) => {
           setLoading(false);
           console.log(error);
         });
-    }, 500);
+    }, 1000);
   }, []);
 
-  const barDataPositive = dataBarChart.filter(
-    (item) => item.sentiment_text === "positive"
+  console.log(dataBarMedChart);
+
+  const getAllData2 = dataBarMedChart.map((item) =>
+    item.classificacao_tema === 2 ? item.overall_rating : 0
   );
-  const barDataNeutral = dataBarChart.filter(
-    (item) => item.sentiment_text === "neutral"
+  const getAllData3 = dataBarMedChart.map((item) =>
+    item.classificacao_tema === 3 ? item.overall_rating : 0
   );
-  const barDataNegative = dataBarChart.filter(
-    (item) => item.sentiment_text === "negative"
+  const getAllData4 = dataBarMedChart.map((item) =>
+    item.classificacao_tema === 4 ? item.overall_rating : 0
   );
 
-  const getAllDataPositive = barDataPositive.map((item) => item.quantidade);
-  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade);
-  const getAllDataNegative = barDataNegative.map((item) => item.quantidade);
-
-  console.log(dataBarChart);
+  console.log(getAllData4);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
-    chart: {
-      stacked: true,
-      toolbar: {
-        show: true,
+    series: [
+      {
+        data: [getAllData2[1], getAllData3[2], getAllData4[3]],
       },
-    },
+    ],
     title: {
-      text: "Sentimentos por tema",
+      text: "Média de avaliação por tema",
       align: "left",
       style: {
         color: "#FFFFFF",
       },
     },
-    series: [
-      {
-        name: "Positivo",
-        data: getAllDataPositive,
-      },
-      {
-        name: "Neutro",
-        data: getAllDataNeutral,
-      },
-      {
-        name: "Negativo",
-        data: getAllDataNegative,
-      },
-    ],
+    chart: {
+      type: "bar",
+      height: 350,
+    },
     plotOptions: {
       bar: {
+        borderRadius: 4,
         horizontal: false,
       },
+    },
+    dataLabels: {
+      enabled: false,
     },
     legend: {
       position: "bottom",
@@ -109,11 +98,11 @@ export function ChartBarComponent() {
         </div>
       ) : (
         <Chart
+          type="bar"
           options={BarChartOptions}
           series={BarChartOptions.series}
           width="100%"
           height="100%"
-          type="bar"
         />
       )}
     </div>
