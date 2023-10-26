@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom"
 import { BarChart3, Users, Search, TrendingUp } from "lucide-react"
 import { UserModal } from "../newUserModal"
 
-
-
 export function HeaderComponent() {
     const location = useLocation()
     const path = location.pathname
