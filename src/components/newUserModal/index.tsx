@@ -125,7 +125,7 @@ export function UserModal() {
                 autoComplete="off"
                 className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
                 {...register("name", {
-                  required: "Nome é obrigatório",
+                  required: "Nome obrigatório para o cadastro!",
                   minLength: { value: 3, message: "Nome deve ter no mínimo 3 caracteres" },
                 })}
               />
@@ -141,7 +141,7 @@ export function UserModal() {
                 placeholder="E-mail"
                 className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
                 {...register("email", {
-                  required: "E-mail é obrigatório",
+                  required: "Email obrigatório para o cadastro!",
                   pattern: {
                     value: /^\S+@\S+$/i,
                     message: "E-mail inválido",
@@ -161,7 +161,7 @@ export function UserModal() {
                   autoComplete="off"
                   className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
                   {...register("password", {
-                    required: "Senha é obrigatória",
+                    required: "Senha obrigatoria para o cadastro!",
                     minLength: {
                       value: 6,
                       message: "Senha deve ter no mínimo 6 caracteres",
@@ -186,7 +186,7 @@ export function UserModal() {
               <select
                 className='bg-zinc-950 px-4 h-12 text-white rounded-sm border-zinc-400 border hover:cursor-pointer'
                 {...register("role", {
-                  required: "Selecione o nível do usuário",
+                  required: "Nivel do usuário obrigatório para o cadastro!",
                 })}
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
