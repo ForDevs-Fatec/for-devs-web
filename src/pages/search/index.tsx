@@ -1,7 +1,6 @@
 import apiPln from "../../services/api-pln.service";
 import URI from "../../utils/enum/uri.enum";
 import { useState } from "react";
-import ImgDataSearch from '../../assets/location_search.svg'
 import { HeaderComponent } from "@/components/headerComponent";
 
 import { Input } from '@/components/ui/input'
@@ -20,9 +19,11 @@ import { Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import Gif from '@/assets/techny-searching-the-web-on-tablet.gif'
 
 type PlnData = {
-    id: number,
+    product_id: number,
+    submission_date: string,
     review_title: string,
     review_text: string,
+    site_category_lv2: string,
     overall_rating: number
 }
 
@@ -33,20 +34,28 @@ export function SearchPage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(8);
 
-    const searchHandler = async (param: any) => {
+    function handleSearch(param: any) {
         setLoading(true);
-        try {
-            const response = await apiPln.get<PlnData[]>(`${URI.PESQUISA_PLN}${param}`, {
-                params: {
-                    text: param
-                }
-            })
+        apiPln.get<PlnData[]>(`${URI.PESQUISA_PLN}${param}`, {
+            params: {
+                text: param
+            }
+        }).then(response => {
             setData(response.data)
             setLoading(false);
-        } catch (error) {
+        }).catch(error => {
             console.log(error)
             setLoading(false);
-        }
+        })
+    }
+
+    const formatDate = (date: string) => {
+        const dateFormatted = new Date(date).toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        return dateFormatted;
     }
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -92,10 +101,9 @@ export function SearchPage() {
                 <Input
                     placeholder="Digite sua pesquisa..."
                     onChange={(e) => setText(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && searchHandler(text)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch(text)}
                     className='bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500'
                 />
-
 
                 {loading ? (
                     <div className="flex items-center justify-center h-full">
@@ -145,18 +153,24 @@ export function SearchPage() {
                                 </TableCaption>
                                 <TableHeader>
                                     <TableRow className='bg-zinc-800'>
-                                        <TableHead className='font-bold text-zinc-50 w-[200px] text-ellipsis whitespace-nowrap'>Titulo</TableHead>
-                                        <TableHead className='font-bold text-zinc-50'>Comentario</TableHead>
-                                        <TableHead className="text-right font-bold text-zinc-50">avaliação</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 text-left'>ID</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 text-left'>Data do comentário</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 text-left w-[250px]'>Titulo</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 w-[500px]'>Comentario</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 text-center'>Categoria do produto</TableHead>
+                                        <TableHead className="font-bold text-zinc-50 text-center">Avaliação</TableHead>
                                     </TableRow>
                                 </TableHeader>
 
                                 <TableBody>
                                     {currentItems.map((item: PlnData, index) => (
                                         <TableRow key={index}>
-                                            <TableCell className='text-zinc-50 font-bold'>{item.review_title}</TableCell>
+                                            <TableCell className='text-zinc-50 font-bold text-left'>{item.product_id}</TableCell>
+                                            <TableHead className='text-zinc-50 font-bold text-left'>{formatDate(item.submission_date)}</TableHead>
+                                            <TableCell className='text-zinc-50 font-bold text-left'>{item.review_title}</TableCell>
                                             <TableCell className='text-zinc-50'>{item.review_text}</TableCell>
-                                            <TableCell className='text-center text-zinc-50'>{ratingHandler(item.overall_rating)}</TableCell>
+                                            <TableCell className='text-zinc-50 text-center'>{item.site_category_lv2}</TableCell>
+                                            <TableCell className='text-zinc-50 text-center'>{ratingHandler(item.overall_rating)}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
