@@ -155,8 +155,8 @@ export function SearchPage() {
                                     <TableRow className='bg-zinc-800'>
                                         <TableHead className='font-bold text-zinc-50 text-left'>ID</TableHead>
                                         <TableHead className='font-bold text-zinc-50 text-left'>Data do comentário</TableHead>
-                                        <TableHead className='font-bold text-zinc-50 text-left w-[250px]'>Titulo</TableHead>
-                                        <TableHead className='font-bold text-zinc-50 w-[500px]'>Comentario</TableHead>
+                                        <TableHead className='font-bold text-zinc-50 text-left'>Titulo</TableHead>
+                                        <TableHead className='font-bold text-zinc-50'>Comentario</TableHead>
                                         <TableHead className='font-bold text-zinc-50 text-center'>Categoria do produto</TableHead>
                                         <TableHead className="font-bold text-zinc-50 text-center">Avaliação</TableHead>
                                     </TableRow>
@@ -166,8 +166,8 @@ export function SearchPage() {
                                     {currentItems.map((item: PlnData, index) => (
                                         <TableRow key={index}>
                                             <TableCell className='text-zinc-50 font-bold text-left'>{item.product_id}</TableCell>
-                                            <TableHead className='text-zinc-50 font-bold text-left'>{formatDate(item.submission_date)}</TableHead>
-                                            <TableCell className='text-zinc-50 font-bold text-left'>{item.review_title}</TableCell>
+                                            <TableHead className='text-zinc-50 text-left'>{formatDate(item.submission_date)}</TableHead>
+                                            <TableCell className='text-zinc-50 text-left'>{item.review_title}</TableCell>
                                             <TableCell className='text-zinc-50'>{item.review_text}</TableCell>
                                             <TableCell className='text-zinc-50 text-center'>{item.site_category_lv2}</TableCell>
                                             <TableCell className='text-zinc-50 text-center'>{ratingHandler(item.overall_rating)}</TableCell>
