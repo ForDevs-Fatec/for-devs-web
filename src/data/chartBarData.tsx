@@ -58,13 +58,6 @@ export function ChartBarComponent() {
         show: true,
       },
     },
-    title: {
-      text: "Sentimentos por tema",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
     series: [
       {
         name: "Positivo",
