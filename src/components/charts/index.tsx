@@ -39,14 +39,14 @@ export function DashboardCharts() {
 
             <div className='flex flex-col gap-5 h-full w-full'>
                 <div className='flex items-center justify-center gap-4'>
-                    <div className='flex flex-col gap-4 h-[345px] w-[65%] p-6 bg-[#282828] rounded-[1.25rem]'>
+                    <div className='flex flex-col gap-4 h-[345px] w-[50%] p-6 bg-[#282828] rounded-[1.25rem]'>
                         <h1 className='text-white font-semibold'>
                             Distribuição de sentimento x tema
                         </h1>
                         <ChartBarComponent />
                     </div>
 
-                    <div className='flex flex-col gap-4 h-[345px] w-[35%] p-6 bg-[#282828] rounded-[1.25rem]'>
+                    <div className='flex flex-col gap-4 h-[345px] w-[50%] p-6 bg-[#282828] rounded-[1.25rem]'>
                         <h1 className='text-white font-semibold'>
                             Bar Chart
                         </h1>
