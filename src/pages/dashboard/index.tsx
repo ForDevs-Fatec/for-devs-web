@@ -3,10 +3,12 @@ import { HeaderComponent } from '@/components/headerComponent'
 
 export function Dashboard() {
     return (
-        <div className='p-4 h-screen w-full'>
+        <div className='p-4'>
             <HeaderComponent />
-            <div className='w-full h-screen py-8 px-12'>
-                <DashboardCharts />
+            <div className="flex justify-center items-center p-5">
+                <div className='h-screen w-[71.875rem] pt-6'>
+                    <DashboardCharts />
+                </div>
             </div>
         </div>
     )

@@ -36,13 +36,6 @@ export function DonutsChartComponent() {
         show: true,
       },
     },
-    title: {
-      text: "Quantidade de comentários por tema",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
     series: [
       dataDonutChart[1]?.quantidade,
       dataDonutChart[3]?.quantidade,
@@ -50,7 +43,7 @@ export function DonutsChartComponent() {
     ],
     labels: ["Produto", "Entrega", "Qualidade (Custo-benefício)"],
     legend: {
-      position: "right",
+      position: "bottom",
       labels: {
         colors: "#FFFFFF",
       },

@@ -20,13 +20,9 @@ export function ChartBarComponent() {
       apiPln
         .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
         .then((response) => {
-          const barData = response.data;
-          const barDataNoNull = barData.filter(
-            (item) =>
-              item.classificacao_tema !== null && item.classificacao_tema !== 1
-          );
+          const data = response.data
           setLoading(false);
-          setDataBarChart(barDataNoNull);
+          setDataBarChart(data);
         })
         .catch((error) => {
           setLoading(false);
@@ -58,13 +54,6 @@ export function ChartBarComponent() {
         show: true,
       },
     },
-    title: {
-      text: "Sentimentos por tema",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
     series: [
       {
         name: "Positivo",
@@ -81,7 +70,9 @@ export function ChartBarComponent() {
     ],
     plotOptions: {
       bar: {
-        horizontal: false,
+        borderRadius: 4,
+        horizontal: true,
+        barHeight: "50%",
       },
     },
     legend: {
@@ -93,10 +84,22 @@ export function ChartBarComponent() {
     xaxis: {
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
+        show: true,
         style: {
           colors: "#FFFFFF",
         },
       },
+    },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    grid: {
+      borderColor: '#424242',
     },
   };
 
