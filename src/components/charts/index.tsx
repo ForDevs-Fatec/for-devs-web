@@ -1,3 +1,4 @@
+import { BarAgeRangeChartComponent } from "@/data/chartBarAgeRange";
 import { ChartBarComponent } from "@/data/chartBarData";
 import { DonutsChartComponent } from "@/data/chartDonuts";
 
@@ -49,7 +50,7 @@ export function DashboardCharts() {
                         <h1 className='text-white font-semibold'>
                             Bar Chart
                         </h1>
-                        <DonutsChartComponent />
+                       <BarAgeRangeChartComponent />
                     </div>
                 </div>
             </div>

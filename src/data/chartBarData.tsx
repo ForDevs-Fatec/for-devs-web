@@ -45,8 +45,6 @@ export function ChartBarComponent() {
   const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade);
   const getAllDataNegative = barDataNegative.map((item) => item.quantidade);
 
-  console.log(dataBarChart);
-
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
       stacked: true,

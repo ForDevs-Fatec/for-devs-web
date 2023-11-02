@@ -1,29 +1,31 @@
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
+import { Item } from "@radix-ui/react-dropdown-menu";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
-type BarMedChartProps = {
+type BarAgeRangeChartProps = {
+  reviewer_birth_year: number;
   classificacao_tema: number;
   quantidade: number;
-  overall_rating: number;
+  sentimento_text: string;
 };
 
-export function BarMedChartComponent() {
-  const [dataBarMedChart, setDataBarMedChart] = useState<BarMedChartProps[]>(
-    []
-  );
+export function BarAgeRangeChartComponent() {
+  const [dataBar, setDataBar] = useState<BarAgeRangeChartProps[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
       apiPln
-        .get<BarMedChartProps[]>(URI.MEDIA_TEMAS)
+        .get<BarAgeRangeChartProps[]>(URI.DISTRIBUICAO_SENTIMENTOS_FAIXA_ETARIA_TEMA)
         .then((response) => {
           const data = response.data;
-          setDataBarMedChart(data);
+          const filterNullData = data.filter((item) => item.reviewer_birth_year !== null && item.reviewer_birth_year !== 0);
+
+          setDataBar(filterNullData);
           setLoading(false);
         })
         .catch((error) => {
@@ -33,41 +35,33 @@ export function BarMedChartComponent() {
     }, 1000);
   }, []);
 
-  const getAllData2 = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 2 ? item.overall_rating : 0
-  );
-  const getAllData3 = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 3 ? item.overall_rating : 0
-  );
-  const getAllData4 = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 4 ? item.overall_rating : 0
-  );
-
   const BarChartOptions: ApexCharts.ApexOptions = {
+    chart: {
+      stacked: true,
+      toolbar: {
+        show: true,
+      },
+    },
     series: [
       {
-        data: [getAllData2[1], getAllData3[2], getAllData4[3]],
+        name: "Positivo",
+        data: [1, 2, 3],
+      },
+      {
+        name: "Neutro",
+        data: [1, 2, 3],
+      },
+      {
+        name: "Negativo",
+        data: [1, 2, 3]
       },
     ],
-    title: {
-      text: "Média de avaliação por tema",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
-    chart: {
-      type: "bar",
-      height: 350,
-    },
     plotOptions: {
       bar: {
         borderRadius: 4,
-        horizontal: false,
+        horizontal: true,
+        barHeight: "50%",
       },
-    },
-    dataLabels: {
-      enabled: false,
     },
     legend: {
       position: "bottom",
@@ -78,10 +72,22 @@ export function BarMedChartComponent() {
     xaxis: {
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
+        show: true,
         style: {
           colors: "#FFFFFF",
         },
       },
+    },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    grid: {
+      borderColor: '#424242',
     },
   };
 
