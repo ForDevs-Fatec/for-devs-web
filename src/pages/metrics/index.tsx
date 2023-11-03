@@ -1,7 +1,6 @@
 import { HeaderComponent } from "@/components/headerComponent";
 import { AlarmClock, Percent } from "lucide-react";
 import Chart from 'react-apexcharts';
-import ClockGif from '@/assets/pablita-clock-1.gif';
 
 const options: ApexCharts.ApexOptions = {
   chart: {
@@ -126,7 +125,7 @@ export function MetricsPage() {
 
     <div className='p-4'>
       <HeaderComponent />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center pt-5">
         <div className='flex flex-col justify-start gap-5 w-[71.875rem] h-screen'>
           <div className='flex flex-col items-center justify-center gap-5'>
             <div className='flex items-center justify-center gap-5 w-full'>
