@@ -38,8 +38,6 @@ export function BarAgeRangeChartComponent() {
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
     // Cria um objeto vazio para armazenar os dados agrupados
     const groupedData: Record<string, Record<string, number>> = {};
-    // Define as faixas etárias
-    const ageRanges = ["0-19", "20-59", "60+"];
     // Itera sobre os dados
     for (const item of data) {
       // Obtém o ano de nascimento do cliente
@@ -49,7 +47,7 @@ export function BarAgeRangeChartComponent() {
       // Obtém a quantidade de comentários
       const quantity = item.quantidade;
       // Calcula a idade do cliente
-      const age = new Date().getFullYear() - birthYear;
+      const age = 2019 - birthYear;
       // Determina a faixa etária do cliente
       let ageRange = "";
       if (age >= 0 && age <= 19) {
@@ -119,7 +117,35 @@ export function BarAgeRangeChartComponent() {
       bar: {
         borderRadius: 4, horizontal: true, barHeight: "50 %",
       },
-    }, legend: { position: "bottom", labels: { colors: "#FFFFFF", }, }, xaxis: { categories: ["0 - 19", "20 - 59", "60 +"], labels: { show: true, style: { colors: "#FFFFFF", }, }, }, yaxis: { labels: { show: true, style: { colors: "#FFFFFF", }, }, }, grid: { borderColor: "#424242", },
+    },
+    legend:
+    {
+      position: "bottom",
+      labels: {
+        colors: "#FFFFFF",
+      },
+    },
+    xaxis:
+    {
+      categories: ["Produto | 0 - 19 anos", "Qualidade | 20 - 59 anos", "Entrega | 60+ anos"],
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    grid: {
+      borderColor: "#424242",
+    },
   };
 
   return (
