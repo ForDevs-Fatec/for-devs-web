@@ -88,8 +88,9 @@ export function Login() {
   }
 
   return (
-    <div className="px-5 h-screen">
-      <header className="flex items-center gap-2 h-16">
+    <div className="flex flex-col justify-start items-center h-screen px-5">
+
+      <header className="flex items-center gap-2 h-16 w-full">
         <img src={Logo} alt="logo fordevs" className="h-7 w-7" />
         <span className="text-lg text-white font-medium">
           For
@@ -97,8 +98,8 @@ export function Login() {
         </span>
       </header>
 
-      <main className="flex items-center justify-center w-full h-[85%]">
-        <section className="flex flex-col justify-center gap-10 h-[656px] w-[680px] max-h-full max-w-full rounded-md bg-[#282828] py-6 px-12">
+      <main className='flex justify-center items-center w-full h-screen'>
+        <div className="w-[33rem] p-6 shadow-lg bg-[#282828] rounded-md">
           <header className="flex flex-col items-center gap-2">
             <h1 className="flex items-center gap-2 text-white text-lg font-medium">
               Login <LogIn />
@@ -108,11 +109,11 @@ export function Login() {
             </span>
           </header>
 
-          <Separator className="bg-zinc-500" />
+          <Separator className="my-5 bg-zinc-500" />
 
           <form
             onSubmit={handleSubmit(handleLoginSubmit)}
-            className="flex flex-col gap-7"
+            className="flex flex-col gap-4 h-full w-full"
           >
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
@@ -130,7 +131,7 @@ export function Login() {
                 placeholder="E-mail"
                 autoComplete="username"
                 {...register("email")}
-                className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                className="bg-transparent text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
               />
             </div>
 
@@ -150,12 +151,12 @@ export function Login() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Senha"
                   {...register("password")}
-                  className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                  className="bg-transparent text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
                 />
                 <Button
                   onClick={togglePasswordVisibility}
                   type="button"
-                  className="bg-zinc-950 text-white p-4 h-12 rounded-sm border border-zinc-400 hover:bg-zinc-800"
+                  className="bg-transparent text-white p-4 h-12 rounded-sm border border-zinc-400"
                 >
                   {showPassword ? <Eye /> : <EyeOff />}
                 </Button>
@@ -180,8 +181,9 @@ export function Login() {
               </Button>
             )}
           </form>
-          <Separator className="bg-zinc-500" />
 
+          <Separator className="my-5 bg-zinc-500" />
+          
           <footer className="flex flex-col items-center gap-2 h-16">
             <span className="text-zinc-300 font-bold text-sm">
               Não possui conta?
@@ -192,7 +194,8 @@ export function Login() {
               conta.
             </span>
           </footer>
-        </section>
+          
+        </div>
       </main>
 
       <footer className="flex items-end justify-center h-16 pb-2">

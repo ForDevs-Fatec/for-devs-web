@@ -12,6 +12,7 @@ enum URI {
     DISTRIBUICAO_SENTIMENTOS_FAIXA_ETARIA_TEMA = '/getDistribuicaoSentimentosFaixaEtariaTema',
     CATEGORIA_TEMAS = '/get-categoria-temas',
     MEDIA_TEMAS = '/get-media-temas',
+    METRICAS = '/getMedicoes'
 }
 
 export default URI; 
