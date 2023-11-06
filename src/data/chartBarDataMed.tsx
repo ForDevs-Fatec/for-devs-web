@@ -11,18 +11,18 @@ type BarMedChartProps = {
 };
 
 export function BarMedChartComponent() {
-  const [dataBarMedChart, setDataBarMedChart] = useState<BarMedChartProps[]>(
-    []
-  );
+  const [dataBarMedChart, setDataBarMedChart] = useState<BarMedChartProps[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     setTimeout(() => {
-      setLoading(true);
       apiPln
         .get<BarMedChartProps[]>(URI.MEDIA_TEMAS)
         .then((response) => {
           const data = response.data;
+
           setDataBarMedChart(data);
           setLoading(false);
         })
@@ -30,40 +30,36 @@ export function BarMedChartComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 1000);
+    }, 2500);
   }, []);
 
-  const getAllData2 = dataBarMedChart.map((item) =>
+  const getAllDataProduct = dataBarMedChart.map((item) =>
+    item.classificacao_tema === 1 ? item.overall_rating : 0
+  );
+  const getAllDataDelivery = dataBarMedChart.map((item) =>
     item.classificacao_tema === 2 ? item.overall_rating : 0
   );
-  const getAllData3 = dataBarMedChart.map((item) =>
+  const getAllDataQuality = dataBarMedChart.map((item) =>
     item.classificacao_tema === 3 ? item.overall_rating : 0
   );
-  const getAllData4 = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 4 ? item.overall_rating : 0
-  );
+
+  const dataFilterProduct = getAllDataProduct.filter((item) => item !== 0);
+  const dataFilterDelivery = getAllDataDelivery.filter((item) => item!== 0);
+  const dataFilterQuality = getAllDataQuality.filter((item) => item!== 0);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
-    series: [
-      {
-        data: [getAllData2[1], getAllData3[2], getAllData4[3]],
-      },
-    ],
-    title: {
-      text: "Média de avaliação por tema",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
     chart: {
       type: "bar",
       height: 350,
     },
+    series: [{
+      data: [dataFilterProduct[0], dataFilterQuality[0], dataFilterDelivery[0]]
+    }],
     plotOptions: {
       bar: {
         borderRadius: 4,
         horizontal: false,
+        columnWidth: "50%"
       },
     },
     dataLabels: {
@@ -82,6 +78,26 @@ export function BarMedChartComponent() {
           colors: "#FFFFFF",
         },
       },
+    },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: function (val: number) {
+          return val + "s";
+        },
+      },
+    },
+  
+    grid: {
+      borderColor: '#424242',
     },
   };
 

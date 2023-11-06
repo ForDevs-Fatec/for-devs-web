@@ -15,8 +15,9 @@ export function ChartBarComponent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     setTimeout(() => {
-      setLoading(true);
       apiPln
         .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
         .then((response) => {
@@ -28,7 +29,7 @@ export function ChartBarComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 500);
+    }, 1300);
   }, []);
 
   const barDataPositive = dataBarChart.filter(

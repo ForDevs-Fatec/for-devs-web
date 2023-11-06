@@ -15,8 +15,9 @@ export function MetricsPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+
     setTimeout(() => {
-      setIsLoading(true);
       apiPln
         .get<MetricsPageProps[]>(URI.METRICAS)
         .then((response) => {
@@ -45,7 +46,7 @@ export function MetricsPage() {
   return (
     <div className="p-4">
       <HeaderComponent />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center p-5">
         <div className="flex flex-col justify-start gap-5 w-[71.875rem] h-screen">
           <div className="flex flex-col items-center justify-center gap-5">
             <div className="flex items-center justify-center gap-5 w-full">
@@ -63,7 +64,9 @@ export function MetricsPage() {
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
                       dataMed("preproc").toFixed(3) + "s"
@@ -84,7 +87,9 @@ export function MetricsPage() {
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
                       dataMed("stopwords").toFixed(3) + "s"
@@ -107,7 +112,9 @@ export function MetricsPage() {
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
                       dataMed("tokenização").toFixed(3) + "s"
@@ -129,15 +136,16 @@ export function MetricsPage() {
                     Analise de sentimentos
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                  {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
-                    dataMed("sentimento").toFixed(3) + "s"
-                    )
-                    }
+                      dataMed("sentimento").toFixed(3) + "s"
+                    )}
                   </span>
                 </div>
               </div>
@@ -156,7 +164,9 @@ export function MetricsPage() {
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
                       dataMed("class_tema").toFixed(3) + "s"
@@ -179,7 +189,9 @@ export function MetricsPage() {
                     {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
-                        <p className="text-lg text-zinc-50 ml-2">Carregando...</p>
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
                       </div>
                     ) : (
                       dataMed("correcao_ortografica").toFixed(3) + "s"
@@ -192,7 +204,6 @@ export function MetricsPage() {
 
           <div className="flex flex-col h-[65%] p-6 bg-[#282828] rounded-[1.25rem]">
             <h1 className="text-white text-sm font-thin">Bar Chart</h1>
-
             <MetricsChartComponent />
           </div>
         </div>

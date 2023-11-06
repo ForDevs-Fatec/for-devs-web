@@ -27,7 +27,7 @@ export function DonutsChartComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 1500);
+    }, 2000);
   }, []);
 
   const DonutChartOptions: ApexCharts.ApexOptions = {
@@ -37,8 +37,8 @@ export function DonutsChartComponent() {
       },
     },
     series: [
+      dataDonutChart[0]?.quantidade,
       dataDonutChart[1]?.quantidade,
-      dataDonutChart[3]?.quantidade,
       dataDonutChart[2]?.quantidade,
     ],
     labels: ["Produto", "Entrega", "Qualidade (Custo-benefício)"],

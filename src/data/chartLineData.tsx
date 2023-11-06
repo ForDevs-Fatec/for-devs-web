@@ -15,47 +15,40 @@ export function LineChartComponent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     setTimeout(() => {
-      setLoading(true);
       apiPln
         .get<LineChartData[]>(URI.CLASSIFICACAO_TEMA_TEMPO)
         .then((response) => {
           const data = response.data;
-          const dataNoNull = data.filter(
-            (item) => item.classificacao_tema !== null
-          );
-          setDataLineChart(dataNoNull);
+
+          setDataLineChart(data);
           setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
           console.log(error);
         });
-    }, 2000);
+    }, 1500);
   }, []);
 
   const LineDataDate = dataLineChart.map((item) => item.data);
-  const DateGroup = LineDataDate.concat()
-    .sort()
-    .reverse()
-    .filter((item, index, array) => array.indexOf(item) === index)
-    .reverse();
-  const LineDataTheme = dataLineChart.map((item) => item.classificacao_tema);
-  const LineDataAmount = dataLineChart.map((item) => item.quantidade);
 
-  const LineDataFilter = dataLineChart.filter(
+  const DateGroup = LineDataDate.concat().sort().reverse().filter((item, index, array) => array.indexOf(item) === index).reverse();
+  const LineDataFilterProduct = dataLineChart.filter(
+    (item) => item.classificacao_tema === 1
+  );
+  const LineDataFilterDelivery = dataLineChart.filter(
     (item) => item.classificacao_tema === 2
   );
-  const LineDataFilter2 = dataLineChart.filter(
-    (item) => item.classificacao_tema === 4
-  );
-  const LineDataFilter3 = dataLineChart.filter(
+  const LineDataFilterQuality = dataLineChart.filter(
     (item) => item.classificacao_tema === 3
   );
 
-  const teste = LineDataFilter.map((item) => item.quantidade);
-  const teste2 = LineDataFilter2.map((item) => item.quantidade);
-  const teste3 = LineDataFilter3.map((item) => item.quantidade);
+  const product = LineDataFilterProduct.map((item) => item.quantidade);
+  const delivery = LineDataFilterDelivery.map((item) => item.quantidade);
+  const quality = LineDataFilterQuality.map((item) => item.quantidade);
 
   const LineChartOptions: ApexCharts.ApexOptions = {
     chart: {
@@ -63,30 +56,20 @@ export function LineChartComponent() {
         show: true,
       },
     },
-    title: {
-      text: "Distribuição de temas ao longo do tempo",
-      align: "left",
-      style: {
-        color: "#FFFFFF",
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
     series: [
       {
         name: "Produto",
-        data: teste ? teste : [],
+        data: product ? product : [],
         color: "#F87171",
       },
       {
         name: "Entrega",
-        data: teste2 ? teste2 : [],
+        data: delivery ? delivery : [],
         color: "#FBBF24",
       },
       {
         name: "Qualidade (Custo-benefício)",
-        data: teste3 ? teste3 : [],
+        data: quality ? quality : [],
         color: "#34D399",
       },
     ],

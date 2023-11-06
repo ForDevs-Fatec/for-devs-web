@@ -9,7 +9,7 @@ enum URI {
     CLASSIFICACAO_TEMA_TEMPO = '/getClassificacaoTemaTempo',
     CLASSIFICACAO_TEMA_SENTIMENTO = '/getClassificacaoTemaSentimento',
     CLASSIFICACAO_TEMA_SENTIMENTO_ESTADO = '/getClassificacaoTemaSentimentoEstado',
-    DISTRIBUICAO_SENTIMENTOS_FAIXA_ETARIA_TEMA = '/getDistribuicaoSentimentosFaixaEtariaTema',
+    DISTRIBUICAO_FAIXA_ETARIA = '/getDistribuicaoSentimentosFaixaEtariaTema',
     CATEGORIA_TEMAS = '/get-categoria-temas',
     MEDIA_TEMAS = '/get-media-temas',
     METRICAS = '/getMedicoes'

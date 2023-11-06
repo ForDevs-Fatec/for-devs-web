@@ -16,15 +16,17 @@ export function BarAgeRangeChartComponent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-      apiPln
-        .get<BarAgeRangeChartProps[]>(URI.DISTRIBUICAO_SENTIMENTOS_FAIXA_ETARIA_TEMA)
-        .then((response) => {
-          const data = response.data; const filterNullData = data.filter((item) => item.reviewer_birth_year !== null && item.reviewer_birth_year !== 0);
+    setLoading(true);
 
-          setDataBar(filterNullData);
+    setTimeout(() => {
+      apiPln
+        .get<BarAgeRangeChartProps[]>(URI.DISTRIBUICAO_FAIXA_ETARIA)
+        .then((response) => {
+          const data = response.data;
+          const dataFilterNull = data.filter((item) => item.reviewer_birth_year !== 0)
+
           setLoading(false);
+          setDataBar(dataFilterNull);
         })
         .catch((error) => {
           setLoading(false);
@@ -34,24 +36,18 @@ export function BarAgeRangeChartComponent() {
 
   }, []);
 
-  // Função para agrupar os dados por faixa etária e sentimento
+
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
-    // Cria um objeto vazio para armazenar os dados agrupados
     const groupedData: Record<string, Record<string, number>> = {};
-    // Define as faixas etárias
-    const ageRanges = ["0-19", "20-59", "60+"];
-    // Itera sobre os dados
+
     for (const item of data) {
-      // Obtém o ano de nascimento do cliente
       const birthYear = item.reviewer_birth_year;
-      // Obtém o sentimento do texto
       const sentiment = item.sentimento_text;
-      // Obtém a quantidade de comentários
       const quantity = item.quantidade;
-      // Calcula a idade do cliente
       const age = new Date().getFullYear() - birthYear;
-      // Determina a faixa etária do cliente
+
       let ageRange = "";
+
       if (age >= 0 && age <= 19) {
         ageRange = "0-19";
       } else if (age >= 20 && age <= 59) {
@@ -59,31 +55,25 @@ export function BarAgeRangeChartComponent() {
       } else if (age >= 60) {
         ageRange = "60+";
       }
-      // Verifica se a faixa etária já existe no objeto groupedData
+
       if (groupedData[ageRange]) {
-        // Verifica se o sentimento já existe na faixa etária
         if (groupedData[ageRange][sentiment]) {
-          // Incrementa a quantidade de comentários pelo sentimento na faixa etária
           groupedData[ageRange][sentiment] += quantity;
         } else {
-          // Cria o sentimento na faixa etária e atribui a quantidade de comentários
           groupedData[ageRange][sentiment] = quantity;
         }
       } else {
-        // Cria a faixa etária no objeto groupedData e inicializa o sentimento com a quantidade de comentários
         groupedData[ageRange] = {
           [sentiment]: quantity
         };
       }
     }
-    // Retorna o objeto groupedData
+
     return groupedData;
   }
 
-  // Invoca a função groupByAgeAndSentiment com os dados do dataBar
   const groupedData = groupByAgeAndSentiment(dataBar);
 
-  // Extrai os dados da série do gráfico de barras empilhado a partir do objeto groupedData
   const barDataPositive: number[] = [];
   const barDataNeutral: number[] = [];
   const barDataNegative: number[] = [];
@@ -119,7 +109,33 @@ export function BarAgeRangeChartComponent() {
       bar: {
         borderRadius: 4, horizontal: true, barHeight: "50 %",
       },
-    }, legend: { position: "bottom", labels: { colors: "#FFFFFF", }, }, xaxis: { categories: ["0 - 19", "20 - 59", "60 +"], labels: { show: true, style: { colors: "#FFFFFF", }, }, }, yaxis: { labels: { show: true, style: { colors: "#FFFFFF", }, }, }, grid: { borderColor: "#424242", },
+    },
+    legend: {
+      position: "bottom",
+      labels: {
+        colors: "#FFFFFF",
+      },
+    },
+    xaxis: {
+      categories: ["0 - 19", "20 - 59", "60 +"],
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
+    grid: {
+      borderColor: "#424242",
+    },
   };
 
   return (
