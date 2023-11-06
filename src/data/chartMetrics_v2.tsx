@@ -49,26 +49,26 @@ export function MetricsChartComponentV2() {
       {
         name: "Analise de sentimentos",
         data: [
+            sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
             sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            sentimentoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
         ],
         color: "#60A5FA",
       },
       {
         name: "Classificação de tema",
         data: [
+            classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
             classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            classificacaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
         ], 
         color: "#f8a581",
       },
@@ -90,13 +90,13 @@ export function MetricsChartComponentV2() {
     },
     xaxis: {
       categories: [
+        "Domingo",
         "Segunda-feira",
         "Terça-feira",
         "Quarta-feira",
         "Quinta-feira",
         "Sexta-feira",
         "Sabado",
-        "Domingo",
       ],
       labels: {
         style: {

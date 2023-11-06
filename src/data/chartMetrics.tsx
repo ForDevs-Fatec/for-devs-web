@@ -15,7 +15,7 @@ export function MetricsChartComponent() {
 
   useEffect(() => {
     setIsLoading(true);
-    
+
     setTimeout(() => {
       apiPln
         .get<MetricsPageProps[]>(URI.METRICAS)
@@ -32,13 +32,18 @@ export function MetricsChartComponent() {
     }, 1000);
   }, []);
 
-  const tokenFilterNull = dataTime.filter((item) => item.função === "tokenização" && item.tempo !== 0);
-  const preprocFilterNull = dataTime.filter((item) => item.função === "preproc" && item.tempo !== 0);
-  const stopwordsFilterNull = dataTime.filter((item) => item.função === "stopwords" && item.tempo !== 0);
-  const sentimentoFilterNull = dataTime.filter((item) => item.função === "sentimento" && item.tempo !== 0);
-  const classificacaoFilterNull = dataTime.filter((item) => item.função === "class_tema" && item.tempo!== 0);
-  const correcaoFilterNull = dataTime.filter((item) => item.função === "correcao_ortografica" && item.tempo!== 0);
-
+  const tokenFilterNull = dataTime.filter(
+    (item) => item.função === "tokenização" && item.tempo !== 0
+  );
+  const preprocFilterNull = dataTime.filter(
+    (item) => item.função === "preproc" && item.tempo !== 0
+  );
+  const stopwordsFilterNull = dataTime.filter(
+    (item) => item.função === "stopwords" && item.tempo !== 0
+  );
+  const correcaoFilterNull = dataTime.filter(
+    (item) => item.função === "correcao_ortografica" && item.tempo !== 0
+  );
 
   const options: ApexCharts.ApexOptions = {
     chart: {
@@ -51,52 +56,108 @@ export function MetricsChartComponent() {
       {
         name: "Tokenização",
         data: [
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            tokenFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[6],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[0],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[1],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[2],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[3],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[4],
+          tokenFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[5],
         ],
         color: "#F87171",
       },
       {
         name: "Pré processamento",
         data: [
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            preprocFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[6],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[0],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[1],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[2],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[3],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[4],
+          preprocFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[5],
         ],
         color: "#FBBF24",
       },
       {
         name: "Stopword",
         data: [
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            stopwordsFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[6],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[0],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[1],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[2],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[3],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[4],
+          stopwordsFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[5],
         ],
         color: "#34D399",
       },
       {
         name: "Correção ortográfica",
         data: [
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[0],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[1],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[2],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[3],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[4],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[5],
-            correcaoFilterNull.map((item) => Math.round(item.tempo * 1000) / 1000)[6],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[6],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[0],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[1],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[2],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[3],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[4],
+          correcaoFilterNull.map(
+            (item) => Math.round(item.tempo * 1000) / 1000
+          )[5],
         ],
         color: "#fa8be4",
       },
@@ -126,13 +187,13 @@ export function MetricsChartComponent() {
     },
     xaxis: {
       categories: [
+        "Domingo",
         "Segunda-feira",
         "Terça-feira",
         "Quarta-feira",
         "Quinta-feira",
         "Sexta-feira",
         "Sabado",
-        "Domingo",
       ],
       labels: {
         style: {

@@ -90,6 +90,14 @@ export function LineChartComponent() {
         },
       },
     },
+    yaxis: {
+      labels: {
+        show: true,
+        style: {
+          colors: "#FFFFFF",
+        },
+      },
+    },
     tooltip: {
       theme: "dark",
       y: {
