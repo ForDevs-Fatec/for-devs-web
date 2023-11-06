@@ -1,6 +1,4 @@
 import { HeaderComponent } from '@/components/headerComponent'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { UserTable } from '@/components/usersTable'
 
 export function UsersPage() {

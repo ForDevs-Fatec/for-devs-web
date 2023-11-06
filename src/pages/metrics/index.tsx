@@ -1,187 +1,218 @@
 import { HeaderComponent } from "@/components/headerComponent";
-import Chart from 'react-apexcharts';
+import { MetricsChartComponent } from "@/data/chartMetrics";
+import { MetricsChartComponentV2 } from "@/data/chartMetrics_v2";
+import apiPln from "@/services/api-pln.service";
+import URI from "@/utils/enum/uri.enum";
+import { Separator } from "@radix-ui/react-separator";
+import { AlarmClock, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const options: ApexCharts.ApexOptions = {
-    chart: {
-        type: 'area',
-    },
-    dataLabels: {
-        enabled: false
-    },
-    series: [
-        {
-          name: 'Tokenização',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#F87171'
-        },
-        {
-          name: 'Pré processamento',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#FBBF24'
-        },
-        {
-          name: 'Stopword',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#34D399'
-        },
-        {
-          name: 'Analise de sentimentos',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#60A5FA'
-        },
-        {
-          name: 'Classificação de tema',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#f8a581'
-        },
-        {
-          name: 'Pesquisa PLN',
-          data: generateRandomDataAndAverage(7).data,
-          color: '#fa8be4'
-        },
-      ],
-    fill: {
-        type: "solid",
-        opacity: 0.8,
-        colors: ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#f8a581', '#fa8be4'],
-    },
-    stroke: {
-        curve: 'smooth',
-        colors: ['#F87171', '#FBBF24', '#34D399', '#60A5FA', '#f8a581', '#fa8be4'],
-    },
-    xaxis: {
-        categories:
-            [
-                'Segunda-feira',
-                'Terça-feira',
-                'Quarta-feira',
-                'Quinta-feira',
-                'Sexta-feira',
-                'Sabado',
-                'Domingo'
-            ],
-        labels: {
-            style: {
-                colors: '#FFFFFF',
-                fontSize: '12px',
-                fontFamily: 'Roboto, sans-serif',
-                fontWeight: 400,
-                cssClass: 'apexcharts-xaxis-label',
-            },
-        }
-    },
-    yaxis: {
-        labels: {
-            style: {
-                colors: '#FFFFFF',
-                fontSize: '12px',
-                fontFamily: 'Roboto, sans-serif',
-                fontWeight: 400,
-                cssClass: 'apexcharts-xaxis-label',
-            },
-        }
-    },
-    tooltip: {
-        theme: 'dark',
-        y: {
-            formatter: function (val: number) {
-                return val + "s"
-            }
-        }
-    },
-    legend: {
-        labels: {
-            colors: '#FFFFFF',
-        },
-        position: 'right',
-        horizontalAlign: 'center',
-    },
-}
-
-function generateRandomDataAndAverage(numPoints = 7) {
-    const data = [];
-    let sum = 0;
-
-    for (let i = 0; i < numPoints; i++) {
-        const randomValue = Math.floor(Math.random() * 100);
-        data.push(randomValue);
-        sum += randomValue;
-    }
-
-    const average = sum / numPoints;
-    return { data, average };
-}
+type MetricsPageProps = {
+  função: string;
+  tempo: number;
+};
 
 export function MetricsPage() {
-    const { data: tokenizacaoData, average: tokenizacaoAverage } = generateRandomDataAndAverage(7);
-    const { data: preprocessamentoData, average: preprocessamentoAverage } = generateRandomDataAndAverage(7);
-    const { data: stopwordData, average: stopwordAverage } = generateRandomDataAndAverage(7);
-    const { data: analiseSentimentosData, average: analiseSentimentosAverage } = generateRandomDataAndAverage(7);
-    const { data: classificacaoTemaData, average: classificacaoTemaAverage } = generateRandomDataAndAverage(7);
-    const { data: pesquisaPLNData, average: pesquisaPLNAverage } = generateRandomDataAndAverage(7);
-  
-    return (
-      <div className='h-screen w-full p-4 '>
-        <HeaderComponent />
-  
-        <div className='flex flex-col gap-4 h-[90%] mt-8 mx-28'>
-          <div className='bg-zinc-800 w-full h-40 p-6 rounded-md shadow-lg'>
-            <div>
-              <div className='flex gap-4'>
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Pré processamento</span>
-                    <span className='text-3xl font-bold text-white'>{`Média ${preprocessamentoAverage.toFixed(1)}s`}</span>
+  const [dataTime, setDataTime] = useState<MetricsPageProps[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      apiPln
+        .get<MetricsPageProps[]>(URI.METRICAS)
+        .then((response) => {
+          const data = response.data;
+
+          setDataTime(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.log(error);
+        });
+    }, 2000);
+  }, []);
+
+  function dataMed(data: string) {
+    const dataMed = dataTime.filter((item) =>
+      item.função === data ? item.tempo : 0
+    );
+
+    const dataF = dataMed.reduce((acc, item) => acc + item.tempo, 0);
+
+    return dataF / dataMed.length;
+  }
+
+  return (
+    <div className="p-4">
+      <HeaderComponent />
+      <div className="flex justify-center items-center p-5">
+        <div className="flex flex-col justify-start gap-5 w-[71.875rem] h-screen">
+          <div className="flex flex-col items-center justify-center gap-5">
+            <div className="flex items-center justify-center gap-5 w-full">
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
                 </div>
-  
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Stopword</span>
-                    <span className='text-3xl font-bold text-white'>{`Média ${stopwordAverage.toFixed(1)}s`}</span>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">
+                    Pré processamento
+                  </h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("preproc").toFixed(3) + "s"
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
                 </div>
-  
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Tokenização</span>
-                    <span className='text-3xl font-bold text-white'>{`Média ${tokenizacaoAverage.toFixed(1)}s`}</span>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">Stopword</h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("stopwords").toFixed(3) + "s"
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
                 </div>
-  
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Analise de sentimentos</span>
-                    <span className='text-3xl font-bold text-white'>{`Média ${analiseSentimentosAverage.toFixed(1)}s`}</span>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">
+                    Tokenização
+                  </h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("tokenização").toFixed(3) + "s"
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-5 w-full">
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
                 </div>
-  
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Classificação de tema</span>
-                    <span className='text-3xl font-bold text-white'>{`Média ${classificacaoTemaAverage.toFixed(1)}s`}</span>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">
+                    Analise de sentimentos
+                  </h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("sentimento").toFixed(3) + "s"
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
                 </div>
-  
-                <div className='bg-zinc-700 w-[25%] h-28 rounded-md shadow-lg transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer'>
-                  <div className='flex flex-col justify-center items-center gap-2 h-full'>
-                    <span className='text-zinc-400'>Pesquisa PLN</span>
-                    <span className='text-4xl font-bold text-white'>{`Média ${pesquisaPLNAverage.toFixed(1)}s`}</span>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">
+                    Classificação de tema
+                  </h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("class_tema").toFixed(3) + "s"
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+                <div className="w-[30%]">
+                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                    <AlarmClock className="text-white" />
                   </div>
+                </div>
+                <div className="flex flex-col items-end w-[70%]">
+                  <h1 className="text-zinc-400 text-sm font-thin">
+                    Correção ortográfica
+                  </h1>
+                  <span className="text-2xl text-white font-semibold">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center h-full w-full">
+                        <Loader2 className="animate-spin text-zinc-50" />
+                        <p className="text-base text-zinc-50 ml-2">
+                          Carregando...
+                        </p>
+                      </div>
+                    ) : (
+                      dataMed("correcao_ortografica").toFixed(3) + "s"
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
           </div>
-  
-          <div className='bg-zinc-800 w-full h-full p-8 rounded-md shadow-lg'>
-            <Chart
-              options={options}
-              series={options.series}
-              width='100%'
-              height='100%'
-            />
+
+          <div className="flex flex-col gap-5 h-[65%] p-6 bg-[#282828] rounded-[1.25rem]">
+            <h1 className="text-white font-semibold">
+              Análise de tempo de execução por dia.
+            </h1>
+            <MetricsChartComponent />
+            <MetricsChartComponentV2 />
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  );
+}
