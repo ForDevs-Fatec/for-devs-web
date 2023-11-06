@@ -21,17 +21,10 @@ export function LineChartComponent() {
       apiPln
         .get<LineChartData[]>(URI.CLASSIFICACAO_TEMA_TEMPO)
         .then((response) => {
-<<<<<<< HEAD
             const data = response.data;
             const dataNoNull = data.filter((item) => item.classificacao_tema !== null);
             console.log(dataNoNull);
             setDataLineChart(dataNoNull);
-=======
-          const data = response.data;
-
-          setDataLineChart(data);
-          setLoading(false);
->>>>>>> 980d203a3db8835dbee2faaad4bbfd1fca42f416
         })
         .catch((error) => {
           setLoading(false);
