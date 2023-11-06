@@ -1,7 +1,9 @@
 import { HeaderComponent } from "@/components/headerComponent";
 import { MetricsChartComponent } from "@/data/chartMetrics";
+import { MetricsChartComponentV2 } from "@/data/chartMetrics_v2";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
+import { Separator } from "@radix-ui/react-separator";
 import { AlarmClock, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -202,9 +204,12 @@ export function MetricsPage() {
             </div>
           </div>
 
-          <div className="flex flex-col h-[65%] p-6 bg-[#282828] rounded-[1.25rem]">
-            <h1 className="text-white text-sm font-thin">Bar Chart</h1>
+          <div className="flex flex-col gap-5 h-[65%] p-6 bg-[#282828] rounded-[1.25rem]">
+            <h1 className="text-white font-semibold">
+              Análise de tempo de execução por dia.
+            </h1>
             <MetricsChartComponent />
+            <MetricsChartComponentV2 />
           </div>
         </div>
       </div>
