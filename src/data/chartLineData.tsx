@@ -17,6 +17,7 @@ useEffect(() => {
         .then((response) => {
             const data = response.data;
             const dataNoNull = data.filter((item) => item.classificacao_tema !== null);
+            console.log(dataNoNull);
             setDataLineChart(dataNoNull);
         })
         .catch((error) => {
