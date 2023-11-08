@@ -22,8 +22,8 @@ export function ChartBarComponent() {
         .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
         .then((response) => {
           const data = response.data
-          setLoading(false);
           setDataBarChart(data);
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -32,11 +32,13 @@ export function ChartBarComponent() {
     }, 1300);
   }, []);
 
+  console.log(dataBarChart)
+
   const barDataPositive = dataBarChart.filter(
     (item) => item.sentiment_text === "positive"
   );
   const barDataNeutral = dataBarChart.filter(
-    (item) => item.sentiment_text === "neutral"
+    (item) => item.sentiment_text === "neutra"
   );
   const barDataNegative = dataBarChart.filter(
     (item) => item.sentiment_text === "negative"

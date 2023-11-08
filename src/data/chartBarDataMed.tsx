@@ -53,7 +53,11 @@ export function BarMedChartComponent() {
       height: 350,
     },
     series: [{
-      data: [dataFilterProduct[0], dataFilterQuality[0], dataFilterDelivery[0]]
+      data: [
+        dataFilterProduct.length > 0 ? dataFilterProduct[0] : null,
+        dataFilterQuality.length > 0 ? dataFilterQuality[0] : null,
+        dataFilterDelivery.length > 0 ? dataFilterDelivery[0] : null
+      ]
     }],
     plotOptions: {
       bar: {
@@ -89,13 +93,7 @@ export function BarMedChartComponent() {
     },
     tooltip: {
       theme: "dark",
-      y: {
-        formatter: function (val: number) {
-          return val + "s";
-        },
-      },
     },
-  
     grid: {
       borderColor: '#424242',
     },

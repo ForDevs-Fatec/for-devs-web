@@ -15,6 +15,7 @@ export function DonutsChartComponent() {
 
   useEffect(() => {
     setLoading(true);
+    
     setTimeout(() => {
       apiPln
         .get<DonutChartData[]>(URI.CLASSIFICACAO_TEMA_CONTAGEM)
@@ -37,9 +38,9 @@ export function DonutsChartComponent() {
       },
     },
     series: [
-      dataDonutChart[0]?.quantidade,
-      dataDonutChart[1]?.quantidade,
-      dataDonutChart[2]?.quantidade,
+      dataDonutChart.length > 0 ? dataDonutChart[0]?.quantidade : 0,
+      dataDonutChart.length > 1 ? dataDonutChart[1]?.quantidade : 0,
+      dataDonutChart.length > 2 ? dataDonutChart[2]?.quantidade : 0,
     ],
     labels: ["Produto", "Entrega", "Qualidade (Custo-benefício)"],
     legend: {

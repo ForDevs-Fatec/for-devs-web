@@ -2,11 +2,12 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import {
     Login,
-    Dashboard
+    Dashboard,
+    SearchPage,
+    UsersPage,
+    MetricsPage,
+    ReliabilityPage
 } from '../pages'
-import { SearchPage } from '../pages/search'
-import { UsersPage } from '../pages/users'
-import { MetricsPage } from '@/pages/metrics'
 
 export function MainRoutes() {
     return(
@@ -17,6 +18,7 @@ export function MainRoutes() {
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/users" element={<UsersPage />} />
                 <Route path="/metrics" element={<MetricsPage />} />
+                <Route path="/reliability" element={<ReliabilityPage />} />
             </Routes>
         </BrowserRouter>
     )

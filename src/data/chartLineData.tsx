@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
 type LineChartData = {
-  data: string; // Ajustado para string se 'data' for uma string de data
+  data: string;
   classificacao_tema: number;
   quantidade: number;
 };
@@ -23,8 +23,8 @@ export function LineChartComponent() {
         .then((response) => {
             const data = response.data;
             const dataNoNull = data.filter((item) => item.classificacao_tema !== null);
-            console.log(dataNoNull);
             setDataLineChart(dataNoNull);
+            setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -36,6 +36,7 @@ export function LineChartComponent() {
   const LineDataDate = dataLineChart.map((item) => item.data);
 
   const DateGroup = LineDataDate.concat().sort().reverse().filter((item, index, array) => array.indexOf(item) === index).reverse();
+
   const LineDataFilterProduct = dataLineChart.filter(
     (item) => item.classificacao_tema === 1
   );
@@ -54,7 +55,7 @@ export function LineChartComponent() {
     chart: {
       toolbar: {
         show: true,
-      },
+      },  
     },
     series: [
       {

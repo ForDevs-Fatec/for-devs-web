@@ -25,8 +25,8 @@ export function BarAgeRangeChartComponent() {
           const data = response.data;
           const dataFilterNull = data.filter((item) => item.reviewer_birth_year !== 0)
 
-          setLoading(false);
           setDataBar(dataFilterNull);
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -36,6 +36,7 @@ export function BarAgeRangeChartComponent() {
 
   }, []);
 
+  console.log(dataBar);
 
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
     const groupedData: Record<string, Record<string, number>> = {};
@@ -80,7 +81,7 @@ export function BarAgeRangeChartComponent() {
 
   for (const ageRange in groupedData) {
     barDataPositive.push(groupedData[ageRange].positive || 0);
-    barDataNeutral.push(groupedData[ageRange].neutral || 0);
+    barDataNeutral.push(groupedData[ageRange].neutra || 0);
     barDataNegative.push(groupedData[ageRange].negative || 0);
   }
 

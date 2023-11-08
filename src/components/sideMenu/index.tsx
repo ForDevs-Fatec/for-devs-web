@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button'
 import { Separator } from "@/components/ui/separator"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 import {
     Sheet,
@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 
-import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut, TrendingUp } from 'lucide-react'
+import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut, TrendingUp, Workflow } from 'lucide-react'
 import Logo from '@/assets/logoVertical.svg'
 import jwt_decode from "jwt-decode";
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -79,20 +79,8 @@ export function SideBarMenu() {
         navigate('/')
     }
 
-    const goToDashboard = () => {
-        navigate('/dashboard')
-    }
-
-    const goToSearch = () => {
-        navigate('/search')
-    }
-
-    const goToUsers = () => {
-        navigate('/users')
-    }
-
-    const goToMetrics = () => {
-        navigate('/metrics')
+    function goToPage(route: string) {
+        return navigate(route)
     }
 
     return (
@@ -115,7 +103,7 @@ export function SideBarMenu() {
                             <Button
                                 data-active={activeRoute === '/dashboard'}
                                 className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
-                                onClick={goToDashboard}
+                                onClick={() => goToPage('/dashboard')}
                             >
                                 <BarChart2 size={24} />
                                 Dashboard
@@ -124,7 +112,7 @@ export function SideBarMenu() {
                             <Button
                                 data-active={activeRoute === '/search'}
                                 className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
-                                onClick={goToSearch}
+                                onClick={() => goToPage('/search')}
                             >
                                 <Search size={24} />
                                 Pesquisa
@@ -133,7 +121,7 @@ export function SideBarMenu() {
                             <Button
                                 data-active={activeRoute === '/metrics'}
                                 className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
-                                onClick={goToMetrics}
+                                onClick={() => goToPage('/metrics')}
                             >
                                 <TrendingUp size={24} />
                                 Métricas
@@ -142,20 +130,29 @@ export function SideBarMenu() {
                             <Button
                                 data-active={activeRoute === '/users'}
                                 className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
-                                onClick={goToUsers}
+                                onClick={() => goToPage('/users')}
                             >
                                 <Users size={24} />
                                 Usuários
                             </Button>
+
+                            {/* <Button
+                                data-active={activeRoute === '/reliability'}
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                onClick={() => goToPage('/reliability')}
+                            >
+                                <Workflow size={24} />
+                                Confiabilidade
+                            </Button> */}
                         </>
                     ) : (
                         <>
-                            <Button data-active={activeRoute === '/dashboard'} className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active='true']:bg-zinc-700" onClick={goToDashboard}>
+                            <Button data-active={activeRoute === '/dashboard'} className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active='true']:bg-zinc-700" onClick={() => goToPage('/dashboard')}>
                                 <BarChart2 size={24} />
                                 Dashboard
                             </Button>
 
-                            <Button data-active={activeRoute === '/search'} className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' onClick={goToSearch}>
+                            <Button data-active={activeRoute === '/search'} className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' onClick={() => goToPage('/search')}>
                                 <Search size={24} />
                                 Pesquisa
                             </Button>
