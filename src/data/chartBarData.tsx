@@ -32,21 +32,19 @@ export function ChartBarComponent() {
     }, 1300);
   }, []);
 
-  console.log(dataBarChart)
-
   const barDataPositive = dataBarChart.filter(
     (item) => item.sentiment_text === "positive"
   );
   const barDataNeutral = dataBarChart.filter(
-    (item) => item.sentiment_text === "neutra"
+    (item) => item.sentiment_text === "neutra" 
   );
   const barDataNegative = dataBarChart.filter(
     (item) => item.sentiment_text === "negative"
   );
 
-  const getAllDataPositive = barDataPositive.map((item) => item.quantidade);
-  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade);
-  const getAllDataNegative = barDataNegative.map((item) => item.quantidade);
+  const getAllDataPositive = barDataPositive.map((item) => item.quantidade || 0);
+  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
+  const getAllDataNegative = barDataNegative.map((item) => item.quantidade || 0);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {

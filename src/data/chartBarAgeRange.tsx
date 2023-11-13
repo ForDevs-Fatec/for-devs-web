@@ -36,8 +36,6 @@ export function BarAgeRangeChartComponent() {
 
   }, []);
 
-  console.log(dataBar);
-
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
     const groupedData: Record<string, Record<string, number>> = {};
 

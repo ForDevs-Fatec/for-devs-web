@@ -30,25 +30,21 @@ type PlnData = {
 export function SearchPage() {
   const [data, setData] = useState<PlnData[]>([]);
   const [text, setText]: any = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
 
   function handleSearch(param: any) {
-    setLoading(true);
+    setIsLoading(true);
     apiPln
-      .get<PlnData[]>(`${URI.PESQUISA_PLN}${param}`, {
-        params: {
-          text: param,
-        },
-      })
+      .get<PlnData[]>(`${URI.PESQUISA_PLN}${param}`)
       .then((response) => {
         setData(response.data);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
-        setLoading(false);
+        setIsLoading(false);
       });
   }
 
@@ -108,7 +104,7 @@ export function SearchPage() {
             className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
           />
 
-          {loading ? (
+          {isLoading ? (
             <div className="flex items-center justify-center h-full">
               <Loader2 className="animate-spin text-zinc-50" />
               <p className="text-zinc-50 ml-2">Carregando dados...</p>

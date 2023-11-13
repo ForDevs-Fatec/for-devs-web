@@ -89,7 +89,6 @@ export function Login() {
 
   return (
     <div className="flex flex-col justify-start items-center h-screen px-5">
-
       <header className="flex items-center gap-2 h-16 w-full">
         <img src={Logo} alt="logo fordevs" className="h-7 w-7" />
         <span className="text-lg text-white font-medium">
@@ -98,7 +97,7 @@ export function Login() {
         </span>
       </header>
 
-      <main className='flex justify-center items-center w-full h-screen'>
+      <main className="flex justify-center items-center w-full h-screen">
         <div className="w-[33rem] p-6 shadow-lg bg-[#282828] rounded-md">
           <header className="flex flex-col items-center gap-2">
             <h1 className="flex items-center gap-2 text-white text-lg font-medium">
@@ -113,7 +112,7 @@ export function Login() {
 
           <form
             onSubmit={handleSubmit(handleLoginSubmit)}
-            className="flex flex-col gap-4 h-full w-full"
+            className="flex flex-col gap-4 h-full w-full" 
           >
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
@@ -134,7 +133,6 @@ export function Login() {
                 className="bg-transparent text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
               />
             </div>
-
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
                 <label htmlFor="password" className="text-white">
@@ -162,7 +160,6 @@ export function Login() {
                 </Button>
               </div>
             </div>
-
             {loading ? (
               <Button
                 type="submit"
@@ -183,18 +180,16 @@ export function Login() {
           </form>
 
           <Separator className="my-5 bg-zinc-500" />
-          
-          <footer className="flex flex-col items-center gap-2 h-16">
+
+          <footer className="flex flex-col items-center gap-2">
             <span className="text-zinc-300 font-bold text-sm">
               Não possui conta?
             </span>
-
             <span className="text-center text-zinc-500 text-sm">
               Entre em contato com o administrador do sistema para criar uma
               conta.
             </span>
           </footer>
-          
         </div>
       </main>
 
