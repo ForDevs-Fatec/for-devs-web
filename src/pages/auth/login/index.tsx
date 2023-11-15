@@ -91,32 +91,30 @@ export function Login() {
     <div className="flex flex-col justify-start items-center h-screen px-5">
       <header className="flex items-center gap-2 h-16 w-full">
         <img src={Logo} alt="logo fordevs" className="h-7 w-7" />
-        <span className="text-lg text-white font-medium">
+        <span className="text-lg text-foreground font-medium">
           For
-          <span className="text-blue-500">Devs</span>
+          <span className="text-primary">Devs</span>
         </span>
       </header>
 
       <main className="flex justify-center items-center w-full h-screen">
-        <div className="w-[33rem] p-6 shadow-lg bg-[#282828] rounded-md">
+        <div className="flex flex-col gap-6 w-[33rem] p-6 shadow-lg border border-border rounded-md">
           <header className="flex flex-col items-center gap-2">
-            <h1 className="flex items-center gap-2 text-white text-lg font-medium">
+            <h1 className="flex items-center gap-2 text-foreground text-lg font-medium">
               Login <LogIn />
             </h1>
-            <span className="text-zinc-500">
+            <span className="text-muted-foreground">
               Para acessar a plataforma, faça o login.
             </span>
           </header>
 
-          <Separator className="my-5 bg-zinc-500" />
-
           <form
             onSubmit={handleSubmit(handleLoginSubmit)}
-            className="flex flex-col gap-4 h-full w-full" 
+            className="flex flex-col gap-6 h-full w-full" 
           >
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <label htmlFor="email" className="text-white">
+                <label htmlFor="email" className="text-foreground">
                   E-mail
                 </label>
                 {errors.email && (
@@ -130,12 +128,12 @@ export function Login() {
                 placeholder="E-mail"
                 autoComplete="username"
                 {...register("email")}
-                className="bg-transparent text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
               />
             </div>
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="text-white">
+                <label htmlFor="password" className="text-foreground">
                   Senha
                 </label>
                 {errors.password && (
@@ -149,12 +147,12 @@ export function Login() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Senha"
                   {...register("password")}
-                  className="bg-transparent text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                  className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
                 />
                 <Button
                   onClick={togglePasswordVisibility}
                   type="button"
-                  className="bg-transparent text-white p-4 h-12 rounded-sm border border-zinc-400"
+                  className="bg-transparent text-foreground p-4 h-12 rounded-sm border border-border"
                 >
                   {showPassword ? <Eye /> : <EyeOff />}
                 </Button>
@@ -164,7 +162,7 @@ export function Login() {
               <Button
                 type="submit"
                 disabled
-                className="flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all"
+                className="flex items-center gap-4 w-full p-4 h-12 text-secondary hover:text-foreground bg-primary hover:bg-primary-foreground transition-all"
               >
                 <Loader2 className="animate-spin" />
                 Acessando
@@ -172,20 +170,20 @@ export function Login() {
             ) : (
               <Button
                 type="submit"
-                className="w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all"
+                className="w-full p-4 h-12 text-secondary hover:text-foreground bg-primary hover:bg-primary-foreground transition-all"
               >
                 Acessar
               </Button>
             )}
           </form>
 
-          <Separator className="my-5 bg-zinc-500" />
+          <Separator className='bg-muted-foreground'/>
 
           <footer className="flex flex-col items-center gap-2">
             <span className="text-zinc-300 font-bold text-sm">
               Não possui conta?
             </span>
-            <span className="text-center text-zinc-500 text-sm">
+            <span className="text-center text-muted-foreground text-sm">
               Entre em contato com o administrador do sistema para criar uma
               conta.
             </span>
@@ -194,7 +192,7 @@ export function Login() {
       </main>
 
       <footer className="flex items-end justify-center h-16 pb-2">
-        <span className="text-zinc-500 font-bold">
+        <span className="text-muted-foreground font-bold">
           © 2023 ForDevs. All rights reserved.
         </span>
       </footer>

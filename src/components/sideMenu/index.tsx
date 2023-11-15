@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 
-import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut, TrendingUp, Workflow } from 'lucide-react'
+import { BarChart2, MenuIcon, MoreVertical, Search, Users, UserCog, LogOut, TrendingUp } from 'lucide-react'
 import Logo from '@/assets/logoVertical.svg'
 import jwt_decode from "jwt-decode";
 import { useNavigate, useLocation } from 'react-router-dom';
