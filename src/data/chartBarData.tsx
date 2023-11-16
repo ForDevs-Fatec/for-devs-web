@@ -1,3 +1,4 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
 import { Loader2 } from "lucide-react";
@@ -19,7 +20,7 @@ export function ChartBarComponent() {
 
     setTimeout(() => {
       apiPln
-        .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
+        .get<BarChartData[]>(URI.GET_SENTIMENT_THEME)
         .then((response) => {
           const data = response.data
           setDataBarChart(data);
@@ -48,67 +49,91 @@ export function ChartBarComponent() {
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
-      stacked: true,
-      toolbar: {
-        show: true,
-      },
+      background: "transparent",
+    },
+    theme: {
+      mode: "dark",
+    },
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: function (val: number) {
+          return val + " avaliações";
+        },
+      }
     },
     series: [
       {
         name: "Positivo",
-        data: getAllDataPositive,
+        data: [getAllDataPositive[0], getAllDataPositive[1], getAllDataPositive[2]],
+        color: "#33f182",
       },
-      {
-        name: "Neutro",
-        data: getAllDataNeutral,
-      },
+      // {
+      //   name: "Neutro",
+      //   data: [getAllDataNeutral[0], getAllDataNeutral[1], getAllDataNeutral[2]],
+      //   color: "#f0b232",
+      // },
       {
         name: "Negativo",
-        data: getAllDataNegative,
+        data: [getAllDataNegative[0], getAllDataNegative[1], getAllDataNegative[2]],
+        color: "#f23f42",
       },
     ],
     plotOptions: {
       bar: {
-        borderRadius: 4,
-        horizontal: true,
-        barHeight: "50%",
+        borderRadius: 1.5,
+        horizontal: false,
       },
     },
     legend: {
       position: "bottom",
+      height: 50,
+      offsetY: 10,
       labels: {
         colors: "#FFFFFF",
       },
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontSize: "10px",
+        fontWeight: "bold",
+        colors: ["#FFFFFF"]
+      }
     },
     xaxis: {
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
         show: true,
         style: {
-          colors: "#FFFFFF",
+          colors: "#8997ac",
         },
       },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      }
     },
     yaxis: {
       labels: {
-        show: true,
+        show: false,
+        padding: 10,
         style: {
-          colors: "#FFFFFF",
-        },
+          colors: "#8997ac",
+        }
       },
     },
     grid: {
-      borderColor: '#424242',
+      show: false,
     },
   };
 
   return (
-    <div className="w-full h-full">
+    <>
       {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando...</p>
-        </div>
+        <EmptyChart />
       ) : (
         <Chart
           options={BarChartOptions}
@@ -118,6 +143,6 @@ export function ChartBarComponent() {
           type="bar"
         />
       )}
-    </div>
+    </>
   );
 }

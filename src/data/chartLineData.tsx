@@ -19,7 +19,7 @@ export function LineChartComponent() {
 
     setTimeout(() => {
       apiPln
-        .get<LineChartData[]>(URI.CLASSIFICACAO_TEMA_TEMPO)
+        .get<LineChartData[]>(URI.GET_THEME_TIME)
         .then((response) => {
             const data = response.data;
             const dataNoNull = data.filter((item) => item.classificacao_tema !== null);
@@ -32,6 +32,8 @@ export function LineChartComponent() {
         });
     }, 1500);
   }, []);
+
+  console.log(dataLineChart)
 
   const LineDataDate = dataLineChart.map((item) => item.data);
 

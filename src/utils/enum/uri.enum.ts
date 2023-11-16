@@ -6,10 +6,10 @@ enum URI {
     USER_LOGIN = '/user/login',
     PESQUISA_PLN = '/pesquisa/',
     CLASSIFICACAO_TEMA_CONTAGEM = '/getClassificacaoTemaEContagem',
-    CLASSIFICACAO_TEMA_TEMPO = '/getClassificacaoTemaTempo',
-    CLASSIFICACAO_TEMA_SENTIMENTO = '/getClassificacaoTemaSentimento',
+    GET_THEME_TIME = '/getTemaTempo',
+    GET_SENTIMENT_THEME = '/getTemaSent',
     CLASSIFICACAO_TEMA_SENTIMENTO_ESTADO = '/getClassificacaoTemaSentimentoEstado',
-    DISTRIBUICAO_FAIXA_ETARIA = '/getDistribuicaoSentimentosFaixaEtariaTema',
+    GET_SENTIMENT_AGE = '/getSentIdade',
     CATEGORIA_TEMAS = '/get-categoria-temas',
     MEDIA_TEMAS = '/get-media-temas',
     METRICAS = '/getMedicoes'

@@ -1,6 +1,6 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
-import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
@@ -9,7 +9,7 @@ type BarAgeRangeChartProps = {
   classificacao_tema: number;
   quantidade: number;
   sentimento_text: string;
-};
+}
 
 export function BarAgeRangeChartComponent() {
   const [dataBar, setDataBar] = useState<BarAgeRangeChartProps[]>([]);
@@ -20,10 +20,12 @@ export function BarAgeRangeChartComponent() {
 
     setTimeout(() => {
       apiPln
-        .get<BarAgeRangeChartProps[]>(URI.DISTRIBUICAO_FAIXA_ETARIA)
+        .get<BarAgeRangeChartProps[]>(URI.GET_SENTIMENT_AGE)
         .then((response) => {
           const data = response.data;
-          const dataFilterNull = data.filter((item) => item.reviewer_birth_year !== 0)
+          const dataFilterNull = data.filter(
+            (item) => item.reviewer_birth_year !== 0
+          );
 
           setDataBar(dataFilterNull);
           setLoading(false);
@@ -33,7 +35,6 @@ export function BarAgeRangeChartComponent() {
           console.log(error);
         });
     }, 1000);
-
   }, []);
 
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
@@ -85,34 +86,46 @@ export function BarAgeRangeChartComponent() {
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
-      stacked: true,
-      toolbar: {
-        show: true,
-      },
+      background: "transparent",
+    },
+    theme: {
+      mode: "dark",
+    },
+    tooltip: {
+      theme: "dark",
     },
     series: [
       {
         name: "Positivo",
         data: barDataPositive,
-      },
-      {
-        name: "Neutro",
-        data: barDataNeutral,
+        color: "#33f182",
       },
       {
         name: "Negativo",
         data: barDataNegative,
+        color: "#f23f42",
       },
     ],
     plotOptions: {
       bar: {
-        borderRadius: 4, horizontal: true, barHeight: "50 %",
+        borderRadius: 1.5,
+        horizontal: false,
       },
     },
     legend: {
       position: "bottom",
+      height: 50,
+      offsetY: 10,
       labels: {
         colors: "#FFFFFF",
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontSize: "10px",
+        fontWeight: "bold",
+        colors: ["#FFFFFF"],
       },
     },
     xaxis: {
@@ -120,42 +133,43 @@ export function BarAgeRangeChartComponent() {
       labels: {
         show: true,
         style: {
-          colors: "#FFFFFF",
+          colors: "#8997ac",
         },
+      },
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
       },
     },
     yaxis: {
       labels: {
-        show: true,
+        show: false,
+        padding: 10,
         style: {
-          colors: "#FFFFFF",
+          colors: "#8997ac",
         },
       },
     },
     grid: {
-      borderColor: "#424242",
+      show: false,
     },
   };
 
   return (
-    <div className="w-full h-full">
+    <>
       {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando…</p>
-        </div >
-      )
-        :
-        (
-          <Chart
-            type="bar"
-            options={BarChartOptions}
-            series={BarChartOptions.series}
-            width="100%"
-            height="100%"
-          />
-        )
-      }
-    </div>
+        <EmptyChart />
+      ) : (
+        <Chart
+          options={BarChartOptions}
+          series={BarChartOptions.series}
+          width="100%"
+          height="100%"
+          type="bar"
+        />
+      )}
+    </>
   );
 }
