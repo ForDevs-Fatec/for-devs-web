@@ -14,7 +14,7 @@ export function LineChartComponent() {
   const [dataLineChart, setDataLineChart] = useState<LineChartData[]>([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => { 
     setLoading(true);
 
     setTimeout(() => {
@@ -36,8 +36,10 @@ export function LineChartComponent() {
   console.log(dataLineChart)
 
   const LineDataDate = dataLineChart.map((item) => item.data);
+  
+  const DateGroup = LineDataDate.concat().sort().reverse();
 
-  const DateGroup = LineDataDate.concat().sort().reverse().filter((item, index, array) => array.indexOf(item) === index).reverse();
+  console.log(DateGroup)
 
   const LineDataFilterProduct = dataLineChart.filter(
     (item) => item.classificacao_tema === 1
@@ -53,72 +55,88 @@ export function LineChartComponent() {
   const delivery = LineDataFilterDelivery.map((item) => item.quantidade);
   const quality = LineDataFilterQuality.map((item) => item.quantidade);
 
+  console.log(product)
+
   const LineChartOptions: ApexCharts.ApexOptions = {
-    chart: {
-      toolbar: {
-        show: true,
-      },  
+  chart: {
+    id: 'realtime',
+    toolbar: {
+      show: true,
     },
-    series: [
-      {
-        name: "Produto",
-        data: product ? product : [],
-        color: "#F87171",
-      },
-      {
-        name: "Entrega",
-        data: delivery ? delivery : [],
-        color: "#FBBF24",
-      },
-      {
-        name: "Qualidade (Custo-benefício)",
-        data: quality ? quality : [],
-        color: "#34D399",
-      },
-    ],
-    fill: {
-      type: "solid",
-      opacity: 0.8,
-      colors: ["#F87171", "#FBBF24", "#34D399"],
+    animations: {
+      enabled: true,
+      easing: 'linear',
+      dynamicAnimation: {
+        speed: 1000
+      }
     },
-    stroke: {
-      curve: "smooth",
-      colors: ["#F87171", "#FBBF24", "#34D399"],
+    zoom: {
+      enabled: false
+    }
+  },
+  series: [
+    {
+      name: "Produto",
+      data: product ? product : [],
+      color: "#F87171",
     },
-    xaxis: {
-      categories: DateGroup,
-      labels: {
-        style: {
-          colors: "#FFFFFF",
-        },
-      },
+    {
+      name: "Entrega",
+      data: [],
+      color: "#FBBF24",
     },
-    yaxis: {
-      labels: {
-        show: true,
-        style: {
-          colors: "#FFFFFF",
-        },
-      },
+    {
+      name: "Qualidade (Custo-benefício)",
+      data: [],
+      color: "#34D399",
     },
-    tooltip: {
-      theme: "dark",
-      y: {
-        formatter: function (val: any) {
-          return val;
-        },
-      },
-    },
-    legend: {
-      position: "bottom",
-      labels: {
+  ],
+  dataLabels: {
+    enabled: false
+  },
+  stroke: {
+    curve: 'smooth',
+    colors: ["#F87171", "#FBBF24", "#34D399"],
+  },
+  fill: {
+    type: "solid",
+    opacity: 0.8,
+    colors: ["#F87171", "#FBBF24", "#34D399"],
+  },
+  xaxis: {
+    categories: LineDataDate,
+    labels: {
+      style: {
         colors: "#FFFFFF",
       },
     },
-    grid: {
-      show: false,
+  },
+  yaxis: {
+    labels: {
+      show: true,
+      style: {
+        colors: "#FFFFFF",
+      },
     },
-  };
+  },
+  tooltip: {
+    theme: "dark",
+    y: {
+      formatter: function (val: any) {
+        return val;
+      },
+    },
+  },
+  legend: {
+    position: "bottom",
+    labels: {
+      colors: "#FFFFFF",
+    },
+  },
+  grid: {
+    show: false,
+  },
+};
 
   return (
     <div className="w-full h-full">
