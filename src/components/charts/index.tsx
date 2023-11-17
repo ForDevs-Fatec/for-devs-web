@@ -76,7 +76,7 @@ export function DashboardCharts() {
               Distribuição total de sentimentos.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <DonutsChartComponent />
+              {/* <DonutsChartComponent /> */}
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ export function DashboardCharts() {
               Média de avaliação por tema
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <BarMedChartComponent />
+              {/* <BarMedChartComponent /> */}
             </div>
           </div>
         </div>

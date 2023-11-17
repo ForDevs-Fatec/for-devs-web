@@ -119,10 +119,6 @@ export function ChartBarComponent() {
     yaxis: {
       labels: {
         show: false,
-        padding: 10,
-        style: {
-          colors: "#8997ac",
-        }
       },
     },
     grid: {

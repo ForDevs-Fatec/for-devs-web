@@ -1,3 +1,4 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
 import { Loader2 } from "lucide-react";
@@ -12,19 +13,47 @@ type LineChartData = {
 
 export function LineChartComponent() {
   const [dataLineChart, setDataLineChart] = useState<LineChartData[]>([]);
+  const [aggregatedData, setAggregatedData] = useState<{
+    [key: string]: number;
+  }>({});
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => { 
+  useEffect(() => {
     setLoading(true);
 
     setTimeout(() => {
       apiPln
         .get<LineChartData[]>(URI.GET_THEME_TIME)
         .then((response) => {
-            const data = response.data;
-            const dataNoNull = data.filter((item) => item.classificacao_tema !== null);
-            setDataLineChart(dataNoNull);
-            setLoading(false);
+          const data = response.data;
+          const dataNoNull = data.filter(
+            (item) => item.classificacao_tema !== null
+          );
+
+          // Primeiro, criamos um objeto para armazenar nossos dados agregados
+          const aggregated: { [key: string]: number } = {};
+
+          // Em seguida, iteramos sobre a resposta da API
+          dataNoNull.forEach((item) => {
+            // Cria um objeto Date a partir da string de data
+            const date = new Date(item.data);
+
+            // Formata a data para o formato brasileiro
+            const formattedDate = date.toLocaleDateString("pt-BR");
+
+            // Criamos uma chave única combinando a data formatada e a classificação do tema
+            const key = `${formattedDate}-${item.classificacao_tema}`;
+
+            // Se a chave já existe no objeto agregado, somamos a quantidade
+            // Se não, inicializamos com a quantidade do item atual
+            aggregated[key] = (aggregated[key] || 0) + item.quantidade;
+          });
+
+          // Atualizamos o estado com os dados agregados
+          setAggregatedData(aggregated);
+
+          setDataLineChart(dataNoNull);
+          setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
@@ -33,118 +62,98 @@ export function LineChartComponent() {
     }, 1500);
   }, []);
 
-  console.log(dataLineChart)
+  const LineDataDate = [...new Set(dataLineChart.map((item) => item.data))];
 
-  const LineDataDate = dataLineChart.map((item) => item.data);
-  
-  const DateGroup = LineDataDate.concat().sort().reverse();
+  const DateGroup = LineDataDate.concat().sort();
 
-  console.log(DateGroup)
+  // Primeiro, criamos arrays vazios para cada série do gráfico
+  const product: number[] = [];
+  const delivery: number[] = [];
+  const quality: number[] = [];
+  // Em seguida, iteramos sobre as datas únicas em ordem
+  DateGroup.forEach((date) => {
+    // Cria um objeto Date a partir da string de data
+    const formattedDate = new Date(date).toLocaleDateString("pt-BR");
 
-  const LineDataFilterProduct = dataLineChart.filter(
-    (item) => item.classificacao_tema === 1
-  );
-  const LineDataFilterDelivery = dataLineChart.filter(
-    (item) => item.classificacao_tema === 2
-  );
-  const LineDataFilterQuality = dataLineChart.filter(
-    (item) => item.classificacao_tema === 3
-  );
+    // Para cada data, obtemos a quantidade agregada para cada classificação de tema
+    // Se não houver dados para uma data e classificação de tema específicas, usamos 0
+    product.push(aggregatedData[`${formattedDate}-1`] || 0);
+    delivery.push(aggregatedData[`${formattedDate}-2`] || 0);
+    quality.push(aggregatedData[`${formattedDate}-3`] || 0);
+  });
 
-  const product = LineDataFilterProduct.map((item) => item.quantidade);
-  const delivery = LineDataFilterDelivery.map((item) => item.quantidade);
-  const quality = LineDataFilterQuality.map((item) => item.quantidade);
-
-  console.log(product)
+  console.log(DateGroup);
 
   const LineChartOptions: ApexCharts.ApexOptions = {
-  chart: {
-    id: 'realtime',
-    toolbar: {
-      show: true,
+    chart: {
+      background: "transparent",
     },
-    animations: {
-      enabled: true,
-      easing: 'linear',
-      dynamicAnimation: {
-        speed: 1000
-      }
+    theme: {
+      mode: "dark",
     },
-    zoom: {
-      enabled: false
-    }
-  },
-  series: [
-    {
-      name: "Produto",
-      data: product ? product : [],
-      color: "#F87171",
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: function (val: number) {
+          return val + " avaliações";
+        },
+      },
     },
-    {
-      name: "Entrega",
-      data: [],
-      color: "#FBBF24",
-    },
-    {
-      name: "Qualidade (Custo-benefício)",
-      data: [],
-      color: "#34D399",
-    },
-  ],
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    curve: 'smooth',
-    colors: ["#F87171", "#FBBF24", "#34D399"],
-  },
-  fill: {
-    type: "solid",
-    opacity: 0.8,
-    colors: ["#F87171", "#FBBF24", "#34D399"],
-  },
-  xaxis: {
-    categories: LineDataDate,
-    labels: {
-      style: {
+    series: [
+      {
+        name: "Produto",
+        data: product ? product : [],
+        color: "#F87171",
+      },
+      {
+        name: "Entrega",
+        data: delivery ? delivery : [],
+        color: "#FBBF24",
+      },
+      {
+        name: "Qualidade (Custo-benefício)",
+        data: quality ? quality : [],
+        color: "#34D399",
+      },
+    ],
+    legend: {
+      position: "bottom",
+      height: 50,
+      offsetY: 10,
+      labels: {
         colors: "#FFFFFF",
       },
     },
-  },
-  yaxis: {
-    labels: {
-      show: true,
-      style: {
-        colors: "#FFFFFF",
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "smooth",
+    },
+    xaxis: {
+      categories: ['2018-05-17', '2018-05-18', '2018-05-19', '2018-05-20', '2018-05-21', '2018-05-22', '2018-05-23', '2018-05-24', '2018-05-25', '2018-05-26', '2018-05-27', '2018-05-28', '2018-05-29', '2018-05-30', '2018-05-31'],
+      labels: {
+        rotate: -45,
+        style: {
+          fontSize: "10px",
+          colors: "#FFFFFF",
+        },
       },
     },
-  },
-  tooltip: {
-    theme: "dark",
-    y: {
-      formatter: function (val: any) {
-        return val;
+    yaxis: {
+      labels: {
+        show: true,
       },
     },
-  },
-  legend: {
-    position: "bottom",
-    labels: {
-      colors: "#FFFFFF",
+    grid: {
+      show: false,
     },
-  },
-  grid: {
-    show: false,
-  },
-};
+  };
 
   return (
-    <div className="w-full h-full">
+    <>
       {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando...</p>
-        </div>
+        <EmptyChart />
       ) : (
         <Chart
           options={LineChartOptions}
@@ -154,6 +163,6 @@ export function LineChartComponent() {
           type="line"
         />
       )}
-    </div>
+    </>
   );
 }
