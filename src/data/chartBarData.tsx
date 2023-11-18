@@ -20,7 +20,7 @@ export function ChartBarComponent() {
 
     setTimeout(() => {
       apiPln
-        .get<BarChartData[]>(URI.GET_SENTIMENT_THEME)
+        .get<BarChartData[]>(URI.GET_THEME_SENTIMENT)
         .then((response) => {
           const data = response.data
           setDataBarChart(data);

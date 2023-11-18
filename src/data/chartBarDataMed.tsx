@@ -54,9 +54,18 @@ export function BarMedChartComponent() {
     },
     series: [{
       data: [
-        dataFilterProduct.length > 0 ? dataFilterProduct[0] : null,
-        dataFilterQuality.length > 0 ? dataFilterQuality[0] : null,
-        dataFilterDelivery.length > 0 ? dataFilterDelivery[0] : null
+        {
+          x: "Produto",
+          y: dataFilterProduct.length > 0 ? dataFilterProduct[0] : null,
+        },
+        {
+          x: "Qualidade",
+          y: dataFilterQuality.length > 0 ? dataFilterQuality[0] : null,
+        },
+        {
+          x: "Entrega",
+          y: dataFilterDelivery.length > 0 ? dataFilterDelivery[0] : null,
+        }
       ]
     }],
     plotOptions: {
@@ -93,6 +102,11 @@ export function BarMedChartComponent() {
     },
     tooltip: {
       theme: "dark",
+      y: {
+        formatter: function (val: number) {
+          return val + " avaliações";
+        },
+      }
     },
     grid: {
       borderColor: '#424242',

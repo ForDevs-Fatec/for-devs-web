@@ -1,3 +1,4 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
 import { Loader2 } from "lucide-react";
@@ -18,7 +19,7 @@ export function DonutsChartComponent() {
     
     setTimeout(() => {
       apiPln
-        .get<DonutChartData[]>(URI.CLASSIFICACAO_TEMA_CONTAGEM)
+        .get<DonutChartData[]>(URI.GET_THEME_COUNT)
         .then((response) => {
           const data = response.data;
           setDataDonutChart(data);
@@ -43,6 +44,7 @@ export function DonutsChartComponent() {
       dataDonutChart.length > 2 ? dataDonutChart[2]?.quantidade : 0,
     ],
     labels: ["Produto", "Entrega", "Qualidade (Custo-benefício)"],
+    colors: ["#f0b232", "#33f182", "#f23f42"],
     legend: {
       position: "bottom",
       labels: {
@@ -52,13 +54,10 @@ export function DonutsChartComponent() {
   };
 
   return (
-    <div className="w-full h-full">
-      {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando...</p>
-        </div>
-      ) : (
+    <>
+    {loading ? (
+      <EmptyChart />
+    ) : (
         <Chart
           options={DonutChartOptions}
           series={DonutChartOptions.series}
@@ -67,6 +66,6 @@ export function DonutsChartComponent() {
           type="donut"
         />
       )}
-    </div>
+    </>
   );
 }

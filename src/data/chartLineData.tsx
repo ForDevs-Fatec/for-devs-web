@@ -103,17 +103,17 @@ export function LineChartComponent() {
       {
         name: "Produto",
         data: product ? product : [],
-        color: "#F87171",
+        color: "#f23f42",
       },
       {
         name: "Entrega",
         data: delivery ? delivery : [],
-        color: "#FBBF24",
+        color: "#f0b232",
       },
       {
         name: "Qualidade (Custo-benefício)",
         data: quality ? quality : [],
-        color: "#34D399",
+        color: "#33f182",
       },
     ],
     legend: {
@@ -131,18 +131,21 @@ export function LineChartComponent() {
       curve: "smooth",
     },
     xaxis: {
-      categories: ['2018-05-17', '2018-05-18', '2018-05-19', '2018-05-20', '2018-05-21', '2018-05-22', '2018-05-23', '2018-05-24', '2018-05-25', '2018-05-26', '2018-05-27', '2018-05-28', '2018-05-29', '2018-05-30', '2018-05-31'],
+      categories: ['17/05', '18/05', '19/05', '20/05', '21/05', '22/05', '23/05', '24/05', '25/05', '26/05', '27/05', '28/05', '29/05', '30/05', '31/05'],
       labels: {
         rotate: -45,
         style: {
           fontSize: "10px",
-          colors: "#FFFFFF",
+          colors: "#8997ac",
         },
       },
     },
     yaxis: {
       labels: {
         show: true,
+        style: {
+          colors: "#8997ac",
+        }
       },
     },
     grid: {
