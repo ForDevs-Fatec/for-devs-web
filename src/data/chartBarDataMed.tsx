@@ -1,3 +1,4 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
 import { Loader2 } from "lucide-react";
@@ -30,75 +31,17 @@ export function BarMedChartComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 2500);
+    }, 5000);
   }, []);
 
-  const getAllDataProduct = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 1 ? item.overall_rating : 0
-  );
-  const getAllDataDelivery = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 2 ? item.overall_rating : 0
-  );
-  const getAllDataQuality = dataBarMedChart.map((item) =>
-    item.classificacao_tema === 3 ? item.overall_rating : 0
-  );
-
-  const dataFilterProduct = getAllDataProduct.filter((item) => item !== 0);
-  const dataFilterDelivery = getAllDataDelivery.filter((item) => item!== 0);
-  const dataFilterQuality = getAllDataQuality.filter((item) => item!== 0);
+  console.log(dataBarMedChart[2].quantidade)
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
-      type: "bar",
-      height: 350,
+      background: "transparent",
     },
-    series: [{
-      data: [
-        {
-          x: "Produto",
-          y: dataFilterProduct.length > 0 ? dataFilterProduct[0] : null,
-        },
-        {
-          x: "Qualidade",
-          y: dataFilterQuality.length > 0 ? dataFilterQuality[0] : null,
-        },
-        {
-          x: "Entrega",
-          y: dataFilterDelivery.length > 0 ? dataFilterDelivery[0] : null,
-        }
-      ]
-    }],
-    plotOptions: {
-      bar: {
-        borderRadius: 4,
-        horizontal: false,
-        columnWidth: "50%"
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      position: "bottom",
-      labels: {
-        colors: "#FFFFFF",
-      },
-    },
-    xaxis: {
-      categories: ["Produto", "Qualidade", "Entrega"],
-      labels: {
-        style: {
-          colors: "#FFFFFF",
-        },
-      },
-    },
-    yaxis: {
-      labels: {
-        show: true,
-        style: {
-          colors: "#FFFFFF",
-        },
-      },
+    theme: {
+      mode: "dark",
     },
     tooltip: {
       theme: "dark",
@@ -108,27 +51,77 @@ export function BarMedChartComponent() {
         },
       }
     },
-    grid: {
-      borderColor: '#424242',
+  series: [{
+    name: 'Média',
+    data: [dataBarMedChart[0].overall_rating, dataBarMedChart[1].overall_rating, dataBarMedChart[2].overall_rating],
+    color: "#EB8242"
+  }
+],
+  plotOptions: {
+    bar: {
+      borderRadius: 1.5,
+      columnWidth: "25%",
+      horizontal: false,
     },
-  };
+  },
+  legend: {
+    position: "bottom",
+    height: 50,
+    offsetY: 10,
+    labels: {
+      colors: "#FFFFFF",
+    },
+  },
+  dataLabels: {
+    enabled: true,
+    style: {
+      fontSize: "10px",
+      fontWeight: "bold",
+      colors: ["#FFFFFF"]
+    }
+  },
+  xaxis: {
+    categories: ["Produto", "Qualidade", "Entrega"],
+    labels: {
+      show: true,
+      style: {
+        colors: "#8997ac"
+      },
+    },
+    axisBorder: {
+      color: "#8997ac"
+    },
+    axisTicks: {
+      color: "#8997ac"
+    }
+  },
+  yaxis: {
+    labels: {
+      show: true,
+      style: {
+        colors: "#8997ac"
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#8997ac",
+  },
+};
 
   return (
-    <div className="w-full h-full">
+    <>
       {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando...</p>
-        </div>
+        <EmptyChart />
       ) : (
         <Chart
-          type="bar"
           options={BarChartOptions}
           series={BarChartOptions.series}
+          type="bar"
           width="100%"
           height="100%"
         />
       )}
-    </div>
+    </>
   );
 }

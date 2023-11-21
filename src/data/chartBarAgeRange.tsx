@@ -129,31 +129,31 @@ export function BarAgeRangeChartComponent() {
       },
     },
     xaxis: {
-      categories: ["0 - 19", "20 - 59", "60 +"],
+      categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
         show: true,
         style: {
-          colors: "#8997ac",
+          colors: "#8997ac"
         },
       },
       axisBorder: {
-        show: false,
+        color: "#8997ac"
       },
       axisTicks: {
-        show: false,
-      },
+        color: "#8997ac"
+      }
     },
     yaxis: {
       labels: {
-        show: false,
-        padding: 10,
+        show: true,
         style: {
-          colors: "#8997ac",
+          colors: "#8997ac"
         },
       },
     },
     grid: {
-      show: false,
+      show: true,
+      borderColor: "#8997ac",
     },
   };
 

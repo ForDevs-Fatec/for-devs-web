@@ -82,8 +82,6 @@ export function LineChartComponent() {
     quality.push(aggregatedData[`${formattedDate}-3`] || 0);
   });
 
-  console.log(DateGroup);
-
   const LineChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
@@ -141,15 +139,24 @@ export function LineChartComponent() {
       },
     },
     yaxis: {
+      title: {
+        text: "Quantidade de Avaliações",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       labels: {
         show: true,
         style: {
-          colors: "#8997ac",
-        }
+          colors: "#8997ac"
+        },
       },
     },
     grid: {
-      show: false,
+      show: true,
+      borderColor: "#8997ac",
     },
   };
 

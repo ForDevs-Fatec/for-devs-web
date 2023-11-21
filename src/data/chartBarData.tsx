@@ -106,23 +106,27 @@ export function ChartBarComponent() {
       labels: {
         show: true,
         style: {
-          colors: "#8997ac",
+          colors: "#8997ac"
         },
       },
       axisBorder: {
-        show: false,
+        color: "#8997ac"
       },
       axisTicks: {
-        show: false,
+        color: "#8997ac"
       }
     },
     yaxis: {
       labels: {
-        show: false,
+        show: true,
+        style: {
+          colors: "#8997ac"
+        },
       },
     },
     grid: {
-      show: false,
+      show: true,
+      borderColor: "#8997ac",
     },
   };
 
