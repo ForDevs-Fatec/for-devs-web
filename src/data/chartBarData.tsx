@@ -1,3 +1,4 @@
+import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
 import { Loader2 } from "lucide-react";
@@ -19,9 +20,10 @@ export function ChartBarComponent() {
 
     setTimeout(() => {
       apiPln
-        .get<BarChartData[]>(URI.CLASSIFICACAO_TEMA_SENTIMENTO)
+        .get<BarChartData[]>(URI.GET_THEME_SENTIMENT)
         .then((response) => {
           const data = response.data
+
           setDataBarChart(data);
           setLoading(false);
         })
@@ -29,86 +31,134 @@ export function ChartBarComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 1300);
+    }, 1000);
   }, []);
 
   const barDataPositive = dataBarChart.filter(
     (item) => item.sentiment_text === "positive"
   );
-  const barDataNeutral = dataBarChart.filter(
-    (item) => item.sentiment_text === "neutra" 
-  );
+  // const barDataNeutral = dataBarChart.filter(
+  //   (item) => item.sentiment_text === "neutra" 
+  // );
   const barDataNegative = dataBarChart.filter(
     (item) => item.sentiment_text === "negative"
   );
 
   const getAllDataPositive = barDataPositive.map((item) => item.quantidade || 0);
-  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
+  // const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
   const getAllDataNegative = barDataNegative.map((item) => item.quantidade || 0);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
-      stacked: true,
-      toolbar: {
-        show: true,
-      },
+      background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      }
+    },
+    theme: {
+      mode: "dark",
+    },
+    tooltip: {
+      theme: "dark",
+      y: {
+        formatter: function (val: number) {
+          return val + " avaliações";
+        },
+      }
     },
     series: [
       {
         name: "Positivo",
         data: getAllDataPositive,
-      },
-      {
-        name: "Neutro",
-        data: getAllDataNeutral,
+        color: "#33f182",
       },
       {
         name: "Negativo",
         data: getAllDataNegative,
+        color: "#f23f42",
       },
     ],
     plotOptions: {
       bar: {
-        borderRadius: 4,
-        horizontal: true,
-        barHeight: "50%",
+        borderRadius: 1.5,
+        horizontal: false,
       },
     },
     legend: {
       position: "bottom",
+      height: 50,
+      offsetY: 10,
       labels: {
         colors: "#FFFFFF",
       },
     },
+    dataLabels: {
+      enabled: true,
+      style: {
+        fontSize: "10px",
+        fontWeight: "bold",
+        colors: ["#FFFFFF"]
+      }
+    },
     xaxis: {
+      title: {
+        text: "Temas",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
         show: true,
         style: {
-          colors: "#FFFFFF",
+          colors: "#8997ac"
         },
       },
+      axisBorder: {
+        color: "#8997ac"
+      },
+      axisTicks: {
+        color: "#8997ac"
+      }
     },
     yaxis: {
+      title: {
+        text: "Quantidade de Avaliações",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       labels: {
         show: true,
         style: {
-          colors: "#FFFFFF",
+          colors: "#8997ac"
         },
       },
     },
     grid: {
-      borderColor: '#424242',
+      show: true,
+      borderColor: "#8997ac",
     },
   };
 
   return (
-    <div className="w-full h-full">
+    <>
       {loading ? (
-        <div className="flex items-center justify-center h-full w-full">
-          <Loader2 className="animate-spin text-zinc-50" />
-          <p className="text-zinc-50 ml-2">Carregando...</p>
-        </div>
+        <EmptyChart />
       ) : (
         <Chart
           options={BarChartOptions}
@@ -118,6 +168,6 @@ export function ChartBarComponent() {
           type="bar"
         />
       )}
-    </div>
+    </>
   );
 }
