@@ -29,13 +29,27 @@ export function DonutsChartComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 2000);
+    }, 4000);
   }, []);
 
   const DonutChartOptions: ApexCharts.ApexOptions = {
     chart: {
       toolbar: {
         show: true,
+      },
+      background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
       },
     },
     series: [

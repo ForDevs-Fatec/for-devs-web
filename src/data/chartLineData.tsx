@@ -59,7 +59,7 @@ export function LineChartComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 1500);
+    }, 3000);
   }, []);
 
   const LineDataDate = [...new Set(dataLineChart.map((item) => item.data))];
@@ -85,6 +85,19 @@ export function LineChartComponent() {
   const LineChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      },
     },
     theme: {
       mode: "dark",
@@ -129,6 +142,14 @@ export function LineChartComponent() {
       curve: "smooth",
     },
     xaxis: {
+      title: {
+        text: "Datas (2018)",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       categories: ['17/05', '18/05', '19/05', '20/05', '21/05', '22/05', '23/05', '24/05', '25/05', '26/05', '27/05', '28/05', '29/05', '30/05', '31/05'],
       labels: {
         rotate: -45,

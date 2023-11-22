@@ -1,7 +1,6 @@
 import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
-import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
@@ -34,11 +33,25 @@ export function BarMedChartComponent() {
     }, 5000);
   }, []);
 
-  console.log(dataBarMedChart[2].quantidade)
 
+  const getAllData = dataBarMedChart.map((item) => item.overall_rating || 0);
+  
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      }
     },
     theme: {
       mode: "dark",
@@ -47,16 +60,56 @@ export function BarMedChartComponent() {
       theme: "dark",
       y: {
         formatter: function (val: number) {
-          return val + " avaliações";
+          return val + " média";
         },
+      },
+    },
+    xaxis: {
+      title: {
+        text: "Temas",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
+      categories: ["Produto", "Qualidade", "Entrega"],
+      labels: {
+        show: true,
+        style: {
+          colors: "#8997ac"
+        },
+      },
+      axisBorder: {
+        color: "#8997ac"
+      },
+      axisTicks: {
+        color: "#8997ac"
       }
     },
-  series: [{
-    name: 'Média',
-    data: [dataBarMedChart[0].overall_rating, dataBarMedChart[1].overall_rating, dataBarMedChart[2].overall_rating],
-    color: "#EB8242"
-  }
-],
+    yaxis: {
+      title: {
+        text: "Média de Avaliações",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
+      labels: {
+        show: true,
+        style: {
+          colors: "#8997ac"
+        },
+      },
+    },
+  series: [
+    {
+      name: "Média avaliações",
+      data: getAllData,
+      color: "#EB8242"
+    },
+  ],
   plotOptions: {
     bar: {
       borderRadius: 1.5,
@@ -80,29 +133,6 @@ export function BarMedChartComponent() {
       colors: ["#FFFFFF"]
     }
   },
-  xaxis: {
-    categories: ["Produto", "Qualidade", "Entrega"],
-    labels: {
-      show: true,
-      style: {
-        colors: "#8997ac"
-      },
-    },
-    axisBorder: {
-      color: "#8997ac"
-    },
-    axisTicks: {
-      color: "#8997ac"
-    }
-  },
-  yaxis: {
-    labels: {
-      show: true,
-      style: {
-        colors: "#8997ac"
-      },
-    },
-  },
   grid: {
     show: true,
     borderColor: "#8997ac",
@@ -110,7 +140,7 @@ export function BarMedChartComponent() {
 };
 
   return (
-    <>
+    <div className='w-full h-full'>
       {loading ? (
         <EmptyChart />
       ) : (
@@ -122,6 +152,6 @@ export function BarMedChartComponent() {
           height="100%"
         />
       )}
-    </>
+    </div>
   );
 }

@@ -23,6 +23,7 @@ export function ChartBarComponent() {
         .get<BarChartData[]>(URI.GET_THEME_SENTIMENT)
         .then((response) => {
           const data = response.data
+
           setDataBarChart(data);
           setLoading(false);
         })
@@ -30,26 +31,39 @@ export function ChartBarComponent() {
           setLoading(false);
           console.log(error);
         });
-    }, 1300);
+    }, 1000);
   }, []);
 
   const barDataPositive = dataBarChart.filter(
     (item) => item.sentiment_text === "positive"
   );
-  const barDataNeutral = dataBarChart.filter(
-    (item) => item.sentiment_text === "neutra" 
-  );
+  // const barDataNeutral = dataBarChart.filter(
+  //   (item) => item.sentiment_text === "neutra" 
+  // );
   const barDataNegative = dataBarChart.filter(
     (item) => item.sentiment_text === "negative"
   );
 
   const getAllDataPositive = barDataPositive.map((item) => item.quantidade || 0);
-  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
+  // const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
   const getAllDataNegative = barDataNegative.map((item) => item.quantidade || 0);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      }
     },
     theme: {
       mode: "dark",
@@ -65,17 +79,12 @@ export function ChartBarComponent() {
     series: [
       {
         name: "Positivo",
-        data: [getAllDataPositive[0], getAllDataPositive[1], getAllDataPositive[2]],
+        data: getAllDataPositive,
         color: "#33f182",
       },
-      // {
-      //   name: "Neutro",
-      //   data: [getAllDataNeutral[0], getAllDataNeutral[1], getAllDataNeutral[2]],
-      //   color: "#f0b232",
-      // },
       {
         name: "Negativo",
-        data: [getAllDataNegative[0], getAllDataNegative[1], getAllDataNegative[2]],
+        data: getAllDataNegative,
         color: "#f23f42",
       },
     ],
@@ -102,6 +111,14 @@ export function ChartBarComponent() {
       }
     },
     xaxis: {
+      title: {
+        text: "Temas",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
         show: true,
@@ -117,6 +134,14 @@ export function ChartBarComponent() {
       }
     },
     yaxis: {
+      title: {
+        text: "Quantidade de Avaliações",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       labels: {
         show: true,
         style: {

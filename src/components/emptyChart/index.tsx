@@ -6,6 +6,7 @@ export function EmptyChart() {
     chart: {
       height: '100%',
       width: '100%',
+      background: "transparent",
     },
     dataLabels: {
       enabled: false,

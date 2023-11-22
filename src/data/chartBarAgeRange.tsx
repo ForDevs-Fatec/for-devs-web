@@ -22,19 +22,16 @@ export function BarAgeRangeChartComponent() {
       apiPln
         .get<BarAgeRangeChartProps[]>(URI.GET_SENTIMENT_AGE)
         .then((response) => {
-          const data = response.data;
-          const dataFilterNull = data.filter(
-            (item) => item.reviewer_birth_year !== 0
-          );
-
-          setDataBar(dataFilterNull);
+          const dataBar = response.data;
+      
+          setDataBar(dataBar);
           setLoading(false);
         })
         .catch((error) => {
           setLoading(false);
           console.log(error);
         });
-    }, 1000);
+    }, 2000);
   }, []);
 
   function groupByAgeAndSentiment(data: BarAgeRangeChartProps[]) {
@@ -56,17 +53,15 @@ export function BarAgeRangeChartComponent() {
         ageRange = "60+";
       }
 
-      if (groupedData[ageRange]) {
-        if (groupedData[ageRange][sentiment]) {
-          groupedData[ageRange][sentiment] += quantity;
-        } else {
-          groupedData[ageRange][sentiment] = quantity;
-        }
-      } else {
-        groupedData[ageRange] = {
-          [sentiment]: quantity
-        };
+      if (!groupedData[ageRange]) {
+        groupedData[ageRange] = {};
       }
+
+      if (!groupedData[ageRange][sentiment]) {
+        groupedData[ageRange][sentiment] = 0;
+      }
+
+      groupedData[ageRange][sentiment] += quantity;
     }
 
     return groupedData;
@@ -87,6 +82,19 @@ export function BarAgeRangeChartComponent() {
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 800,
+        animateGradually: {
+          enabled: true,
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 350,
+        },
+      }
     },
     theme: {
       mode: "dark",
@@ -129,6 +137,14 @@ export function BarAgeRangeChartComponent() {
       },
     },
     xaxis: {
+      title: {
+        text: "Temas",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       categories: ["Produto", "Qualidade", "Entrega"],
       labels: {
         show: true,
@@ -144,6 +160,14 @@ export function BarAgeRangeChartComponent() {
       }
     },
     yaxis: {
+      title: {
+        text: "Quantidade de clientes por faixa etaria",
+        style: {
+          fontSize: "10px",
+          fontWeight: "bold",
+          color: "#8997ac",
+        },
+      },
       labels: {
         show: true,
         style: {
