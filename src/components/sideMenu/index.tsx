@@ -85,10 +85,10 @@ export function SideBarMenu() {
 
     return (
         <Sheet>
-            <SheetTrigger className='p-3 rounded-md transition-all hover:bg-zinc-700'>
+            <SheetTrigger className='p-3 rounded-md transition-all hover:bg-primary-foreground'>
                 <MenuIcon size={24} className='text-zinc-50' />
             </SheetTrigger>
-            <SheetContent side={'left'} className='bg-zinc-800 w-80 text-zinc-50 border-zinc-700'>
+            <SheetContent side={'left'} className='bg-background w-80 text-zinc-50 border-zinc-700'>
                 <SheetHeader>
                     <SheetTitle>
                         <img src={Logo} alt="Logo fordevs" className='w-8' />
