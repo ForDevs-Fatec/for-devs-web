@@ -96,8 +96,8 @@ export function SideBarMenu() {
                 </SheetHeader>
 
                 <Separator className='mt-4 mb-4 bg-muted-foreground' />
-
-                <div className="flex flex-col h-4/5 gap-2">
+                
+                <div className="flex flex-col h-[75%] gap-2">
                     {decoded.role === 0 ? (
                         <>
                             <Button
@@ -161,9 +161,9 @@ export function SideBarMenu() {
 
                 </div>
 
-                <Separator className='bg-muted-foreground'/>
+                <Separator className='bg-muted-foreground mb-6'/>
 
-                <div className='flex items-center justify-between h-1/6'>
+                <div className='flex items-center justify-between'>
                     <div>
                         <Avatar>
                             <AvatarFallback className={color}>
