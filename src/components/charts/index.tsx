@@ -10,15 +10,21 @@ export function DashboardCharts() {
       <div className="flex gap-5 h-[97px] w-full">
         <div className="flex items-center justify-center gap-5 w-full">
           <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Total de dados analisados</h1>
+            <h1 className="text-white font-semibold">
+              Total de dados analisados
+            </h1>
           </div>
 
           <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Acurácia dos resultados</h1>
+            <h1 className="text-white font-semibold">
+              Acurácia dos resultados
+            </h1>
           </div>
 
           <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Precisão dos restultados</h1>
+            <h1 className="text-white font-semibold">
+              Precisão dos restultados
+            </h1>
           </div>
         </div>
       </div>
@@ -50,9 +56,7 @@ export function DashboardCharts() {
               Distribuição de temas ao longo do tempo.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <div data-testid="dashboard-charts">
-                <LineChartComponent />
-              </div>
+              <LineChartComponent />
             </div>
           </div>
 

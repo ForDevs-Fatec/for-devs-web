@@ -88,21 +88,21 @@ export function SideBarMenu() {
             <SheetTrigger className='p-3 rounded-md transition-all hover:bg-primary-foreground'>
                 <MenuIcon size={24} className='text-zinc-50' />
             </SheetTrigger>
-            <SheetContent side={'left'} className='bg-background w-80 text-zinc-50 border-zinc-700'>
+            <SheetContent side={'left'} className='bg-background w-80 text-zinc-50 border-border'>
                 <SheetHeader>
                     <SheetTitle>
                         <img src={Logo} alt="Logo fordevs" className='w-8' />
                     </SheetTitle>
                 </SheetHeader>
 
-                <Separator className='mt-4 mb-4' />
+                <Separator className='mt-4 mb-4 bg-muted-foreground' />
 
                 <div className="flex flex-col h-4/5 gap-2">
                     {decoded.role === 0 ? (
                         <>
                             <Button
                                 data-active={activeRoute === '/dashboard'}
-                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active="true"]:bg-primary' 
                                 onClick={() => goToPage('/dashboard')}
                             >
                                 <BarChart2 size={24} />
@@ -111,7 +111,7 @@ export function SideBarMenu() {
 
                             <Button
                                 data-active={activeRoute === '/search'}
-                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active="true"]:bg-primary'
                                 onClick={() => goToPage('/search')}
                             >
                                 <Search size={24} />
@@ -120,7 +120,7 @@ export function SideBarMenu() {
 
                             <Button
                                 data-active={activeRoute === '/metrics'}
-                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' 
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active="true"]:bg-primary' 
                                 onClick={() => goToPage('/metrics')}
                             >
                                 <TrendingUp size={24} />
@@ -129,7 +129,7 @@ export function SideBarMenu() {
 
                             <Button
                                 data-active={activeRoute === '/users'}
-                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active="true"]:bg-primary'
                                 onClick={() => goToPage('/users')}
                             >
                                 <Users size={24} />
@@ -138,7 +138,7 @@ export function SideBarMenu() {
 
                             {/* <Button
                                 data-active={activeRoute === '/reliability'}
-                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700'
+                                className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-primary-foreground data-[active="true"]:bg-primary'
                                 onClick={() => goToPage('/reliability')}
                             >
                                 <Workflow size={24} />
@@ -147,12 +147,12 @@ export function SideBarMenu() {
                         </>
                     ) : (
                         <>
-                            <Button data-active={activeRoute === '/dashboard'} className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active='true']:bg-zinc-700" onClick={() => goToPage('/dashboard')}>
+                            <Button data-active={activeRoute === '/dashboard'} className="w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active='true']:bg-primary" onClick={() => goToPage('/dashboard')}>
                                 <BarChart2 size={24} />
                                 Dashboard
                             </Button>
 
-                            <Button data-active={activeRoute === '/search'} className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent hover:bg-zinc-700 data-[active="true"]:bg-zinc-700' onClick={() => goToPage('/search')}>
+                            <Button data-active={activeRoute === '/search'} className='w-full h-12 px-2 items-center justify-start gap-2 bg-transparent text-foreground hover:bg-primary-foreground data-[active="true"]:bg-primary' onClick={() => goToPage('/search')}>
                                 <Search size={24} />
                                 Pesquisa
                             </Button>
@@ -161,7 +161,7 @@ export function SideBarMenu() {
 
                 </div>
 
-                <Separator />
+                <Separator className='bg-muted-foreground'/>
 
                 <div className='flex items-center justify-between h-1/6'>
                     <div>
