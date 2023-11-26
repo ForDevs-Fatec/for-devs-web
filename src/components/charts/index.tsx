@@ -3,30 +3,31 @@ import { ChartBarComponent } from "@/data/chartBarData";
 import { BarMedChartComponent } from "@/data/chartBarDataMed";
 import { DonutsChartComponent } from "@/data/chartDonuts";
 import { LineChartComponent } from "@/data/chartLineData";
-import { Separator } from "@radix-ui/react-separator";
 
 export function DashboardCharts() {
   return (
     <div className="flex flex-col gap-5 justify-center">
-      {/* <div className="flex gap-5 h-[97px] w-full">
+      <div className="flex gap-5 h-[97px] w-full">
         <div className="flex items-center justify-center gap-5 w-full">
-          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-[#282828] rounded-[1.25rem] hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Bar Chart</h1>
+          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
+            <h1 className="text-white font-semibold">
+              Total de dados analisados
+            </h1>
           </div>
 
-          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-[#282828] rounded-[1.25rem] hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Bar Chart</h1>
+          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
+            <h1 className="text-white font-semibold">
+              Acurácia dos resultados
+            </h1>
           </div>
 
-          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-[#282828] rounded-[1.25rem] hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Bar Chart</h1>
-          </div>
-
-          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-[#282828] rounded-[1.25rem] hover:scale-105 hover:cursor-pointer">
-            <h1 className="text-white font-semibold">Bar Chart</h1>
+          <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
+            <h1 className="text-white font-semibold">
+              Precisão dos restultados
+            </h1>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="flex flex-col gap-5 h-full w-full">
         <div className="flex items-center justify-center gap-4 grid grid-cols-1 lg:grid-cols-2">
@@ -72,7 +73,7 @@ export function DashboardCharts() {
         <div className="flex items-center justify-center gap-4 grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col gap-4 w-full">
             <h1 className="text-white font-semibold">
-              Média de avaliação por tema
+              Média de avaliação por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
               <BarMedChartComponent />
@@ -81,7 +82,7 @@ export function DashboardCharts() {
 
           <div className="flex flex-col gap-4 w-full">
             <h1 className="text-white font-semibold">
-              Média de avaliação por tema
+              Média de avaliação por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
               <BarMedChartComponent />

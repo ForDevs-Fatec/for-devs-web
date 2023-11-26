@@ -101,7 +101,7 @@ export function SearchPage() {
             placeholder="Digite sua pesquisa..."
             onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch(text)}
-            className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+            className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
           />
 
           {isLoading ? (

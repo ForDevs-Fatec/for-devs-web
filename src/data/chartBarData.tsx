@@ -1,7 +1,6 @@
 import { EmptyChart } from "@/components/emptyChart";
 import apiPln from "@/services/api-pln.service";
 import URI from "@/utils/enum/uri.enum";
-import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 

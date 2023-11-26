@@ -14,7 +14,6 @@
 body {
   position: relative;
   -webkit-font-smoothing: antialiased;
-  background-color: hsl(var(--background));
 }
 
 *::-webkit-scrollbar {
