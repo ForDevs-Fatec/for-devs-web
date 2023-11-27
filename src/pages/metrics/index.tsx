@@ -52,18 +52,18 @@ export function MetricsPage() {
         <div className="flex flex-col justify-start gap-5 w-[71.875rem] h-screen">
           <div className="flex flex-col items-center justify-center gap-5">
             <div className="flex items-center justify-center gap-5 w-full">
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full  w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">
+                  <h1 className="text-muted-foreground text-sm font-thin">
                     Pré processamento
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -72,21 +72,21 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("preproc").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full  w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">Stopword</h1>
+                  <h1 className="text-muted-foreground text-sm font-thin">Stopword</h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -95,23 +95,23 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("stopwords").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full  w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">
+                  <h1 className="text-muted-foreground text-sm font-thin">
                     Tokenização
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -120,25 +120,25 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("tokenização").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center justify-center gap-5 w-full">
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full  w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">
+                  <h1 className="text-muted-foreground text-sm font-thin">
                     Analise de sentimentos
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -147,23 +147,23 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("sentimento").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full  w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">
+                  <h1 className="text-muted-foreground text-sm font-thin">
                     Classificação de tema
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -172,23 +172,23 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("class_tema").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-5 h-full bg-[#282828] w-[33%] rounded-xl hover:scale-105 hover:cursor-pointer transition-all ">
+              <div className="flex items-center justify-between p-5 h-full w-[33%] border border-border rounded-md hover:scale-105 hover:cursor-pointer transition-all ">
                 <div className="w-[30%]">
-                  <div className="flex items-center justify-center rounded-full bg-zinc-700 w-14 h-14">
+                  <div className="flex items-center justify-center rounded-full bg-primary-foreground  w-14 h-14">
                     <AlarmClock className="text-white" />
                   </div>
                 </div>
                 <div className="flex flex-col items-end w-[70%]">
-                  <h1 className="text-zinc-400 text-sm font-thin">
+                  <h1 className="text-muted-foreground text-sm font-thin">
                     Correção ortográfica
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {isLoading ? (
+                    {/* {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -197,19 +197,19 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("correcao_ortografica").toFixed(3) + "s"
-                    )}
+                    )} */}
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-5 h-[65%] p-6 bg-[#282828] rounded-[1.25rem]">
+          <div className="flex flex-col gap-5 h-[65%] p-6 border border-border rounded-md">
             <h1 className="text-white font-semibold">
               Análise de tempo de execução por dia.
             </h1>
-            <MetricsChartComponent />
-            <MetricsChartComponentV2 />
+            {/* <MetricsChartComponent />
+            <MetricsChartComponentV2 /> */}
           </div>
         </div>
       </div>

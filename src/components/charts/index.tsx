@@ -36,7 +36,7 @@ export function DashboardCharts() {
               Distribuição de sentimento x tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <ChartBarComponent />
+              {/* <ChartBarComponent /> */}
             </div>
           </div>
 
@@ -45,7 +45,7 @@ export function DashboardCharts() {
               Distribuição de sentimento x faixa etária.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <BarAgeRangeChartComponent />
+              {/* <BarAgeRangeChartComponent /> */}
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@ export function DashboardCharts() {
               Distribuição de temas ao longo do tempo.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <LineChartComponent />
+              {/* <LineChartComponent /> */}
             </div>
           </div>
 
@@ -65,7 +65,7 @@ export function DashboardCharts() {
               Distribuição total de sentimentos por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <DonutsChartComponent />
+              {/* <DonutsChartComponent /> */}
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export function DashboardCharts() {
               Média de avaliação por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <BarMedChartComponent />
+              {/* <BarMedChartComponent /> */}
             </div>
           </div>
 
@@ -85,7 +85,7 @@ export function DashboardCharts() {
               Média de avaliação por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              <BarMedChartComponent />
+              {/* <BarMedChartComponent /> */}
             </div>
           </div>
         </div>
