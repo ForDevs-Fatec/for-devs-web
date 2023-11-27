@@ -100,14 +100,14 @@ export function UserModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild >
-        <Button className="flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all">
+        <Button className="flex items-center gap-4 w-full p-4 h-12 text-white bg-primary hover:bg-primary-foreground transition-all">
           Novo usuário
         </Button>
       </DialogTrigger>
       <DialogContent className=" text-zinc-50">
         <DialogHeader>
           <DialogTitle>Novo usuário</DialogTitle>
-          <DialogDescription className="text-zinc-500">
+          <DialogDescription className="text-muted-foreground">
             Crie um novo usuário. Por favor preencha todos os campos para que o
             usuário seja criado com sucesso.
           </DialogDescription>
@@ -123,7 +123,7 @@ export function UserModal() {
                 id="name"
                 placeholder="Nome"
                 autoComplete="off"
-                className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
                 {...register("name", {
                   required: "Nome obrigatório para o cadastro!",
                   minLength: { value: 3, message: "Nome deve ter no mínimo 3 caracteres" },
@@ -139,7 +139,7 @@ export function UserModal() {
                 id="email"
                 autoComplete="off"
                 placeholder="E-mail"
-                className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
                 {...register("email", {
                   required: "Email obrigatório para o cadastro!",
                   pattern: {
@@ -159,7 +159,7 @@ export function UserModal() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Senha"
                   autoComplete="off"
-                  className="bg-zinc-950 text-white p-4 h-12 rounded-sm border-zinc-400 placeholder:text-zinc-500"
+                  className="bg-transparent text-foreground p-4 h-12 rounded-sm border-border placeholder:text-muted-foreground"
                   {...register("password", {
                     required: "Senha obrigatoria para o cadastro!",
                     minLength: {
@@ -171,7 +171,7 @@ export function UserModal() {
                 <Button
                   onClick={togglePasswordVisibility}
                   type="button"
-                  className="bg-zinc-950 text-white p-4 h-12 rounded-sm border border-zinc-400 hover:bg-zinc-800"
+                  className="bg-transparent text-foreground p-4 h-12 rounded-sm border border-border"
                 >
                   {showPassword ? <Eye /> : <EyeOff />}
                 </Button>
@@ -200,12 +200,12 @@ export function UserModal() {
           </div>
           <div className="flex justify-end mt-8 w-full">
             {isLoading?
-            <Button type="submit" disabled className='flex items-center gap-4 w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all'>
+            <Button type="submit" disabled className='flex items-center gap-4 w-full p-4 h-12 text-white bg-primary hover:bg-primary-foreground transition-all'>
               <Loader2 className='animate-spin'/>
               Registrando
             </Button>
             :
-            <Button type="submit" className="w-full p-4 h-12 bg-blue-800 hover:bg-blue-700 transition-all">Cadastrar usuário</Button>
+            <Button type="submit" className="w-full p-4 h-12 text-white bg-primary hover:bg-primary-foreground transition-all">Cadastrar usuário</Button>
             }
           </div>
         </form>

@@ -95,18 +95,18 @@ export function UserTable() {
             {loading ?
                 (
                     <div className="flex items-center justify-center h-full w-full">
-                        <Loader2 className='animate-spin text-zinc-50' />
-                        <p className='text-zinc-50 ml-2'>Carregando usuários...</p>
+                        <Loader2 className='animate-spin text-white' />
+                        <p className='text-white ml-2'>Carregando usuários...</p>
                     </div>
                 )
                 :
                 (
-                    <div className='border p-2 rounded-sm  shadow-2xl'>
+                    <div className='border p-2 rounded-sm shadow-2xl'>
                         <Table className='h-[700px]'>
                             <TableCaption>
                                 <div className="flex justify-between mt-4">
                                     <div className="flex justify-center mt-4">
-                                        <span className="text-zinc-50 font-bold">
+                                        <span className="text-muted-foreground font-bold">
                                             {currentPage} de {totalPages} páginas
                                         </span>
                                     </div>
@@ -114,20 +114,20 @@ export function UserTable() {
                                         <Button
                                             onClick={handlePrevPage}
                                             disabled={currentPage === 1}
-                                            className='flex items-center gap-1 p-2 bg-blue-800 hover:bg-blue-700 transition-all'
+                                            className='flex items-center gap-1 p-2 text-secondary hover:text-foreground bg-primary hover:bg-primary-foreground transition-all'
                                         >
                                             <ChevronLeft />
                                         </Button>
                                         <Button
                                             onClick={handleLastPage}
-                                            className='flex items-center gap-1 p-2 bg-blue-800 hover:bg-blue-700 transition-all'
+                                            className='flex items-center gap-1 p-2 text-secondary hover:text-foreground bg-primary hover:bg-primary-foreground transition-all'
                                         >
                                             Ultima página
                                         </Button>
                                         <Button
                                             onClick={handleNextPage}
                                             disabled={currentPage * itemsPerPage >= users.length}
-                                            className='flex items-center justify-between gap-1 p-2 bg-blue-800 hover:bg-blue-700 transition-all'
+                                            className='flex items-center justify-between gap-1 p-2 text-secondary hover:text-foreground bg-primary hover:bg-primary-foreground transition-all'
                                         >
                                             <ChevronRight />
                                         </Button>
@@ -135,34 +135,34 @@ export function UserTable() {
                                 </div>
                             </TableCaption>
                             <TableHeader >
-                                <TableRow className='bg-zinc-800 hover:bg-zinc-800'>
-                                    <TableHead className='text-left w-[250px] font-bold text-zinc-50'>Nome</TableHead>
-                                    <TableHead className='text-center font-bold text-zinc-50'>E-mail</TableHead>
-                                    <TableHead className="text-right font-bold text-zinc-50">Editar</TableHead>
+                                <TableRow className='bg-primary-foreground'>
+                                    <TableHead className='text-left w-[250px] font-bold text-white'>Nome</TableHead>
+                                    <TableHead className='text-center font-bold text-white'>E-mail</TableHead>
+                                    <TableHead className="text-right font-bold text-white">Editar</TableHead>
                                 </TableRow>
                             </TableHeader>
 
                             <TableBody>
                                 {currentItems.map((item: UserData, index) => (
                                     <TableRow key={index} className='hover:bg-transparent'>
-                                        <TableCell className='text-left text-zinc-50 font-bold'>{item.name}</TableCell>
-                                        <TableCell className='text-center text-zinc-50'>{item.email}</TableCell>
-                                        <TableCell className='text-right text-zinc-50'>
+                                        <TableCell className='text-left text-white font-bold'>{item.name}</TableCell>
+                                        <TableCell className='text-center text-white'>{item.email}</TableCell>
+                                        <TableCell className='text-right text-white'>
                                             <DropdownMenu>
-                                                <DropdownMenuTrigger className="p-2 rounded-md transition-all hover:bg-zinc-700">
+                                                <DropdownMenuTrigger className="p-2 rounded-md transition-all hover:bg-primary-foreground">
                                                     <MoreVertical size={24} />
                                                 </DropdownMenuTrigger>
-                                                <DropdownMenuContent className='bg-neutral-800'>
-                                                    <DropdownMenuLabel className='text-zinc-50'>Editar usuário</DropdownMenuLabel>
+                                                <DropdownMenuContent className='bg-primary-foreground'>
+                                                    <DropdownMenuLabel className='text-white'>Editar usuário</DropdownMenuLabel>
                                                     <DropdownMenuSeparator />
                                                     <Dialog>
                                                         <DialogTrigger asChild>
-                                                            <Button className='flex items-center justify-start py-2 px-4 h-full w-full bg-transparent hover:bg-zinc-50 text-zinc-50 font-normal hover:text-zinc-950'>Editar perfil</Button>
+                                                            <Button className='flex items-center justify-start py-2 px-4 h-full w-full bg-transparent hover:bg-zinc-50 text-white font-normal hover:text-zinc-950'>Editar perfil</Button>
                                                         </DialogTrigger>
-                                                        <DialogContent className="sm:max-w-[425px] text-zinc-50">
+                                                        <DialogContent className="sm:max-w-[425px] text-white">
                                                             <DialogHeader>
                                                                 <DialogTitle>Editar perfil</DialogTitle>
-                                                                <DialogDescription className='text-zinc-500'>
+                                                                <DialogDescription className='text-white0'>
                                                                     Faça mudanças no perfil aqui. Clique em salvar quando finalizar.
                                                                 </DialogDescription>
                                                             </DialogHeader>
@@ -171,7 +171,7 @@ export function UserTable() {
                                                                     <Label htmlFor="name" className="text-right">
                                                                         Nome
                                                                     </Label>
-                                                                    <Input id="name" placeholder={item.name} className="col-span-3 placeholder:text-zinc-50" />
+                                                                    <Input id="name" placeholder={item.name} className="col-span-3 placeholder:text-white" />
                                                                 </div>
                                                                 <div className="grid grid-cols-4 items-center gap-4">
                                                                     <Label htmlFor="email" className="text-right">
@@ -180,7 +180,7 @@ export function UserTable() {
                                                                     <Input
                                                                         id="email"
                                                                         placeholder={item.email}
-                                                                        className="col-span-3 placeholder:text-zinc-50"
+                                                                        className="col-span-3 placeholder:text-white"
                                                                     />
                                                                 </div>
                                                                 <div className="grid grid-cols-4 items-center gap-4">
@@ -192,9 +192,9 @@ export function UserTable() {
                                                                             <SelectValue placeholder={mapRoleToLabel(item.role)} />
                                                                         </SelectTrigger>
                                                                         <SelectContent className='bg-zinc-950'>
-                                                                            <SelectItem value="1" className='text-zinc-50 cursor-pointer'>Administrador</SelectItem>
-                                                                            <SelectItem value="2" className='text-zinc-50 cursor-pointer'>Nivel 1</SelectItem>
-                                                                            <SelectItem value="3" className='text-zinc-50 cursor-pointer'>Nivel 2</SelectItem>
+                                                                            <SelectItem value="1" className='text-white cursor-pointer'>Administrador</SelectItem>
+                                                                            <SelectItem value="2" className='text-white cursor-pointer'>Nivel 1</SelectItem>
+                                                                            <SelectItem value="3" className='text-white cursor-pointer'>Nivel 2</SelectItem>
                                                                         </SelectContent>
                                                                     </Select>
                                                                 </div>
@@ -207,12 +207,12 @@ export function UserTable() {
 
                                                     <Dialog>
                                                         <DialogTrigger asChild>
-                                                            <Button className='flex items-center justify-start py-2 px-4 h-full w-full bg-transparent hover:bg-red-600 text-zinc-50 font-normal hover:text-zinc-50'>Excluir perfil</Button>
+                                                            <Button className='flex items-center justify-start py-2 px-4 h-full w-full bg-transparent hover:bg-red-600 text-white font-normal hover:text-white'>Excluir perfil</Button>
                                                         </DialogTrigger>
-                                                        <DialogContent className="sm:max-w-[425px] text-zinc-50">
+                                                        <DialogContent className="sm:max-w-[425px] text-white">
                                                             <DialogHeader>
                                                                 <DialogTitle>Excluir perfil</DialogTitle>
-                                                                <DialogDescription className='text-zinc-500'>
+                                                                <DialogDescription className='text-muted-foreground'>
                                                                     Confirme sua decisão de excluir o perfil.
                                                                 </DialogDescription>
                                                             </DialogHeader>
@@ -232,7 +232,7 @@ export function UserTable() {
                                                             </div>
                                                             <Button
                                                                 type="button"
-                                                                className='bg-red-600 hover:bg-red-700'
+                                                                className='bg-red-600 hover:bg-red-700 text-secondary hover:text-foreground'
                                                                 onClick={() => handleDeleteUser(item.id)}
                                                             >
                                                                 Excluir perfil
@@ -240,6 +240,7 @@ export function UserTable() {
                                                             <Button
                                                                 type="button"
                                                                 onClick={() => handleGetUsers()}
+                                                                className='text-secondary hover:text-foreground'
                                                             >
                                                                 Cancelar
                                                             </Button>
