@@ -154,7 +154,7 @@ export function SearchPage() {
                   </div>
                 </TableCaption>
                 <TableHeader>
-                  <TableRow className="bg-zinc-800">
+                  <TableRow className="bg-primary-foreground">
                     <TableHead className="font-bold text-zinc-50 text-left">
                       ID
                     </TableHead>

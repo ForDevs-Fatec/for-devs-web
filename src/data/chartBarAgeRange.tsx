@@ -9,7 +9,7 @@ type BarAgeRangeChartProps = {
   classificacao_tema: number;
   quantidade: number;
   sentimento_text: string;
-}
+};
 
 export function BarAgeRangeChartComponent() {
   const [dataBar, setDataBar] = useState<BarAgeRangeChartProps[]>([]);
@@ -23,7 +23,7 @@ export function BarAgeRangeChartComponent() {
         .get<BarAgeRangeChartProps[]>(URI.GET_SENTIMENT_AGE)
         .then((response) => {
           const dataBar = response.data;
-      
+
           setDataBar(dataBar);
           setLoading(false);
         })
@@ -45,10 +45,12 @@ export function BarAgeRangeChartComponent() {
 
       let ageRange = "";
 
-      if (age >= 0 && age <= 19) {
-        ageRange = "0-19";
-      } else if (age >= 20 && age <= 59) {
-        ageRange = "20-59";
+      if (age >= 0 && age <= 24) {
+        ageRange = "0-24";
+      } else if (age >= 25 && age <= 39) {
+        ageRange = "25-39";
+      } else if (age >= 40 && age <= 59) {
+        ageRange = "40-59";
       } else if (age >= 60) {
         ageRange = "60+";
       }
@@ -75,7 +77,7 @@ export function BarAgeRangeChartComponent() {
 
   for (const ageRange in groupedData) {
     barDataPositive.push(groupedData[ageRange].positive || 0);
-    barDataNeutral.push(groupedData[ageRange].neutra || 0);
+    barDataNeutral.push(groupedData[ageRange].neutral || 0);
     barDataNegative.push(groupedData[ageRange].negative || 0);
   }
 
@@ -94,7 +96,7 @@ export function BarAgeRangeChartComponent() {
           enabled: true,
           speed: 350,
         },
-      }
+      },
     },
     theme: {
       mode: "dark",
@@ -107,6 +109,11 @@ export function BarAgeRangeChartComponent() {
         name: "Positivo",
         data: barDataPositive,
         color: "#33f182",
+      },
+      {
+        name: "neutro",
+        data: barDataNeutral,
+        color: "#f2d94c",
       },
       {
         name: "Negativo",
@@ -145,19 +152,22 @@ export function BarAgeRangeChartComponent() {
           color: "#8997ac",
         },
       },
-      categories: ["Produto", "Qualidade", "Entrega"],
+      categories: ["0 - 24", "25 - 39", "40 - 59", "60 +"],
       labels: {
         show: true,
+        formatter: function (val) {
+          return val + " anos";
+        },
         style: {
-          colors: "#8997ac"
+          colors: "#8997ac",
         },
       },
       axisBorder: {
-        color: "#8997ac"
+        color: "#8997ac",
       },
       axisTicks: {
-        color: "#8997ac"
-      }
+        color: "#8997ac",
+      },
     },
     yaxis: {
       title: {
@@ -171,7 +181,7 @@ export function BarAgeRangeChartComponent() {
       labels: {
         show: true,
         style: {
-          colors: "#8997ac"
+          colors: "#8997ac",
         },
       },
     },

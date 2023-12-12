@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
 type BarMedChartProps = {
-  classificacao_tema: number;
+  classificacao_tema: string;
   quantidade: number;
   overall_rating: number;
 };
@@ -22,7 +22,6 @@ export function BarMedChartComponent() {
         .get<BarMedChartProps[]>(URI.MEDIA_TEMAS)
         .then((response) => {
           const data = response.data;
-
           setDataBarMedChart(data);
           setLoading(false);
         })
@@ -33,12 +32,13 @@ export function BarMedChartComponent() {
     }, 5000);
   }, []);
 
-
-  const getAllData = dataBarMedChart.map((item) => item.overall_rating || 0);
-  
   const BarChartOptions: ApexCharts.ApexOptions = {
     chart: {
       background: "transparent",
+      foreColor: "#ffffff",
+      toolbar: {
+        show: true,
+      },
       animations: {
         enabled: true,
         easing: "easeinout",
@@ -53,105 +53,49 @@ export function BarMedChartComponent() {
         },
       }
     },
-    theme: {
-      mode: "dark",
-    },
     tooltip: {
       theme: "dark",
       y: {
         formatter: function (val: number) {
-          return val + " média";
+          return val + " pontos";
         },
-      },
-    },
-    xaxis: {
-      title: {
-        text: "Temas",
-        style: {
-          fontSize: "10px",
-          fontWeight: "bold",
-          color: "#8997ac",
-        },
-      },
-      categories: ["Produto", "Qualidade", "Entrega"],
-      labels: {
-        show: true,
-        style: {
-          colors: "#8997ac"
-        },
-      },
-      axisBorder: {
-        color: "#8997ac"
-      },
-      axisTicks: {
-        color: "#8997ac"
       }
     },
-    yaxis: {
-      title: {
-        text: "Média de Avaliações",
-        style: {
-          fontSize: "10px",
-          fontWeight: "bold",
-          color: "#8997ac",
-        },
-      },
+    series: [
+      {
+        name: "Nota média",
+        data: [
+          dataBarMedChart.length > 0 ? dataBarMedChart[0]?.overall_rating : 0,
+          dataBarMedChart.length > 0 ? dataBarMedChart[1]?.overall_rating : 0,
+          dataBarMedChart.length > 0 ? dataBarMedChart[2]?.overall_rating : 0,
+          dataBarMedChart.length > 0 ? dataBarMedChart[3]?.overall_rating : 0,
+          dataBarMedChart.length > 0 ? dataBarMedChart[4]?.overall_rating : 0,
+        ],
+      }
+    ],
+    labels: ["Qualidade", "Produto", "Recomendação", "Entrega", "Expectativa"],
+    colors: ["#f23f42", "#f0b232", "#33f182", "#3f8ff2", "#a83ff2"],
+    legend: {
+      position: "bottom",
       labels: {
-        show: true,
-        style: {
-          colors: "#8997ac"
-        },
+        colors: "#FFFFFF",
       },
     },
-  series: [
-    {
-      name: "Média avaliações",
-      data: getAllData,
-      color: "#EB8242"
-    },
-  ],
-  plotOptions: {
-    bar: {
-      borderRadius: 1.5,
-      columnWidth: "25%",
-      horizontal: false,
-    },
-  },
-  legend: {
-    position: "bottom",
-    height: 50,
-    offsetY: 10,
-    labels: {
-      colors: "#FFFFFF",
-    },
-  },
-  dataLabels: {
-    enabled: true,
-    style: {
-      fontSize: "10px",
-      fontWeight: "bold",
-      colors: ["#FFFFFF"]
-    }
-  },
-  grid: {
-    show: true,
-    borderColor: "#8997ac",
-  },
-};
+  };
 
   return (
-    <div className='w-full h-full'>
+    <>
       {loading ? (
         <EmptyChart />
       ) : (
         <Chart
           options={BarChartOptions}
           series={BarChartOptions.series}
-          type="bar"
+          type="radar"
           width="100%"
           height="100%"
         />
       )}
-    </div>
+    </>
   );
 }

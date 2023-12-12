@@ -205,24 +205,24 @@ export function SideBarMenu() {
             
             <div>
               <DropdownMenu>
-                <DropdownMenuTrigger className="p-3 rounded-md transition-all hover:bg-zinc-700">
+                <DropdownMenuTrigger className="p-2 rounded-md transition-all hover:bg-primary-foreground">
                   <MoreVertical size={24} />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-zinc-950 text-zinc-50 border-zinc-500">
-                  <DropdownMenuLabel>Configurações de Conta</DropdownMenuLabel>
+                <DropdownMenuContent className="w-56 bg-primary-foreground">
+                  {/* <DropdownMenuLabel>Configurações de Conta</DropdownMenuLabel> */}
 
-                  <DropdownMenuSeparator className="bg-zinc-500" />
+                  {/* <DropdownMenuSeparator className="bg-zinc-500" /> */}
 
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem className="hover:cursor-pointer" disabled>
+                  {/* <DropdownMenuGroup>
+                    <DropdownMenuItem className="transition-all hover:bg-primary-foreground hover:cursor-pointer" disabled>
                       Editar perfil
                       <DropdownMenuShortcut>
                         <UserCog size={16} />
                       </DropdownMenuShortcut>
                     </DropdownMenuItem>
-                  </DropdownMenuGroup>
-
-                  <DropdownMenuSeparator className="bg-zinc-500" />
+                  </DropdownMenuGroup> */}
+{/* 
+                  <DropdownMenuSeparator className="bg-zinc-500" /> */}
 
                   <DropdownMenuItem
                     className="hover:cursor-pointer"

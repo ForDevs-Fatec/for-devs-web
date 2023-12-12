@@ -36,15 +36,17 @@ export function ChartBarComponent() {
   const barDataPositive = dataBarChart.filter(
     (item) => item.sentiment_text === "positive"
   );
-  // const barDataNeutral = dataBarChart.filter(
-  //   (item) => item.sentiment_text === "neutra" 
-  // );
+  const barDataNeutral = dataBarChart.filter(
+    (item) => item.sentiment_text === "neutral" 
+  );
   const barDataNegative = dataBarChart.filter(
     (item) => item.sentiment_text === "negative"
   );
 
+  
+
   const getAllDataPositive = barDataPositive.map((item) => item.quantidade || 0);
-  // const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
+  const getAllDataNeutral = barDataNeutral.map((item) => item.quantidade || 0);
   const getAllDataNegative = barDataNegative.map((item) => item.quantidade || 0);
 
   const BarChartOptions: ApexCharts.ApexOptions = {
@@ -80,6 +82,11 @@ export function ChartBarComponent() {
         name: "Positivo",
         data: getAllDataPositive,
         color: "#33f182",
+      },
+      {
+        name: "Neutro",
+        data: getAllDataNeutral,
+        color: "#f2d33f",
       },
       {
         name: "Negativo",
@@ -118,7 +125,7 @@ export function ChartBarComponent() {
           color: "#8997ac",
         },
       },
-      categories: ["Produto", "Qualidade", "Entrega"],
+      categories: ["Recomendação", "Produto", "Entrega", "Expectativa", "Qualidade"],
       labels: {
         show: true,
         style: {

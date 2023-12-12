@@ -63,7 +63,7 @@ export function MetricsPage() {
                     Pré processamento
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -72,7 +72,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("preproc").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export function MetricsPage() {
                 <div className="flex flex-col items-end w-[70%]">
                   <h1 className="text-muted-foreground text-sm font-thin">Stopword</h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -95,7 +95,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("stopwords").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -111,7 +111,7 @@ export function MetricsPage() {
                     Tokenização
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -120,7 +120,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("tokenização").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export function MetricsPage() {
                     Analise de sentimentos
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -147,7 +147,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("sentimento").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export function MetricsPage() {
                     Classificação de tema
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -172,7 +172,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("class_tema").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export function MetricsPage() {
                     Correção ortográfica
                   </h1>
                   <span className="text-2xl text-white font-semibold">
-                    {/* {isLoading ? (
+                    {isLoading ? (
                       <div className="flex items-center justify-center h-full w-full">
                         <Loader2 className="animate-spin text-zinc-50" />
                         <p className="text-base text-zinc-50 ml-2">
@@ -197,7 +197,7 @@ export function MetricsPage() {
                       </div>
                     ) : (
                       dataMed("correcao_ortografica").toFixed(3) + "s"
-                    )} */}
+                    )}
                   </span>
                 </div>
               </div>
@@ -208,8 +208,8 @@ export function MetricsPage() {
             <h1 className="text-white font-semibold">
               Análise de tempo de execução por dia.
             </h1>
-            {/* <MetricsChartComponent />
-            <MetricsChartComponentV2 /> */}
+            <MetricsChartComponent />
+            <MetricsChartComponentV2 />
           </div>
         </div>
       </div>

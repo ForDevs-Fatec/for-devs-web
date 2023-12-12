@@ -8,7 +8,7 @@ enum URI {
     GET_THEME_COUNT = '/getTemaCont',
     GET_THEME_TIME = '/getTemaTempo',
     GET_THEME_SENTIMENT = '/getTemaSent',
-    CLASSIFICACAO_TEMA_SENTIMENTO_ESTADO = '/getClassificacaoTemaSentimentoEstado',
+    GET_THEME_UF = '/getTemaSentUF',
     GET_SENTIMENT_AGE = '/getSentIdade',
     CATEGORIA_TEMAS = '/get-categoria-temas',
     MEDIA_TEMAS = '/get-media-temas',

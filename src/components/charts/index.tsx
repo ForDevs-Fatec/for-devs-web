@@ -3,11 +3,12 @@ import { ChartBarComponent } from "@/data/chartBarData";
 import { BarMedChartComponent } from "@/data/chartBarDataMed";
 import { DonutsChartComponent } from "@/data/chartDonuts";
 import { LineChartComponent } from "@/data/chartLineData";
+import { ChartTreemapComponent } from "@/data/chartTreemapState";
 
 export function DashboardCharts() {
   return (
     <div className="flex flex-col gap-5 justify-center">
-      <div className="flex gap-5 h-[97px] w-full">
+      {/* <div className="flex gap-5 h-[97px] w-full">
         <div className="flex items-center justify-center gap-5 w-full">
           <div className="flex flex-col gap-4 h-[97px] w-[25%] px-6 py-4 bg-transparent shadow-lg border border-border rounded-md hover:scale-105 hover:cursor-pointer">
             <h1 className="text-white font-semibold">
@@ -27,16 +28,16 @@ export function DashboardCharts() {
             </h1>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col gap-5 h-full w-full">
         <div className="flex items-center justify-center gap-4 grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-4 w-full h-fit">
             <h1 className="text-white font-semibold">
               Distribuição de sentimento x tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <ChartBarComponent /> */}
+              <ChartBarComponent />
             </div>
           </div>
 
@@ -45,7 +46,7 @@ export function DashboardCharts() {
               Distribuição de sentimento x faixa etária.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <BarAgeRangeChartComponent /> */}
+              <BarAgeRangeChartComponent />
             </div>
           </div>
         </div>
@@ -56,7 +57,7 @@ export function DashboardCharts() {
               Distribuição de temas ao longo do tempo.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <LineChartComponent /> */}
+              <LineChartComponent />
             </div>
           </div>
 
@@ -65,7 +66,7 @@ export function DashboardCharts() {
               Distribuição total de sentimentos por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <DonutsChartComponent /> */}
+              <DonutsChartComponent />
             </div>
           </div>
         </div>
@@ -76,16 +77,16 @@ export function DashboardCharts() {
               Média de avaliação por tema.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <BarMedChartComponent /> */}
+              <BarMedChartComponent />
             </div>
           </div>
 
           <div className="flex flex-col gap-4 w-full">
             <h1 className="text-white font-semibold">
-              Média de avaliação por tema.
+              Distribuição total de avaliações pelos estados do Brasil.
             </h1>
             <div className="p-2 h-[345px] bg-transparent shadow-lg border border-border rounded-md">
-              {/* <BarMedChartComponent /> */}
+              <ChartTreemapComponent />
             </div>
           </div>
         </div>

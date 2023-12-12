@@ -53,11 +53,13 @@ export function DonutsChartComponent() {
     },
     series: [
       dataDonutChart.length > 0 ? dataDonutChart[0]?.quantidade : 0,
-      dataDonutChart.length > 1 ? dataDonutChart[1]?.quantidade : 0,
-      dataDonutChart.length > 2 ? dataDonutChart[2]?.quantidade : 0,
+      dataDonutChart.length > 0 ? dataDonutChart[1]?.quantidade : 0,
+      dataDonutChart.length > 0 ? dataDonutChart[2]?.quantidade : 0,
+      dataDonutChart.length > 0 ? dataDonutChart[3]?.quantidade : 0,
+      dataDonutChart.length > 0 ? dataDonutChart[4]?.quantidade : 0,
     ],
-    labels: ["Produto", "Entrega", "Qualidade (Custo-benefício)"],
-    colors: ["#f0b232", "#33f182", "#f23f42"],
+    labels: ["Qualidade", "Produto", "Recomendação", "Entrega", "Expectativa"],
+    colors: ["#f23f42", "#f0b232", "#33f182", "#3f8ff2", "#a83ff2"],
     legend: {
       position: "bottom",
       labels: {
